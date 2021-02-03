@@ -8,5 +8,7 @@ The blog resources rely on an external Gitee picture repo: https://gitee.com/tz_
 * Open a console of WSL, and navigate to the Blog project directory.
 * In the console, enter `$ make html` to generate html pages from the project. 
 
-## How to upload project source to Github repo
+## Upload and build on 
 
+* Enter related Git repo. Commit and push any changes to `master` branch.
+* Manual trigger build on https://readthedocs.org/.
