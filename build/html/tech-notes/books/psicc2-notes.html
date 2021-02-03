@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QP framework reference (PSICC2) &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
+    <link rel="prev" title="The Element of Computing Systems (aka., Nand2tetris)" href="nand2tetris.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Book Notes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="linux-p-int.html">The Linux programming interface (TLPI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nand2tetris.html">The Element of Computing Systems (aka., Nand2tetris)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">QP framework reference (PSICC2)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#software-tracing-for-event-driven-systems">Software tracing for event-driven systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-note-oop-in-c">Application Note: OOP in C</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Book Notes</a> &raquo;</li>
+        
+      <li>QP framework reference (PSICC2)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tech-notes/books/psicc2-notes.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qp-framework-reference-psicc2">
+<h1>QP framework reference (PSICC2)<a class="headerlink" href="#qp-framework-reference-psicc2" title="Permalink to this headline">¶</a></h1>
+<img src="http://www.state-machine.com/qpc/qp_banner.jpg" width="400" style="border-style: none"><p><em>Courtesy of Quantum Leaps:</em> http://www.state-machine.com/</p>
+<div class="section" id="software-tracing-for-event-driven-systems">
+<h2>Software tracing for event-driven systems<a class="headerlink" href="#software-tracing-for-event-driven-systems" title="Permalink to this headline">¶</a></h2>
+<p>Section 11.1 has a brilliant description of a non-intrusive tracing method. Quoted below:</p>
+<blockquote>
+<div><blockquote>
+<div>To minimize the RAM usage, the target-resident trace component typically uses a <strong>circular trace buffer</strong> that is continuously updated, and new data overwrites the old when the buffer “wraps around” due to limited size or transmission rate to the host. This reflects the typically applied <em>last-is-best</em> policy in collecting the trace data.</div></blockquote>
+</div></blockquote>
+<p>Whenever reading the above description, I’m always wondering how SEGGER systemview code works? Will try to dig in and to see whether a circular buffer is used to transmit data to JLink device.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="application-note-oop-in-c">
+<h2>Application Note: OOP in C<a class="headerlink" href="#application-note-oop-in-c" title="Permalink to this headline">¶</a></h2>
+<p>This App note is not part of the book, but what has been described in the App note is deployed in the QF code. Before exploring OOP in C code, some knowledge is worth discussing.</p>
+<div class="section" id="upcasting-and-downcasting-in-c">
+<h3>Upcasting and downcasting in C<a class="headerlink" href="#upcasting-and-downcasting-in-c" title="Permalink to this headline">¶</a></h3>
+<p>The concept is commonly used in OOP (object-oriented programming). The direction <em>up</em> and <em>down</em> indicates the conversion between the pointer to a super class and the pointer to a subclass. Specifically, <em>upcasting</em> means a subclass pointer is treated as a super class pointer (going up to the root class). Conversely, when treating a super class pointer to a subclass pointer (going down to the derived class), <em>downcasting</em> is used.</p>
+<p>Upcasting is safe in C’s context due to the following reason:</p>
+<blockquote>
+<div><blockquote>
+<div>The alignment of the Rectangle structure (<em>a subclass</em>) and the inherited attributes of the Shape structure (<em>a super class</em>) is guaranteed by the C standard WG14/N1124. Section 6.7.2.1.13 of this standard, says: “… A pointer to a structure object, suitably converted, points to its initial member. There may be unnamed padding within a structure object, but not at its beginning”.</div></blockquote>
+</div></blockquote>
+<p>Downcasting may be unsafe if calling methods exclusively to the derived class. Normally, such an unsafe action should not be conducted, since the purpose of downcasting is to address polymorphism by calling the interfacing methods in the super class.</p>
+</div>
+<div class="section" id="inline-functions-in-c">
+<h3>Inline functions in C<a class="headerlink" href="#inline-functions-in-c" title="Permalink to this headline">¶</a></h3>
+<p>This technique is rarely in my project, as function call overhead is not a huge problem. It’s worth noting in some embedded systems, performance does matter, and hence here are some discussions based on the article: http://www.drdobbs.com/the-new-c-inline-functions/184401540.</p>
+<p>When dealing with inline functions, a question came to my mind is how inline function saves time compared to normal function calls. In the aforementioned article, there’s a nice example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">callee</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">caller_1</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+  <span class="n">f</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>if callee() is an inline function, i.e., <em>inline void callee()</em>, the compiler could optimize caller_1() as the following:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">caller_1</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// After inline substitution.</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+  <span class="o">*&amp;</span><span class="n">c</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If no inline substitution, a call of callee() would incur stack storage of the input parameter, stack storage of the output, frame-counter storage, and restore the frame-counter to release stack. The following is a more elaborated version:</p>
+<blockquote>
+<div><blockquote>
+<div>Argument values are copied to the stack or special registers; A return address is created and stored on the stack or to a register; The program branches to the function; A stack frame is set up for the local variables of the function; After the function finishes, the stack frame is torn down; The return address is retrieved; A branch is made to the return address.</div></blockquote>
+</div></blockquote>
+<p>From the above example, we could observe that inline substitution cuts off the routine that a normal function call does, and hence saves time. In the article, the writer introduces a potential behavior of a compiler when conducting inline substitution. In short, there may be a few iterations of optimizations before reconstructing the code in the example. Function MACROs could also be in favor of increasing performance. Notice the body of MACROs will be textually replaced to the original callee(), and may not preserve the semantics of the callee like the compiler does.</p>
+<p>The primary disadvantage of using inline functions is that the code could grow bigger. The article points out <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">extreme</span> <span class="pre">cases,this</span> <span class="pre">can</span> <span class="pre">degrade</span> <span class="pre">program</span> <span class="pre">performance</span> <span class="pre">by</span> <span class="pre">increasing</span> <span class="pre">page</span> <span class="pre">faults</span> <span class="pre">and</span> <span class="pre">cache</span> <span class="pre">misses</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tutorials/index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nand2tetris.html" class="btn btn-neutral float-left" title="The Element of Computing Systems (aka., Nand2tetris)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

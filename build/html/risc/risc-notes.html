@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RISC-V Notes &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Misc Topics of IoT" href="../iot-misc/index.html" />
+    <link rel="prev" title="Paho.mqtt.c library notes" href="../tech-notes/c_kb/practices/paho-mqtt-c-notes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tech-notes/index.html">Tech Notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RISC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#risc-v-continuing-works-in-2019">RISC-V continuing works in 2019</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tools-techs-used-by-sifive">Tools/techs used by SiFive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#business-models-and-road-maps-of-sifive-and-sifive-china">Business models and road-maps of SiFive and SiFive China</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>RISC-V Notes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/risc/risc-notes.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="risc-v-notes">
+<h1>RISC-V Notes<a class="headerlink" href="#risc-v-notes" title="Permalink to this headline">¶</a></h1>
+<p>RISC ISA has been dominating the embedded world over decades. ARM, specifically, accounts for a huge market share, and leaves much limited space for MIPS. As AI and ML becomes pervasive recently, fabricating domain-specific SoCs leads a new trend in IC industry that was used to be ruled by a few giants. People tend to value ISA more since ISA constitutes the corner-stone of a general-purpose CPU in such SoCs. An ISA  which is free from license, ease to customize with a complete tool-chain would be in much favor of architects from various domains. By far, RISC-V might arguably be the chosen one due to its open-source character, and activated community. Thanks to the emergence of RISC-V, we finally see some challenge to a closed-source ARM.</p>
+<img src="https://riscv.org/wp-content/uploads/2015/10/cropped-LI_profile.png" width="250" style="border-style: none"><p><em>Courtesy of RISC-V foundation:</em> <a class="reference external" href="https://riscv.org/">https://riscv.org/</a></p>
+<p>Moreover, the spirit of open-source has stimulated multiple organizations to embrace the new era of SoC designs, including some big names (like <em>Silicon Labs</em> and <em>NXP</em>) from IC industry. Really exited to foresee open RISC dominates the market in 5 to 10 years.</p>
+<img src="https://www.openhwgroup.org/images/openhw-landscape.svg" width="350" style="border-style: none"><p><em>Courtesy of open hardware group:</em> <a class="reference external" href="https://www.openhwgroup.org/">https://www.openhwgroup.org/</a></p>
+<img src="https://isastaging.wpengine.com/wp-content/uploads/2018/11/board.png" width="350" style="border-style: none"><p><em>Courtesy of open-isa:</em> <a class="reference external" href="https://open-isa.org/">https://open-isa.org/</a></p>
+<hr class="docutils" />
+<p>There is one company playing a leader role in RISC-V community. The name is SiFive. The company is known from its background, i.e., strong academic relationship with UCB computer architecture lab.</p>
+<img src="https://community.cadence.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-01-06/sifive_2D00_logo_2D00_v1.png" width="300" style="border-style: none"><p><em>Courtesy of SiFive:</em> <a class="reference external" href="https://www.sifive.com/">https://www.sifive.com/</a></p>
+<p>Having attended a few seminars of SiFive, I’ve summarized a few ideas/jargons hereby. I’d apologize for the less structural organization as some ideas are new to me. Also, there might be some missing descriptions, and they will be updated later.</p>
+<div class="section" id="risc-v-continuing-works-in-2019">
+<h2>RISC-V continuing works in 2019<a class="headerlink" href="#risc-v-continuing-works-in-2019" title="Permalink to this headline">¶</a></h2>
+<p>Some jargons with simple descriptions are presented below:</p>
+<ol class="simple">
+<li>CLIC: It is a RISC-V Core-Local Interrupt Controller (<a class="reference external" href="https://github.com/sifive/clic-spec/blob/master/clic.adoc">CLIC</a>) proposed by SiFive. It is expected to replace  the existing RISC-V local interrupt scheme (CLINT) in the future. The CLIC also implements the standard RISC-V platform-level interrupt controller (PLIC).</li>
+<li>Vectors: Most refers to <a class="reference external" href="https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc">vector extension</a>. The ideas is to outperform SIMD instructions.</li>
+<li>Hypervisor: RISC-V supports three privilege modes, i.e., Machine mode, Supervisor mode and User mode. Hypervisor is an extension of the Supervisor mode which provides virtualization etc.</li>
+<li>ZFinx: Quoted from <a class="reference external" href="https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc">vector extension</a>: Zfinx (“F in X”) is a new ISA option under consideration where floating-point instructions take their arguments from the integer register file.</li>
+<li>Code density: There is a great answer <a class="reference external" href="https://electronics.stackexchange.com/questions/4123/about-code-density-and-its-definition">here</a>. Basically, high density code takes less RAM space and takes less micro-instructions to realize a function. Usually it depends on the CPU ISA and the compiler.</li>
+</ol>
+</div>
+<div class="section" id="tools-techs-used-by-sifive">
+<h2>Tools/techs used by SiFive<a class="headerlink" href="#tools-techs-used-by-sifive" title="Permalink to this headline">¶</a></h2>
+<p>As SiFive works closely with the <a class="reference external" href="https://bar.eecs.berkeley.edu/">BAR</a>, i.e., Berkeley Architecture Research, some tools have been adopted from the laboratory to the commercial. The following lists include tools originated from lab and tools that have been developed by SiFive.</p>
+<ol class="simple">
+<li>Code generator: <a class="reference external" href="https://chisel.eecs.berkeley.edu/">Chisel</a> - Constructing Hardware in a Scala Embedded Language. SiFive use Chisel to model customized CPU systems on the Web, and generates verifiable RTL code for customers.</li>
+<li>Chip generator: Prometheus. Not sure what it is after Googling.</li>
+<li><a class="reference external" href="https://sifive.cdn.prismic.io/sifive%2F57f93ecf-2c42-46f7-9818-bcdd7d39400a_tilelink-spec-1.7.1.pdf">Tilelink</a>: Basically it is a bus to connect general-purpose processors, DMA engines and accelerators etc.</li>
+<li>Chiplink: I could not find proper documents on Google, but basically it is a serialized chip-to-chip TileLink.</li>
+</ol>
+</div>
+<div class="section" id="business-models-and-road-maps-of-sifive-and-sifive-china">
+<h2>Business models and road-maps of SiFive and SiFive China<a class="headerlink" href="#business-models-and-road-maps-of-sifive-and-sifive-china" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, SiFive China runs independently to SiFive US. It seemed that SiFive China would focus more on AI/ML, as they claim all-in vector extension. There will be a AI EVB launch this year, namely Freedom Resolution. SiFive is an IP core vendor but has a very strong ambition to stretches out its ecosystem to AI/ML market. As such, they created <code class="docutils literal notranslate"><span class="pre">Design-share</span></code> to offer levels of IPs to customers by partnering various IP vendors (e.g., Imagination for GPU and A/D companies). To improve time-to-market, SiFive builds IP templates (like IoT MCUs, smart Audio, smart Video etc) for customers. By such a method, the spirit what SiFive offers makes hardware design <code class="docutils literal notranslate"><span class="pre">soft</span></code>, and to some extent matches the idea of SaaS (software as a service).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../iot-misc/index.html" class="btn btn-neutral float-right" title="Misc Topics of IoT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tech-notes/c_kb/practices/paho-mqtt-c-notes.html" class="btn btn-neutral float-left" title="Paho.mqtt.c library notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

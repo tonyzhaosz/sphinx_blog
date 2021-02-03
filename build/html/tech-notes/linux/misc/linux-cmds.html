@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Misc Linux usage &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="C Code Knowledge Base" href="../../c_kb/index.html" />
+    <link rel="prev" title="The famous “typeof” and “container_of”" href="../kernel_review/kernel-rev-typeof.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Linux Notes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../kernel_review/index.html">Kernel Knowledge Base</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Misc Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#network"><strong>Network</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#symbolic-link"><strong>Symbolic link</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#path-environment"><strong>PATH environment</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gnu-screen"><strong>GNU screen</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hexo"><strong>Hexo</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#git">Git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macos-dylib"><strong>MacOS dylib</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssh"><strong>SSH</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#markdown"><strong>Markdown</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-exe-in-back-end"><strong>Run exe in back-end</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bash-syntax"><strong>Bash syntax</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="../index.html">Linux Notes</a> &raquo;</li>
+        
+      <li>Misc Linux usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/tech-notes/linux/misc/linux-cmds.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="misc-linux-usage">
+<h1>Misc Linux usage<a class="headerlink" href="#misc-linux-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="network">
+<h2><strong>Network</strong><a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Assign the current network interface to an IP address. Use <code class="docutils literal notranslate"><span class="pre">ifconfig</span> <span class="pre">netmask</span></code> . e.g.,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ifconfig eth0 <span class="m">192</span>.168.2.1 netmask <span class="m">255</span>.255.255.0
+</pre></div>
+</div>
+</li>
+<li><p class="first">Use nmap to report whether your device uses a Linux TCP/IP stack:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nmap -P0 -O
+</pre></div>
+</div>
+</li>
+<li><p class="first">Show IP ports</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ lsof -i -P -n
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="symbolic-link">
+<h2><strong>Symbolic link</strong><a class="headerlink" href="#symbolic-link" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Usage:</p>
+<p>┌── ln(1) link, ln – make links
+│   ┌── Create a symbolic link.
+│   │                         ┌── the optional path to the intended symlink
+│   │                         │   if omitted, symlink is in . named as destination
+│   │                         │   can use . or ~ or other relative paths
+│   │                   ┌─────┴────────┐
+ln -s /path/to/original /path/to/symlink
+└───────┬───────┘
+└── the path to the original file/folder
+can use . or ~ or other relative paths</p>
+</li>
+<li><p class="first">Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> content &gt; original
+$ ln -s original symlink
+$ ls -la original symlink
+-rw-r--r--  <span class="m">1</span> grgarside  staff    <span class="m">8</span> <span class="m">28</span> Jan <span class="m">18</span>:44 original
+lrwxr-xr-x  <span class="m">1</span> grgarside  staff    <span class="m">8</span> <span class="m">28</span> Jan <span class="m">18</span>:44 symlink -&gt; original
+$ cat symlink
+content
+</pre></div>
+</div>
+</li>
+<li><p class="first">MacOS exception:</p>
+<p>Notice MacOS symlink creation may be different. For example, if to create a link for commander of SimplicityStudio, we could:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ln -s /Applications/Simplicity Studio.app/Contents/Eclipse/developer/adapter_packs/commander/Commander.app/Contents/MacOS/commander /usr/local/bin
+</pre></div>
+</div>
+</li>
+</ul>
+<p>There’s no need to specify the name of command under /usr/local/bin, but providing a path is enough.</p>
+<ul>
+<li><p class="first">Windows/Cygwin exception:</p>
+<p>There is a simular link command in Windows/Cygwin namely <code class="docutils literal notranslate"><span class="pre">mklink</span></code>. There is one tricky usage of such a command when trying to compile under Cygwin. Sometimes the path is too long for GCC to handle (usually incurs error like no such file or path). To resolve the issue, use mklink to shorten the path. Say we have a fairly long path of the SDK, e.g., E:\xxx\ and our makefile is under E:\xxx\yyy. One could try the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># /J indicates a path link.</span>
+mklink /J sdk E:<span class="se">\x</span>xx
+<span class="c1"># Now the path becomes sdk\yyy\</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="path-environment">
+<h2><strong>PATH environment</strong><a class="headerlink" href="#path-environment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="nv">$PATH</span>
+</pre></div>
+</div>
+<p>In Unix systems, we sometimes want to execute a program in a terminal without specifying the its path. In this case, it’s easy to add the path of the program being a variable to the PATH environment. To do this, we could follow the command below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="o">[</span>path to the program<span class="o">]</span>
+</pre></div>
+</div>
+<p>Notice when the terminal is terminated, the above command has no effect after a new terminal is opened. To ensure the PATH environment is modified permanently, we could add the above command in ~/.bashrc. Editor like vi/vim/nano could be used.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="gnu-screen">
+<h2><strong>GNU screen</strong><a class="headerlink" href="#gnu-screen" title="Permalink to this headline">¶</a></h2>
+<p>To connect to a serial on a console, we could use screen. The following is an example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ screen /dev/ttyUSB0 <span class="m">115200</span> 8N1
+</pre></div>
+</div>
+<p>On MacOS, you could kill the console (while you’re in the screen session) by command + A + , and typing [y].
+Another way to kill a screen session is to first know what sessions are available:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ screen -ls
+</pre></div>
+</div>
+<p>Then, kill the specified session Id using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ screen -X -S <span class="o">[</span>Session ID<span class="o">]</span> quit
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="hexo">
+<h2><strong>Hexo</strong><a class="headerlink" href="#hexo" title="Permalink to this headline">¶</a></h2>
+<p>Refresh the build after modifications.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hexo clean
+$ hexo generate
+</pre></div>
+</div>
+<p>Publish to my github account.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hexo deploy
+</pre></div>
+</div>
+<p>Create a page used for dropdown view:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hexo new page <span class="s2">&quot;name&quot;</span>
+</pre></div>
+</div>
+<p>The created path will be: [hexo_directory]/source/[name]/index.md
+To add the page in the dropdown list, we need to modify the <em>_config.yml</em> file under [hexo_directory]/theme/next/ directory, e.g.,</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>IoT Ecosystems:
+   SDK review: /sdk-review/
+   Data model analysis: /data-model/
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">How to save your ass from a local merge yet being pushed.</p>
+<p>The following command would go back to one commit.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git reset --hard HEAD~1
+</pre></div>
+</div>
+</li>
+<li><p class="first">How to add files that were copied from somewhere else (not in the repo). You need the following command to unstage the files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git reset HEAD path/to/file
+</pre></div>
+</div>
+<p>Then do <em>git add</em> and <em>git commit</em>.</p>
+</li>
+<li><p class="first">How to revert:</p>
+<p>Git revert to a commit will eventually roll out a new commit. If git reset is used, there will be no commit.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revert the latest commit.</span>
+$ git revert HEAD
+<span class="c1"># Revert a specific commit.</span>
+$ git revert commit <span class="o">[</span>commit No.<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">How to un-track a folder but keep the folder on your disk.
+Link: https://stackoverflow.com/questions/24290358/remove-a-folder-from-git-tracking</p>
+</li>
+</ul>
+<p>This also works for the situation where an unwanted submodule causing fatal error when ‘git add’. The basic idea is to remove the folder from git’s cache.</p>
+<ol class="simple">
+<li>Add the folder to the .gitignore</li>
+<li>Remove the folder from your local git tracking, but keep it on your disk.
+<code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">git</span> <span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">--cached</span> <span class="pre">path_to_your_folder/</span> </code></li>
+<li>Push your changes to your git repo.</li>
+</ol>
+<blockquote>
+<div><blockquote>
+<div>The folder will be considered “deleted” from Git’s point of view (i.e. they are in past history, but not in the latest commit, and people pulling from this repo will get the files removed from their trees), but stay on your working directory because you’ve used –cached.</div></blockquote>
+</div></blockquote>
+<ul class="simple">
+<li>How to delete a local branch and a remote branch.</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Delete local branch</span>
+git branch -d <span class="o">{</span>branch name<span class="o">}</span>
+<span class="c1"># Delete remote branch</span>
+git push origin --delete <span class="o">{</span>branch name<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>How to add ssh keys to your stash or github account.</li>
+</ul>
+<p>Instead of using Http connections, we could use ssh keys to push/pull a git repo. This prevents user from entering username and keys each time using Http connections. For a branch new machine, we need to firstly create ssh private and public keys (also known as key pairs).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -t rsa -C <span class="s2">&quot;your_email@example.com&quot;</span>
+</pre></div>
+</div>
+<p>Notice the email account is optional. You could pass key saving path and passphrase settings. After done, you should be able to see <strong>id_rsa.pub</strong> file under ~/.ssh/ directory. Copy the content of id_rsa.pub to your git or stash account (usually at security, adding keys tab).</p>
+<p>Reference:</p>
+<ul class="simple">
+<li>https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html</li>
+<li>https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys–2</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="macos-dylib">
+<h2><strong>MacOS dylib</strong><a class="headerlink" href="#macos-dylib" title="Permalink to this headline">¶</a></h2>
+<p>There could be an error when using dylib (dynamic library) on MacOS. The error could be:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dyld: Library not loaded: @rpath/libcmocka.0.dylib
+  Referenced from: /Users/tozhao/Documents/Stash_Projects/customer-projects/xiaomi/6.3.0/tests-mac/./test
+  Reason: image not found
+<span class="o">[</span><span class="m">1</span><span class="o">]</span>    <span class="m">8541</span> abort      ./test
+</pre></div>
+</div>
+<p>The problem is this dylib does not specify the execution path. When checking the dylib with otool, we could find:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>libcmocka.0.4.1.dylib:
+	@rpath/libcmocka.0.dylib <span class="o">(</span>compatibility version <span class="m">0</span>.0.0, current version <span class="m">0</span>.4.1<span class="o">)</span>
+	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1238</span>.60.2<span class="o">)</span>
+</pre></div>
+</div>
+<p>To solve the problem, we could use install_name_tool like the following example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ install_name_tool -change @rpath/libcmocka.0.dylib <span class="o">[</span>path/to/the/exefile<span class="o">]</span> <span class="o">[</span>exefile<span class="o">]</span>
+</pre></div>
+</div>
+<p>The exefile is the binary that is linked with the dylib.</p>
+<p>References:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://software.intel.com/en-us/forums/intel-c-compiler/topic/698021">https://software.intel.com/en-us/forums/intel-c-compiler/topic/698021</a></li>
+<li><a class="reference external" href="https://stackoverflow.com/questions/17703510/dyld-library-not-loaded-reason-image-not-loade">https://stackoverflow.com/questions/17703510/dyld-library-not-loaded-reason-image-not-loade</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="ssh">
+<h2><strong>SSH</strong><a class="headerlink" href="#ssh" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Remove ssh known hosts on a Linux machine.</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -R <span class="m">192</span>.168.42.1 -f <span class="s2">&quot;~/.ssh/known_hosts&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Remove ssh known hosts on a MacOS.</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen -R <span class="m">192</span>.168.42.1
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="markdown">
+<h2><strong>Markdown</strong><a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Embedded an image in a markdown script.
+Ensure you know the url path of that image. The url path could be a github path. Usually, the url from the github would not be rendered, and you will see a broken link in the position. To solve this, add <code class="docutils literal notranslate"><span class="pre">?raw=true</span></code> at the end of the url and place a line by following the syntax as bellow:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ !<span class="o">[</span>link text<span class="o">](</span>url + <span class="sb">`</span>?raw<span class="o">=</span><span class="nb">true</span><span class="sb">`</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="run-exe-in-back-end">
+<h2><strong>Run exe in back-end</strong><a class="headerlink" href="#run-exe-in-back-end" title="Permalink to this headline">¶</a></h2>
+<p>Z3GatewayHost application forks a child process to handle communications with serial port. Use <em>&amp;</em> at the end would cause assertion in the child process. A reliable way to run the application in the back-end could refer to the following init script which was developed for running on OpenWrt.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>start<span class="o">()</span> <span class="o">{</span>
+  touch /tmp/silabspipeopen
+  mkfifo /tmp/silabs
+  <span class="k">while</span> <span class="o">[</span> -f /tmp/silabspipeopen <span class="o">]</span><span class="p">;</span> <span class="k">do</span> sleep <span class="m">1</span><span class="p">;</span> <span class="k">done</span> &gt; /tmp/silabs <span class="p">&amp;</span>
+  /opt/siliconlabs/zigbeegateway/siliconlabsgateway -n <span class="m">1</span> -p ttyS1 &lt; /tmp/silabs <span class="p">&amp;</span>
+<span class="o">}</span>
+
+stop<span class="o">()</span> <span class="o">{</span>
+  rm /tmp/silabspipeopen
+  rm /tmp/silabs
+  killall siliconlabsgateway
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="bash-syntax">
+<h2><strong>Bash syntax</strong><a class="headerlink" href="#bash-syntax" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Check if there is a specified directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;</span><span class="nv">$DIRECTORY</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1"># Control will enter here if $DIRECTORY exists.</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>Or if there is NOT a specified directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&quot;</span><span class="nv">$DIRECTORY</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1"># Control will enter here if $DIRECTORY exists.</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Check if the system is a MacOS or a Linux:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SYSTEM</span><span class="o">=</span><span class="k">$(</span>uname<span class="k">)</span>
+
+<span class="c1"># Check if it&#39;s a MacOS</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$SYSTEM</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1"># Some actions.</span>
+<span class="k">fi</span>
+
+<span class="c1"># Check if it&#39;s a Linux</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$SYSTEM</span> <span class="o">==</span> <span class="s1">&#39;Linux&#39;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1"># Some actions.</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Conditionally exit a bash script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># exit n.</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$SOMECONDITION</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;This line will never be reached!&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Check if a long string contains a subString.</p>
+</li>
+</ul>
+<p>Reference: <a class="reference external" href="https://stackoverflow.com/questions/229551/how-to-check-if-a-string-contains-a-substring-in-bash">https://stackoverflow.com/questions/229551/how-to-check-if-a-string-contains-a-substring-in-bash</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">string</span><span class="o">=</span><span class="s1">&#39;My long string&#39;</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$string</span> <span class="o">==</span> *<span class="s2">&quot;My long&quot;</span>* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&quot;It&#39;s there!&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../c_kb/index.html" class="btn btn-neutral float-right" title="C Code Knowledge Base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../kernel_review/kernel-rev-typeof.html" class="btn btn-neutral float-left" title="The famous “typeof” and “container_of”" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

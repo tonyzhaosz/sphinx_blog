@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hash table &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Red-black tree (aka., rbTree)" href="kernel-rev-rbtree.html" />
+    <link rel="prev" title="Kernel Knowledge Base" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Linux Notes</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Kernel Knowledge Base</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Hash table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-rbtree.html">Red-black tree (aka., rbTree)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-typeof.html">The famous “typeof” and “container_of”</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/linux-cmds.html">Misc Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="../index.html">Linux Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Kernel Knowledge Base</a> &raquo;</li>
+        
+      <li>Hash table</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/tech-notes/linux/kernel_review/kernel-rev-hashtable.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hash-table">
+<h1>Hash table<a class="headerlink" href="#hash-table" title="Permalink to this headline">¶</a></h1>
+<p>The implementation of hash table in the Linux kernel uses golden ratio constants to deterministically calculates a random number from any key. Such constants are defined in <em>include/linux/hash.h</em>. The following code gives you an example of using a 32-bit constant.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="k">typedef</span> <span class="kt">uint32_t</span> <span class="n">u32</span><span class="p">;</span>
+
+<span class="cm">/* 2^31 + 2^29 - 2^25 + 2^22 - 2^19 - 2^16 + 1 */</span>
+<span class="cp">#define GOLDEN_RATIO_PRIME_32 0x9e370001UL</span>
+
+<span class="k">static</span> <span class="kr">inline</span> <span class="n">u32</span> <span class="nf">hash_32</span><span class="p">(</span><span class="n">u32</span> <span class="n">val</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">bits</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="cm">/* On some cpus multiply is faster, on others gcc will do shifts */</span>
+	<span class="n">u32</span> <span class="n">hash</span> <span class="o">=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">GOLDEN_RATIO_PRIME_32</span><span class="p">;</span>
+
+	<span class="cm">/* High bits are more random, so use them. */</span>
+	<span class="k">return</span> <span class="n">hash</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="mi">32</span> <span class="o">-</span> <span class="n">bits</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">u32</span> <span class="n">hashedVal</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;NetworkId hash test:</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">u32</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x0001</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mh">0x0064</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hash result of 0x%04X: %u</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hash_32</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hash result of 0x2001: %u</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">hash_32</span><span class="p">(</span><span class="mh">0x2001</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">GroupId hash test:</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">u32</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0xC000</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mh">0xC0C8</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hash result of 0x%04X: %u</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hash_32</span><span class="p">((</span><span class="n">u32</span><span class="p">)</span><span class="n">i</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The fundamental of hash table implementation is based on chaining if a collision is detected. A case than may cause collision is when the key is greater than the buckets size of a hash table. To use the hash table, the caller needs to create a hash table with a fixed bucket size, and the size is a power of 2 number. Each bucket contains a linked list, which is leveraged to deal with hashing collision.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kernel-rev-rbtree.html" class="btn btn-neutral float-right" title="Red-black tree (aka., rbTree)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Kernel Knowledge Base" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

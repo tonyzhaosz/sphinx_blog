@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Paho.mqtt.c library notes &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="RISC-V Notes" href="../../../risc/risc-notes.html" />
+    <link rel="prev" title="Embedded Abstract Data Type (ADT)" href="embed-adt.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">C Code Knowledge Base</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../c-basics.html">C basics dig-in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../c-com-tech.html">Techniques in C and compiler</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Practices</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cli-console.html">CLI Console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmocka.html">A crash-course of using Cmocka</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tcp-sock.html">An Example of TCP Socket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="embed-adt.html">Embedded Abstract Data Type (ADT)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Paho.mqtt.c library notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="../index.html">C Code Knowledge Base</a> &raquo;</li>
+        
+          <li><a href="index.html">Code Practices</a> &raquo;</li>
+        
+      <li>Paho.mqtt.c library notes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/tech-notes/c_kb/practices/paho-mqtt-c-notes.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="paho-mqtt-c-library-notes">
+<h1>Paho.mqtt.c library notes<a class="headerlink" href="#paho-mqtt-c-library-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="use-mqtt-client-library">
+<h2><strong>Use MQTT client library</strong><a class="headerlink" href="#use-mqtt-client-library" title="Permalink to this headline">¶</a></h2>
+<p>In the library’s source code, there are implementations of Socket. The following content tries to figure out what APIs defined in Socket have been used in MQTTAsync.c.</p>
+<p>To begin with, here’s a briefing of using MQTTAsync.c. An example could be found in ‘transport-mqtt’ plugin.</p>
+<ol class="simple">
+<li>When emberAfPluginTransportMqttInitCallback() is called by ember AF, a mutex would firstly be created for connection status.</li>
+<li>In the same callback (i.e., emberAfPluginTransportMqttInitCallback), two MQTT methods are to be called to initialize MQTT comm. They are MQTTAsync_create() and MQTTAsync_setCallbacks().</li>
+<li>A few callbacks or configurations are of the most interests. They are either been passed to MQTTAsync_setCallback(), or been set in mqttConnectOptions. One of them is <strong>mqttMessageArrivedCallback</strong> where MQTT message would be passed into another callback (i.e., <strong>emberAfPluginTransportMqttMessageArrivedCallback</strong>) whose implementation residing in gateway-relay-mqtt.c. Another configuration is keepAliveInterval, which I guess is to maintain the connection between the client and the broker.</li>
+<li>In transport-mqtt.h, two APIs are provided: <strong>emberAfPluginTransportMqttSubscribe()</strong> and
+<strong>emberAfPluginTransportMqttPublish()</strong>. They will be called by gateway-relay-mqtt.c.</li>
+<li>emberAfPluginTransportMqttPublish() calls MQTTAsync_sendMessage defined in MQTTAsync.h.</li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="mqttasync-and-linux-socket">
+<h2><strong>MQTTAsync and Linux Socket</strong><a class="headerlink" href="#mqttasync-and-linux-socket" title="Permalink to this headline">¶</a></h2>
+<p>We could see in the src folder that paho.mqtt.c implement Socket.c. The implementation provides wrapper functions for creating or closing TCP sockets, and for receiving and sending via a socket in a non-blocking fashion. Socket.c also allows multiple socket connection, which I guess such a feature could be used for local or remote server connections.</p>
+<p>The APIs of most interests are:</p>
+<ol class="simple">
+<li><strong>Socket_new()</strong>: in which socket() method is called.</li>
+<li><strong>Socket_close()</strong>: in which close() method is called.</li>
+<li><strong>Socket_getdata()</strong> or <strong>Socket_getchar()</strong>: in which recv() method is used.</li>
+<li><strong>Socket_putdatas()</strong>: calls an internal function Socket_writev().</li>
+</ol>
+<p>The internal functions of most interests are:</p>
+<ol class="simple">
+<li><strong>Socket_writev()</strong>: which eventually calls <em>writev()</em> functions defined in <em>sys/uio.h</em>.</li>
+<li><strong>Socket_setnonblocking()</strong>: which calls <em>fcntl()</em> eventually.</li>
+</ol>
+<p>A description of readv() and writev() is as below:</p>
+<blockquote>
+<div>The data transfers performed by readv() and writev() are atomic: the data written by writev() is written as a single block that is not intermingled with output from writes in other processes (but see pipe(7) for an exception); analogously, readv() is guaranteed to read a contiguous block of data from the file, regardless of read operations performed in other threads or processes that have file descriptors referring to the same open file description (see open(2)).</div></blockquote>
+<p>A code example shows combining two strings into one buffer and send them using writev().</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/uio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">str0</span> <span class="o">=</span> <span class="s">&quot;hello &quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">str1</span> <span class="o">=</span> <span class="s">&quot;world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">iovec</span> <span class="n">iov</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">ssize_t</span> <span class="n">nwritten</span><span class="p">;</span>
+
+    <span class="n">iov</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">iov_base</span> <span class="o">=</span> <span class="n">str0</span><span class="p">;</span>
+    <span class="n">iov</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">iov_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str0</span><span class="p">);</span>
+    <span class="n">iov</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">iov_base</span> <span class="o">=</span> <span class="n">str1</span><span class="p">;</span>
+    <span class="n">iov</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">iov_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+
+    <span class="n">nwritten</span> <span class="o">=</span> <span class="n">writev</span><span class="p">(</span><span class="n">STDOUT_FILENO</span><span class="p">,</span> <span class="n">iov</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%ld bytes written.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">nwritten</span><span class="p">);</span>
+
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_SUCCESS</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Execution results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc writevex.c 
+$ ./a.out 
+hello world
+<span class="m">12</span> bytes written.
+</pre></div>
+</div>
+<p><strong>Here is the function call tracing for Socket_new()</strong>:</p>
+<ul class="simple">
+<li>Socket_new() is called by MQTTProtocol_connect() defined in MQTTProtocolOut.c.</li>
+<li>MQTTProtocol_connect() is called by MQTTAsync_processCommand() defined in MQTTAsync.c, specifically in the case of CONNECT (command-&gt;command.type == CONNECT).</li>
+<li>MQTTAsync_processCommand() is called by MQTTAsync_sendThread() defined in MQTTAsync.c. There are two threads created when start up. MQTTAsync_sendThread is one of them, and the other is MQTTAsync_receiveThread.</li>
+</ul>
+<p><strong>Here is the function call tracing for Socket_getdata()</strong>:</p>
+<ul class="simple">
+<li>Socket_getdata() is called by WebSocket_getRawSocketData() defined in WebSocket.c.</li>
+<li>WebSocket_getRawSocketData() is a static function and is called mostly by WebSocket_receiveFrame() and WebSocket_upgrade() methods. Pick receiveFrame method as the next tracing function because the name makes more sense.</li>
+<li>WebSocket_receiveFrame() is a static function which is called by either WebSocket_getdata() or WebSocket_getch().</li>
+<li>WebSocket_getdata() is called by MQTTPacket_Factory() defined in MQTTPacket.c.</li>
+<li>MQTTPacket_Factory() is called by either MQTTClient_cycle() defined in MQTTClient.c or MQTTAsync_cycle() defined in MQTTAsync.c. Both of them are static functions. Notice MQTTClient represents synchronous comm, while MQTTAsync represents asynchronous comm.</li>
+<li><strong>MQTTAsync_cycle()</strong> is called within MQTTAsync_receiveThread().</li>
+</ul>
+<p><strong>Here is the function call tracing for Socket_putdatas()</strong>:</p>
+<ul class="simple">
+<li>Socket_putdatas() is called by multiple methods in WebSocket.c. One of them is of the most interest, which is WebSocket_putdatas().</li>
+<li>WebSocket_putdatas() is called by MQTTPacket_send() and MQTTPacket_sends() methods in MQTTPacket.c, indicating sending one-byte or bytes respectively.</li>
+<li>MQTTPacket_sends() is a static method, and is called by MQTTPacket_send_publish(). MQTTPacket_send() is a static method, and is called by MQTTPacket_send_disconnect(). We will focus on tracing MQTTPacket_send_publish().</li>
+<li>MQTTPacket_send_publish() is called by static functions MQTTProtocol_startPublishCommon() and MQTTProtocol_retries() in MQTTProtocolClient.c.</li>
+<li>MQTTProtocol_startPublishCommon() is called by MQTTProtocol_startPublish().</li>
+<li>MQTTProtocol_startPublish() is called by MQTTAsync_processCommand() in MQTTAsync.c.</li>
+<li>Similar as Socket_new(), MQTTAsync_processCommand() is called by MQTTAsync_sendThread() defined in MQTTAsync.c. There are two threads created when start up. MQTTAsync_sendThread is one of them, and the other is MQTTAsync_receiveThread.</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="multi-threads-in-mqttasync">
+<h2><strong>Multi-threads in MQTTAsync</strong><a class="headerlink" href="#multi-threads-in-mqttasync" title="Permalink to this headline">¶</a></h2>
+<p>There’s a commands list (a linked list) created at startup. This commands list could be inserted with commands by MQTTAsync_addCommand(). MQTTAsync_addCommand() is called in multiple conditions. For example, one condition where MQTTAsync_send() is called by an application, the command initiated by the application will be inserted into the command list and will be processed by MQTTAsync_processCommand().</p>
+<p>It’s observable that the commands list is shared between the main thread and the MQTTAsync_sendThread as MQTTAsync_processCommand() is called within this thread. The way to synchronize both threads is based on a signal condition namely <em>send_cond</em>, and a mutex namely <em>mqttcommand_mutex</em>.</p>
+<p>As for MQTTAsync_receiveThread(), we could know:</p>
+<ul class="simple">
+<li>We need to specify a callback when message is arrived. This callback would be called by MQTTAsync_deliverMessage().</li>
+<li>MQTTAsync_deliverMessage() is called by MQTTAsync_receiveThread() in the condition where the rc set by <em>MQTTAsync_cycle(&amp;sock, timeout, &amp;rc);</em> does not equal to SOCKET_ERROR.</li>
+<li>Tracing back, we could find an instance of <em>MQTTAsyncs</em> structure type which has a client pointer which points to a message buffer. The code snippet is shown below:</li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">messageQueue</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">qEntry</span><span class="o">*</span> <span class="n">qe</span> <span class="o">=</span> <span class="p">(</span><span class="n">qEntry</span><span class="o">*</span><span class="p">)(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">messageQueue</span><span class="o">-&gt;</span><span class="n">first</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">topicLen</span> <span class="o">=</span> <span class="n">qe</span><span class="o">-&gt;</span><span class="n">topicLen</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">qe</span><span class="o">-&gt;</span><span class="n">topicName</span><span class="p">)</span> <span class="o">==</span> <span class="n">topicLen</span><span class="p">)</span>
+    <span class="n">topicLen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">ma</span><span class="p">)</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="n">MQTTAsync_deliverMessage</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">qe</span><span class="o">-&gt;</span><span class="n">topicName</span><span class="p">,</span> <span class="n">topicLen</span><span class="p">,</span> <span class="n">qe</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rc</span><span class="p">)</span>
+  <span class="p">{</span>
+<span class="cp">#if !defined(NO_PERSISTENCE)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">persistence</span><span class="p">)</span>
+      <span class="n">MQTTPersistence_unpersistQueueEntry</span><span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="n">MQTTPersistence_qEntry</span><span class="o">*</span><span class="p">)</span><span class="n">qe</span><span class="p">);</span>
+<span class="cp">#endif</span>
+    <span class="n">ListRemove</span><span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">messageQueue</span><span class="p">,</span> <span class="n">qe</span><span class="p">);</span> <span class="cm">/* qe is freed here */</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">Log</span><span class="p">(</span><span class="n">TRACE_MIN</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;False returned from messageArrived for client %s, message remains on queue&quot;</span><span class="p">,</span>
+      <span class="n">m</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">clientID</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>There is a shared buffer storing the incoming MQTT messages. It looks a bit complicated as QoS is involved, but the basic concept is to run MQTTAsync_cycle() once to read from sockets then call the registered callback in the app layer. A mutex namely mqttasync_mutex is used to protect the shared buffer.</li>
+<li>For the timeout of sendThread, it has been set in Thread_wait_cond(), which is 1 second.</li>
+<li>For the timeout of receiveThread, it could eventually calls MQTTAsync_sleep() with value of 100 milliseconds.</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="mqtt-in-ember-application-framework">
+<h2><strong>MQTT in Ember Application Framework</strong><a class="headerlink" href="#mqtt-in-ember-application-framework" title="Permalink to this headline">¶</a></h2>
+<p>The application Z3GatewayHost could be running on a Linux machine. It could also be equipped with a MQTT client and talks to a MQTT broker using the APIs defined in UG129. The MQTT client is based on paho.mqtt.c library, which invokes two threads (total three considering the main thread) when executing. It’s nature to wonder how to integrate a multi-threaded library into the Ember application framework without destroying anything. The answer is quite straightforward. In short, multi-threads won’t interfere anything in the Ember framework.</p>
+<p>Z3GatewayHost is a process which forks a child process to handle UART comm. <em>paho.mqtt.c</em> creates two thread when startup, and such a creation is done during the framework’s initialization. Since the command to be sent to MQTT server is queued up in a shared buffer, the main thread (where ember framework runs) could send and exit in a non-blocking behavior. This is critical to the framework as ember stack error may happen if blocking operations are conducted. On the other hand, if the MQTT message from the broker is a <em>command</em> type, it will call the handleCommandMessage() handler, and add this command to a command list. This also prevents a blocking execution of a command. A looped event (20 milliseconds’ period) pops a command from the list and send the command through ezsp or internal handlers.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../risc/risc-notes.html" class="btn btn-neutral float-right" title="RISC-V Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="embed-adt.html" class="btn btn-neutral float-left" title="Embedded Abstract Data Type (ADT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

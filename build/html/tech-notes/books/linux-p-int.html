@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Linux programming interface (TLPI) &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Element of Computing Systems (aka., Nand2tetris)" href="nand2tetris.html" />
+    <link rel="prev" title="Book Notes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Book Notes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The Linux programming interface (TLPI)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-56">Chapter 56</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-59">Chapter 59</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chapter-61">Chapter 61</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nand2tetris.html">The Element of Computing Systems (aka., Nand2tetris)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="psicc2-notes.html">QP framework reference (PSICC2)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Book Notes</a> &raquo;</li>
+        
+      <li>The Linux programming interface (TLPI)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tech-notes/books/linux-p-int.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-linux-programming-interface-tlpi">
+<h1>The Linux programming interface (TLPI)<a class="headerlink" href="#the-linux-programming-interface-tlpi" title="Permalink to this headline">¶</a></h1>
+<img src="https://upload.wikimedia.org/wikipedia/en/2/22/The_Linux_Programming_Interface.jpg"><div class="section" id="chapter-56">
+<h2>Chapter 56<a class="headerlink" href="#chapter-56" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="socket-file-descriptor">
+<h3>Socket file descriptor<a class="headerlink" href="#socket-file-descriptor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">fd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>The domain param could be chosen from AF_UNIX, AF_INET and AF_INET6, indicating local, IPv4 and IPv6 domains.</li>
+<li>There are two types of sockets: stream and datagram (SOCK_STREAM or SOCK_DGRAM). Stream type is reliable (guaranteed transmission if network link is up), bidirectional and of no limitations about message boundaries (byte-stream). Stream socket could be connected to one peer only.</li>
+<li><code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">the</span> <span class="pre">internet</span> <span class="pre">domain,</span> <span class="pre">datagram</span> <span class="pre">sockets</span> <span class="pre">employ</span> <span class="pre">UDP</span> <span class="pre">while</span> <span class="pre">stream</span> <span class="pre">sockets</span> <span class="pre">employ</span> <span class="pre">TCP.</span></code></li>
+</ul>
+</div>
+<div class="section" id="socket-system-calls">
+<h3>Socket system calls<a class="headerlink" href="#socket-system-calls" title="Permalink to this headline">¶</a></h3>
+<p>Besides common function calls like socket(), bind(), listen(), accept() and connect() etc., there are ways to operate non-blocking socket I/O. The following contents focus mainly on the client side using TCP stream.</p>
+<ul class="simple">
+<li>In Socket(), the protocol param is a fixed value, i.e., 0. Zero value matches the values used in the type param.</li>
+<li>Servers usually employ bind() so that clients can locate the socket.</li>
+</ul>
+<p>The interaction between server and client could be think of in the following way:</p>
+<ul class="simple">
+<li>The server creates a socket, and then bind a specific address, followed by listening for client connections. It could decide whether to accept a connection.</li>
+<li>The client creates a socket and use this socket to try to connect to the server.</li>
+</ul>
+<p>The function call for connect() and the definition of sockaddr are shown as below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">connect</span><span class="p">(</span><span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="kt">socklen_t</span> <span class="n">addrlen</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="p">{</span>
+  <span class="n">sa_family_t</span> <span class="n">sa_family</span><span class="p">;</span>    <span class="c1">// Address family (AF_* constant)</span>
+  <span class="kt">char</span> <span class="n">sa_data</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>          <span class="c1">// Socket address (size varies according to socket domain)</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<blockquote>
+<div><blockquote>
+<div>The connect() system call connects the active socket referred to by the file descriptor sockfd to the listening socket whose address is specified by addr and addrlen. If connect() fails and we wish to reattempt the connection, the portable method of doing so is to close the socket, create a new socket, and reattempt the connection with the new.</div></blockquote>
+</div></blockquote>
+<p>In 56.5.4, the I/O methods of conducting UNIX domain stream packets are listed. Basically, read(), write(), send() and recv() could be used in either clients or servers. Need more specification on each call like non-blocking or blocking.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="chapter-59">
+<h2>Chapter 59<a class="headerlink" href="#chapter-59" title="Permalink to this headline">¶</a></h2>
+<p>I will be focusing on IPv4 TCP stream in this chapter. Again, internet domain sockets could be implemented on top of TCP. They provide a reliable, bidirectional, byte-stream communication channel.</p>
+<ul class="simple">
+<li>We need to use function like htons, htonl to translate host names to network bytes, or use ntohs() and ntohl() vise versa. The naming conversion of htonl follows <strong>h</strong>ost <strong>to</strong> <strong>n</strong>etwork <strong>l</strong>ong.</li>
+<li><em>$ telnet host port</em> could be used to debug applications.</li>
+</ul>
+<p>IPv4 socket address, struct sockaddr_in, defined in &lt;netinet/in.h&gt; as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">in_addr</span> <span class="p">{</span>       <span class="c1">// IPv4 4-byte address.</span>
+  <span class="n">in_addr_t</span> <span class="n">s_addr</span><span class="p">;</span>    <span class="c1">// Unsigned 32-bit integer.</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="p">{</span>           <span class="c1">// IPv4 socket address.</span>
+  <span class="n">sa_family_t</span> <span class="n">sin_family</span><span class="p">;</span>      <span class="c1">// Address family (AF_INET).</span>
+  <span class="n">in_port_t</span>   <span class="n">sin_port</span><span class="p">;</span>        <span class="c1">// Port number.</span>
+  <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">sin_addr</span><span class="p">;</span>     <span class="c1">// IPv4 address.</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">__pad</span><span class="p">[</span><span class="n">X</span><span class="p">];</span>      <span class="c1">// Pad to size of &#39;sockaddr&#39; structure (16 bytes).</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Note that sin_port and sin_addr should be in network byte order. Hence, there should be a conversion from host to the network byte order. More commonly used methods for IPv4/v6 with dotted-decimal or hex-string conversion to presentation format are inet_pton() and inet_ntop(), defined in <em>arpa/inet.h</em>.</p>
+<p>An example of a TCP client connection could be the following:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// rp is the info collected from available TCP connections. We don&#39;t need to find</span>
+<span class="c1">// available ones if fixed port and address are specified.</span>
+<span class="kt">int</span> <span class="n">cfd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">rp</span><span class="o">-&gt;</span><span class="n">ai_family</span><span class="p">,</span> <span class="n">rp</span><span class="o">-&gt;</span><span class="n">ai_socktype</span><span class="p">,</span> <span class="n">rp</span><span class="o">-&gt;</span><span class="n">ai_protocol</span><span class="p">);</span>
+<span class="c1">// Handle cfd if equals to -1.</span>
+<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="n">cfd</span><span class="p">,</span> <span class="n">rp</span><span class="o">-&gt;</span><span class="n">ai_addr</span><span class="p">,</span> <span class="n">rp</span><span class="o">-&gt;</span><span class="n">ai_addrlen</span><span class="p">);</span>
+<span class="c1">// Handle cnt if equasl to -1. If connection failure, call close().</span>
+<span class="n">close</span><span class="p">(</span><span class="n">cfd</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="chapter-61">
+<h2>Chapter 61<a class="headerlink" href="#chapter-61" title="Permalink to this headline">¶</a></h2>
+<p>Socket-specific I/O system calls: recv() and send():</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+
+<span class="c1">//Returns number of bytes received, 0 on EOF, or –1 on error.</span>
+<span class="kt">ssize_t</span> <span class="nf">recv</span><span class="p">(</span><span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+
+<span class="kt">ssize_t</span> <span class="nf">send</span><span class="p">(</span><span class="kt">int</span> <span class="n">sockfd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>There are some bits could be ORed in flags param. Interesting bits are: MSG_DONTWAIT denotes non-blocking operations. This bit will return error EAGAIN if no data is available, but may not be available to Linux programmers. However, a reference to Chapter 44 section 44.9 elaborates an alternative to configure a nonblocking I/O for a file descriptor, which could be used for read(), write(), recv() and send(). Table 44-1 presents a nice chart of blocking and nonblocking behaviors of I/O. The following code presents an example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">flags</span><span class="p">;</span>
+
+<span class="n">flags</span> <span class="o">=</span> <span class="n">fcntl</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">F_GETFL</span><span class="p">);</span> <span class="c1">// Fetch open files status flags </span>
+<span class="n">flags</span> <span class="o">|=</span> <span class="n">O_NONBLOCK</span><span class="p">;</span>        <span class="c1">// Enable O_NONBLOCK bit</span>
+<span class="n">fcntl</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">flags</span><span class="p">);</span>  <span class="c1">// Update open files status flags</span>
+
+<span class="c1">// And to disable it, we write the following:</span>
+<span class="n">flags</span> <span class="o">=</span> <span class="n">fcntl</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">F_GETFL</span><span class="p">);</span>
+<span class="n">flags</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="n">O_NONBLOCK</span><span class="p">;</span>       <span class="c1">// Disable O_NONBLOCK bit</span>
+<span class="n">fcntl</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">flags</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A example of a simple client and server program could be viewed in http://www.linuxhowtos.org/C_C++/socket.htm.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nand2tetris.html" class="btn btn-neutral float-right" title="The Element of Computing Systems (aka., Nand2tetris)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Book Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

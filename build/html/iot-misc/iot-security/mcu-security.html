@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Security Features in Modern MCU &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Software Security Development Jotting" href="security-dev.html" />
+    <link rel="prev" title="Basics and Concepts in Secured Connectivity" href="iot-security.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tech-notes/index.html">Tech Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">IOT-MISC</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Overall IoT Security</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="iot-security.html">Basics and Concepts in Secured Connectivity</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Security Features in Modern MCU</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#readback-protection">Readback Protection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#esp32">ESP32</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="security-dev.html">Software Security Development Jotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iot-notes.html">IoT SDK and Data-model</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Misc Topics of IoT</a> &raquo;</li>
+        
+          <li><a href="index.html">IoT Security</a> &raquo;</li>
+        
+      <li>Security Features in Modern MCU</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/iot-misc/iot-security/mcu-security.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="security-features-in-modern-mcu">
+<h1>Security Features in Modern MCU<a class="headerlink" href="#security-features-in-modern-mcu" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="readback-protection">
+<h2>Readback Protection<a class="headerlink" href="#readback-protection" title="Permalink to this headline">¶</a></h2>
+<p>Refer to a Whitepaper published by NCC group <code class="docutils literal notranslate"><span class="pre">Microcontroller</span> <span class="pre">Readback</span> <span class="pre">Protection</span> <span class="pre">Bypasses</span> <span class="pre">and</span> <span class="pre">Defenses</span></code>.</p>
+<p>Many different mechanisms are used by microcontroller vendors to provide data readback protection, including:</p>
+<ul class="simple">
+<li>Disabling debugger access completely.</li>
+<li>Preventing debuggers from reading memory-mapped flash addresses while otherwise leaving the debugging capability intact.</li>
+<li>Preventing flash reads by any internal bus master other than the CPU instruction fetch mechanism.</li>
+<li>Disabling flash reads within bootloaders.</li>
+<li>Encrypting the contents of flash.</li>
+</ul>
+<div class="section" id="debug-pins-reconfigured-for-alternate-functions">
+<h3>Debug Pins Reconfigured for Alternate Functions<a class="headerlink" href="#debug-pins-reconfigured-for-alternate-functions" title="Permalink to this headline">¶</a></h3>
+<p>The threat here is: attackers are able to read memory via debug interfaces like Jtag if debug pins are not protected/disabled.</p>
+<ul class="simple">
+<li>Run-time debug disablement has vulnerability as attackers could attach the debugger at early stage while letting device reset to halt the MCU before run-time disablement starts.</li>
+<li>The root cause of such an issue is normally such debug pins are multiplexed with GPIOs, and some MCU allows run-time debug pin remapping. Sometimes boot mode pins could contribute to bypassing the debug interface remapping.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="esp32">
+<h2>ESP32<a class="headerlink" href="#esp32" title="Permalink to this headline">¶</a></h2>
+<p>This section lists ESP32 security-related features and known vulnerabilities.</p>
+<div class="section" id="esp32-efuse">
+<h3>ESP32 eFuse<a class="headerlink" href="#esp32-efuse" title="Permalink to this headline">¶</a></h3>
+<p>Refer to https://github.com/espressif/esptool/wiki/espefuse. Basically, eFuse is one-time-programmable, and it is possible to permanently damage or ‘brick’ the device.</p>
+</div>
+<div class="section" id="cve-items-regarding-espressif">
+<h3>CVE items regarding Espressif<a class="headerlink" href="#cve-items-regarding-espressif" title="Permalink to this headline">¶</a></h3>
+<p>After searching in NVD database, here is a list of known vulnerabilities:
+https://nvd.nist.gov/vuln/search/results?form_type=Basic&amp;results_type=overview&amp;query=ESP32&amp;search_type=all. Two items are worth noting:</p>
+<ul class="simple">
+<li>https://nvd.nist.gov/vuln/detail/CVE-2019-17391</li>
+<li>https://nvd.nist.gov/vuln/detail/CVE-2019-15894</li>
+</ul>
+<p>These issues are related to hardware attacks using fault injection to either bypass secure boot verification or to read encryption and secure boot keys. Espressif has addressed this issue at https://www.espressif.com/en/news/Security_Advisory_Concerning_Fault_Injection_and_eFuse_Protections. The recommended way is to leverage the up-to-date ESP32-D0WD-V3 chip and Secure Boot V2 scheme.</p>
+</div>
+<div class="section" id="chip-selection">
+<h3>Chip selection<a class="headerlink" href="#chip-selection" title="Permalink to this headline">¶</a></h3>
+<p>The module ESP32-WROOM-U32 is based on ESP32-D0WDQ6 chip, and should address Secure Boot V1 scheme (no V2 scheme). Modules with S2 (e.g., ESP32-S2-WROOM) support V2 scheme.</p>
+<p>To cover high security requirements, the chip selection depends on the key difference between ESP32, ESP32 ECO3 and ESP32-S2 devices.</p>
+<ul class="simple">
+<li>ESP32, module example ESP32-D0WD, (old wafer design) supports only Secure Boot V1.</li>
+<li>ESP32 ECO, module example ESP32-D0WD-V3, supports Secure Boot V2. ECO V3 has a few changes to ECO V1. Refer to https://www.espressif.com/sites/default/files/documentation/ESP32_ECO_V3_User_Guide__EN.pdf. It claims to fix CVE-2019-17391 and CVE-2019-15894.</li>
+<li>ESP32-S2 supports Secure Boot V2. It is a single-core MCU without BLE hardware. The problem is S2 module is not pin-to-pin mapping to ESP32. Since it is new to the market, the price might be higher and it could be more buggy.</li>
+</ul>
+<p>Known bugs in ESP32 ECO 1 &amp; 3 could be viewed here: https://www.espressif.com/sites/default/files/documentation/eco_and_workarounds_for_bugs_in_esp32_en.pdf.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Conclusion:</span></code> it’s preferable to select ESP32 ECO3 chips due to Secure Boot V2 support, and pin-mapping to the existing PCB designs.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="security-dev.html" class="btn btn-neutral float-right" title="Software Security Development Jotting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="iot-security.html" class="btn btn-neutral float-left" title="Basics and Concepts in Secured Connectivity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

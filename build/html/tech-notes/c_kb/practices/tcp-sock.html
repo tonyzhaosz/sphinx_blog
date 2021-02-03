@@ -1,0 +1,1221 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>An Example of TCP Socket &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Embedded Abstract Data Type (ADT)" href="embed-adt.html" />
+    <link rel="prev" title="A crash-course of using Cmocka" href="cmocka.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">C Code Knowledge Base</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../c-basics.html">C basics dig-in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../c-com-tech.html">Techniques in C and compiler</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Practices</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cli-console.html">CLI Console</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cmocka.html">A crash-course of using Cmocka</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">An Example of TCP Socket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="embed-adt.html">Embedded Abstract Data Type (ADT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="paho-mqtt-c-notes.html">Paho.mqtt.c library notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="../index.html">C Code Knowledge Base</a> &raquo;</li>
+        
+          <li><a href="index.html">Code Practices</a> &raquo;</li>
+        
+      <li>An Example of TCP Socket</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/tech-notes/c_kb/practices/tcp-sock.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="an-example-of-tcp-socket">
+<h1>An Example of TCP Socket<a class="headerlink" href="#an-example-of-tcp-socket" title="Permalink to this headline">¶</a></h1>
+<p>This article presents a simple of using IP socket in Unix. The code has been taken from one of my projects, which was cooperated with Silicon Labs’ EmberZNet App framework. It implements a socket client, and has been tested using a Node.js based server.</p>
+<ul class="simple">
+<li>An example of Node.js test server.</li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">net</span>                 <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;net&#39;</span><span class="p">),</span>
+  <span class="nx">DeviceController</span>      <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../controller/DeviceController.js&#39;</span><span class="p">),</span>
+  <span class="nx">DeviceDBManagement</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../controller/DeviceDBManagement.js&#39;</span><span class="p">),</span>
+  <span class="nx">Config</span>                <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../Config.js&#39;</span><span class="p">),</span>
+  <span class="nx">_</span>                     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore&#39;</span><span class="p">),</span>
+  <span class="nx">Logger</span>                <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../Logger.js&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">clientConnected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">socketServerPort</span> <span class="o">=</span> <span class="nx">Config</span><span class="p">.</span><span class="nx">SOCKET_PORT</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">socketServerAddress</span> <span class="o">=</span> <span class="nx">Config</span><span class="p">.</span><span class="nx">SOCKET_IPv4</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">messageParsed</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">var</span> <span class="nx">socketFd</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">socketServer</span> <span class="o">=</span> <span class="nx">net</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Node TCP server connected to client &#39;</span> <span class="o">+</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">remoteAddress</span> <span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">remotePort</span><span class="p">);</span>
+  <span class="nx">clientConnected</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="nx">socketFd</span> <span class="o">=</span> <span class="nx">socket</span><span class="p">;</span>
+
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Node TCP server disconnects to client &#39;</span> <span class="o">+</span> <span class="nx">socketServerAddress</span> <span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span> <span class="nx">socketServerPort</span><span class="p">);</span>
+    <span class="nx">clientConnected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">});</span>
+
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Socket Server Error: &#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">buff</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">);</span>
+      <span class="nx">recvMsg</span> <span class="o">=</span> <span class="nx">buff</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+      <span class="nx">messageParsed</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">recvMsg</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">messageParsed</span><span class="p">.</span><span class="nx">topic</span><span class="p">)</span> <span class="k">throw</span> <span class="s2">&quot;No topic error&quot;</span><span class="p">;</span>
+      <span class="nx">msgDispatcher</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">.</span><span class="nx">topic</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Error Parsing Socket client Received: &#39;</span> <span class="o">+</span> <span class="nx">e</span>
+        <span class="o">+</span> <span class="s1">&#39;\nmessage: &#39;</span> <span class="o">+</span> <span class="nx">recvMsg</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+
+<span class="p">}.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">socketServerPort</span><span class="p">,</span> <span class="nx">socketServerAddress</span><span class="p">);</span>
+
+<span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Node TCP server listening on &#39;</span> <span class="o">+</span> <span class="nx">socketServerAddress</span> <span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span> <span class="nx">socketServerPort</span><span class="p">);</span>
+
+<span class="nx">socketServer</span><span class="p">.</span><span class="nx">publishSocket</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">payload</span><span class="p">,</span> <span class="nx">qos</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">clientConnected</span> <span class="o">&amp;&amp;</span> <span class="nx">socketFd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socketFd</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">payload</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">);</span>
+    <span class="nx">callback</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;No TCP socket client connected.&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">msgDispatcher</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">topic</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">topicStr</span> <span class="o">=</span> <span class="nx">topic</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">];</span>
+
+  <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Recv\&#39;d remote payload: &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">));</span>
+
+  <span class="k">switch</span><span class="p">(</span><span class="nx">topicStr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;heartbeat&#39;</span><span class="o">:</span>
+      <span class="nx">heartbeat_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;devicejoined&#39;</span><span class="o">:</span>
+      <span class="nx">devicejoined_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;deviceleft&#39;</span><span class="o">:</span>
+      <span class="nx">deviceleft_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;devices&#39;</span><span class="o">:</span>
+      <span class="nx">devices_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;devicestatechange&#39;</span><span class="o">:</span>
+      <span class="nx">devicestatechange_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;relays&#39;</span><span class="o">:</span>
+      <span class="nx">relays_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;settings&#39;</span><span class="o">:</span>
+      <span class="nx">settings_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;zclresponse&#39;</span><span class="o">:</span>
+      <span class="nx">zclresponse_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;otaevent&#39;</span><span class="o">:</span>
+      <span class="nx">otaevent_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s1">&#39;executed&#39;</span><span class="o">:</span>
+      <span class="nx">executed_handler</span><span class="p">(</span><span class="nx">messageParsed</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="nx">Logger</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Unknown topic: &#39;</span> <span class="o">+</span> <span class="nx">topicStr</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>  
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">heartbeat_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceController</span><span class="p">.</span><span class="nx">onHeartbeat</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">,</span> <span class="nx">msgJson</span><span class="p">.</span><span class="nx">topic</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">devicejoined_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceDBManagement</span><span class="p">.</span><span class="nx">onNodeJoin</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">,</span> <span class="nx">msgJson</span><span class="p">.</span><span class="nx">topic</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">deviceleft_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceDBManagement</span><span class="p">.</span><span class="nx">onNodeLeft</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">.</span><span class="nx">eui64</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">devices_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceDBManagement</span><span class="p">.</span><span class="nx">onDeviceListReceived</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">,</span> <span class="nx">msgJson</span><span class="p">.</span><span class="nx">topic</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">devicestatechange_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceDBManagement</span><span class="p">.</span><span class="nx">onNodeStateChange</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">relays_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceController</span><span class="p">.</span><span class="nx">onRelayList</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">settings_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceController</span><span class="p">.</span><span class="nx">onGatewaySettings</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">zclresponse_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceController</span><span class="p">.</span><span class="nx">onZCLResponse</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">otaevent_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceController</span><span class="p">.</span><span class="nx">onOtaEvent</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">executed_handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">DeviceController</span><span class="p">.</span><span class="nx">onMessageExecuted</span><span class="p">(</span><span class="nx">msgJson</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">socketServer</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>An example of IP socket client. The client will try to reconnect to the server if the connection is down. As EmberZNet framework provides a feature of delayed events, the code leverage such a feature to complete a longlink connection.</li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * @file</span>
+<span class="cm"> * \brief The transportation layer based on socket. Note that it only</span>
+<span class="cm"> *        supports TCP/IPv4.</span>
+<span class="cm"> */</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;pthread.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/uio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netinet/tcp.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;errno.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fcntl.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;transport-socket.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#ifndef INT_TEST</span>
+  <span class="cp">#include</span> <span class="cpf">PLATFORM_HEADER</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">&quot;stack/include/ember-types.h&quot;</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">&quot;stack/include/event.h&quot;</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">&quot;hal/hal.h&quot;</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">&quot;app/framework/include/af.h&quot;</span><span class="cp"></span>
+<span class="cp">#else</span>
+  <span class="cp">#include</span> <span class="cpf">&lt;assert.h&gt;</span><span class="cp"></span>
+<span class="cp">#endif</span>
+
+<span class="c1">// Error codes.</span>
+<span class="cp">#define SOCKET_SUCCESS     (0)</span>
+<span class="cp">#define SOCKET_LOST_CONN   (0)</span>
+<span class="cp">#define SOCKET_ERROR       (-1)</span>
+<span class="cp">#define RAW_DATA_ERROR     (-2)</span>
+<span class="cp">#define BUFFER_ERROR       (-3)</span>
+<span class="cp">#define INVALID_RD_BYTES   (-4)</span>
+<span class="cp">#define INVALID_SD_BYTES   (-5)</span>
+<span class="c1">// Delays and intervals.</span>
+<span class="cp">#define CONNECTION_THREAD_DELAY_S   (2)</span>
+<span class="cp">#define WRITE_SOCK_THREAD_DELAY_MS  (50)</span>
+<span class="cp">#define RECV_SOCK_THREAD_DELAY_MS   (10)</span>
+<span class="cp">#define LONG_LINK_ITVL_MS           (2000)</span>
+<span class="c1">// Buffer lengths.</span>
+<span class="cp">#define RECV_BUF_MAX       (1000)</span>
+<span class="cp">#define WRITE_BUF_MAX      (1000)</span>
+<span class="c1">// Others.</span>
+<span class="cp">#define RETRY_MAX                   (5)</span>
+<span class="cp">#define MSG_CNT_DISCONN_MAX         (10)</span>
+<span class="cp">#define EISCONN_STANDBY_MAX         (5)</span>
+
+<span class="cp">#define ARRAY_LEN(x)       (sizeof(x) / sizeof((x)[0]))</span>
+<span class="cp">#ifdef INT_TEST</span>
+  <span class="cp">#define TEST_ARRT static</span>
+<span class="cp">#else</span>
+  <span class="cp">#define TEST_ARRT</span>
+<span class="cp">#endif</span>
+<span class="cp">#ifdef INT_TEST</span>
+  <span class="cp">#define DEBUG_PRT printf</span>
+<span class="cp">#elif EMBER_AF_PRINT_CORE</span>
+  <span class="cp">#define DEBUG_PRT emberAfCorePrint</span>
+<span class="cp">#else</span>
+  <span class="cp">#define DEBUG_PRT</span>
+<span class="cp">#endif</span>
+
+<span class="k">typedef</span> <span class="k">enum</span> <span class="n">_SocketStatus</span> <span class="p">{</span>
+  <span class="n">CONNECTED</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>   <span class="c1">// Connected</span>
+  <span class="n">CON_IN_PROG</span><span class="p">,</span>     <span class="c1">// Connetion in progress</span>
+  <span class="n">DISCONNECTED</span><span class="p">,</span>    <span class="c1">// Disconnected</span>
+<span class="p">}</span> <span class="n">SocketStatus</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_SocketInfo</span> <span class="p">{</span>
+  <span class="kt">int</span>  <span class="n">tcpSocketFd</span><span class="p">;</span>
+  <span class="kt">uint16_t</span> <span class="n">longLinkItvl</span><span class="p">;</span>
+  <span class="n">SocketStatus</span> <span class="n">sockStatus</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">servAddr</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">SocketInfo</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_EmberAfPluginLinkedListElement</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">_EmberAfPluginLinkedListElement</span> <span class="o">*</span> <span class="n">next</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">_EmberAfPluginLinkedListElement</span> <span class="o">*</span> <span class="n">previous</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="o">*</span> <span class="n">content</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">EmberAfPluginLinkedListElement</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span> <span class="n">head</span><span class="p">;</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span> <span class="n">tail</span><span class="p">;</span>
+  <span class="kt">uint32_t</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">EmberAfPluginLinkedList</span><span class="p">;</span>
+
+<span class="n">TEST_ARRT</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">defPort</span>   <span class="o">=</span> <span class="s">&quot;50000&quot;</span><span class="p">;</span>
+<span class="n">TEST_ARRT</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">defHostIP</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">;</span>
+<span class="n">TEST_ARRT</span> <span class="kt">char</span> <span class="n">connPort</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>   <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="n">TEST_ARRT</span> <span class="kt">char</span> <span class="n">connHostIP</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+
+<span class="k">static</span> <span class="n">SocketInfo</span> <span class="n">sockInfo</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">.</span><span class="n">tcpSocketFd</span>    <span class="o">=</span> <span class="n">SOCKET_ERROR</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">longLinkItvl</span>   <span class="o">=</span> <span class="n">LONG_LINK_ITVL_MS</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">sockStatus</span>     <span class="o">=</span> <span class="n">DISCONNECTED</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span> <span class="n">pthread_t</span> <span class="n">connectionThreadId</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">pthread_t</span> <span class="n">writeSocketThreadId</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">pthread_t</span> <span class="n">recvSocketThreadId</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">pthread_mutex_t</span> <span class="n">sockInfoMutex</span> <span class="o">=</span> <span class="n">PTHREAD_MUTEX_INITIALIZER</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">pthread_mutex_t</span> <span class="n">sendBufMutex</span>  <span class="o">=</span> <span class="n">PTHREAD_MUTEX_INITIALIZER</span><span class="p">;</span>
+<span class="cp">#ifndef INT_TEST</span>
+<span class="n">EmberEventControl</span> <span class="n">emberAfPluginTransportSocketLongLinkEventControl</span><span class="p">;</span>
+<span class="cp">#endif</span>
+<span class="n">TEST_ARRT</span> <span class="kt">void</span> <span class="nf">emberAfPluginTransportSocketLongLinkEventHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="n">recvBuf</span><span class="p">[</span><span class="n">RECV_BUF_MAX</span><span class="p">];</span>
+<span class="k">static</span> <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span> <span class="n">sendBuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+<span class="c1">// Forward declaration.</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">connectionThread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">recvSocketThread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">writeSocketThread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">);</span>
+<span class="cp">#ifdef INT_TEST</span>
+<span class="n">TEST_ARRT</span> <span class="kt">bool</span> <span class="nf">emberAfPluginTransportSocketPublish</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">payload</span><span class="p">);</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/**********************************************************************</span>
+<span class="cm"> * The following methods are based the linked-list plugin.            *</span>
+<span class="cm"> * The original plugin has the limitation of free allocated memories. *</span>
+<span class="cm"> * The following methods resolve such a limitation.                   *</span>
+<span class="cm"> **********************************************************************/</span>
+
+<span class="k">static</span> <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span> <span class="nf">emberAfPluginLinkedListInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span><span class="n">list</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">EmberAfPluginLinkedList</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">list</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">EmberAfPluginLinkedList</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">emberAfPluginLinkedListPushBack</span><span class="p">(</span>
+  <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span><span class="n">list</span><span class="p">,</span>
+  <span class="kt">void</span><span class="o">*</span> <span class="n">content</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">element</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span>
+                                    <span class="n">EmberAfPluginLinkedListElement</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">element</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">element</span><span class="o">-&gt;</span><span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">;</span>
+    <span class="n">element</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">element</span><span class="o">-&gt;</span><span class="n">previous</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">element</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">element</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">element</span><span class="p">;</span>
+    <span class="o">++</span><span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">emberAfPluginLinkedListPopFront</span><span class="p">(</span>
+                                       <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span><span class="n">list</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">EmberAfPluginLinkedListElement</span><span class="o">*</span> <span class="n">head</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">==</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">)</span> <span class="n">free</span><span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+    <span class="o">--</span><span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">bool</span> <span class="nf">emberAfPluginLinkedListRemoveElement</span><span class="p">(</span>
+  <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span><span class="n">list</span><span class="p">,</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">element</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">element</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">element</span> <span class="o">==</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">==</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">element</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="n">element</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">previous</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">element</span> <span class="o">==</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">list</span><span class="o">-&gt;</span><span class="n">tail</span> <span class="o">=</span> <span class="n">element</span><span class="o">-&gt;</span><span class="n">previous</span><span class="p">;</span>
+      <span class="n">element</span><span class="o">-&gt;</span><span class="n">previous</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">element</span><span class="o">-&gt;</span><span class="n">previous</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">element</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+      <span class="n">element</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">previous</span> <span class="o">=</span> <span class="n">element</span><span class="o">-&gt;</span><span class="n">previous</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">--</span><span class="p">(</span><span class="n">list</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">element</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">)</span> <span class="n">free</span><span class="p">(</span><span class="n">element</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span> <span class="nf">emberAfPluginLinkedListNextElement</span><span class="p">(</span>
+  <span class="n">EmberAfPluginLinkedList</span> <span class="o">*</span><span class="n">list</span><span class="p">,</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">elementPosition</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">elementPosition</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">list</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">elementPosition</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Helper methods */</span>
+<span class="k">static</span> <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span> <span class="nf">findElementInList</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">curElement</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">curElement</span> <span class="o">=</span> <span class="n">emberAfPluginLinkedListNextElement</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span>
+                                                    <span class="n">curElement</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">curElement</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span>
+        <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">curElement</span><span class="o">-&gt;</span><span class="n">content</span> <span class="o">==</span> <span class="o">*</span><span class="n">buf</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">curElement</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">curElement</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">freeBufInList</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">element</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+
+  <span class="n">element</span> <span class="o">=</span> <span class="n">findElementInList</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">emberAfPluginLinkedListRemoveElement</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span> <span class="n">element</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">disconnectionEventHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">socketRawDataRecvdEventHandler</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">recvBytes</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">buf</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+  <span class="n">buf</span><span class="p">[</span><span class="n">recvBytes</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+
+<span class="cp">#ifdef INT_TEST</span>
+  <span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">msgCnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="n">DEBUG_PRT</span><span class="p">(</span><span class="s">&quot;Recv&#39;d recvBytes-%lu, msgLen-%lu, msg-{%s} [seq#: %u]</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+            <span class="n">recvBytes</span><span class="p">,</span>
+            <span class="n">strlen</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span>
+            <span class="n">buf</span><span class="p">,</span>
+            <span class="n">msgCnt</span><span class="p">);</span>
+  <span class="n">msgCnt</span><span class="o">++</span><span class="p">;</span>
+<span class="cp">#else</span>
+  <span class="n">emberAfPluginTransportSocketMessageArrivedCallback</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">writeSocketErrEventHandler</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Basically does nothing. The payload should stay in the list.</span>
+  <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">buf</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">partialWriteEventHandler</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">actualBytes</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">preBuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">uint8_t</span> <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">// After attempting to resend several times, remove it from the list.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">preBuf</span> <span class="o">&amp;&amp;</span> <span class="n">attempts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">preBuf</span> <span class="o">=</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">preBuf</span> <span class="o">==</span> <span class="o">*</span><span class="n">buf</span> <span class="o">&amp;&amp;</span> <span class="n">attempts</span> <span class="o">&lt;</span> <span class="n">RETRY_MAX</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">attempts</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">attempts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">preBuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="n">freeBufInList</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">writeSocketSucEventHandler</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">freeBufInList</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">brokenPipeEventHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">sig</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Set non-blocking mode to a socket.</span>
+<span class="cm"> * @param[Out]: sockfd - sockect to be set.</span>
+<span class="cm"> * @return: -1 indicates error and EAGAIN will be set.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">setNonBlocking</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="n">sockfd</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">flags</span><span class="p">;</span>
+
+  <span class="n">flags</span> <span class="o">=</span> <span class="n">fcntl</span><span class="p">(</span><span class="o">*</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">F_GETFL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">fcntl</span><span class="p">(</span><span class="o">*</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">F_SETFL</span><span class="p">,</span> <span class="n">flags</span> <span class="o">|</span> <span class="n">O_NONBLOCK</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Create a new TCPv4 socket.</span>
+<span class="cm"> * @param[Out]: sockfd - sockect to be set.</span>
+<span class="cm"> * @return: -1 indicates error. Other number indicates a fd.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">newTcpSocket</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="n">sockfd</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="o">*</span><span class="n">sockfd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Validate the server IP and port specified by users.</span>
+<span class="cm"> * @param[Out]: servAddr - server address to be set.</span>
+<span class="cm"> * @return: -1 indicates error and EAFNOSUPPORT will be set.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">validateServerAddr</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="o">*</span> <span class="n">servAddr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">SOCKET_ERROR</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">port</span><span class="p">;</span>
+
+  <span class="n">bzero</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">servAddr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">servAddr</span><span class="p">));</span>
+
+<span class="cp">#ifdef EMBER_AF_PLUGIN_TRANSPORT_SOCKET_SERVER_PORT</span>
+  <span class="n">port</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_SERVER_PORT</span><span class="p">);</span>
+  <span class="n">strncpy</span><span class="p">(</span><span class="n">connPort</span><span class="p">,</span>
+          <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_SERVER_PORT</span><span class="p">,</span>
+          <span class="k">sizeof</span><span class="p">(</span><span class="n">connPort</span><span class="p">));</span>
+  <span class="n">connPort</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">connPort</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="cp">#else</span>
+  <span class="n">port</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">defPort</span><span class="p">);</span>
+  <span class="n">strncpy</span><span class="p">(</span><span class="n">connPort</span><span class="p">,</span>
+          <span class="n">defPort</span><span class="p">,</span>
+          <span class="k">sizeof</span><span class="p">(</span><span class="n">connPort</span><span class="p">));</span>
+  <span class="n">connPort</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">connPort</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#ifdef EMBER_AF_PLUGIN_TRANSPORT_SOCKET_SERVER_IP</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span>
+                  <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_SERVER_IP</span><span class="p">,</span>
+                  <span class="o">&amp;</span><span class="p">(</span><span class="n">servAddr</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">));</span>
+  <span class="n">strncpy</span><span class="p">(</span><span class="n">connHostIP</span><span class="p">,</span>
+          <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_SERVER_IP</span><span class="p">,</span>
+          <span class="k">sizeof</span><span class="p">(</span><span class="n">connHostIP</span><span class="p">));</span>
+  <span class="n">connHostIP</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">connHostIP</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="cp">#else</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">defHostIP</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">servAddr</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">));</span>
+  <span class="n">strncpy</span><span class="p">(</span><span class="n">connHostIP</span><span class="p">,</span>
+          <span class="n">defHostIP</span><span class="p">,</span>
+          <span class="k">sizeof</span><span class="p">(</span><span class="n">connHostIP</span><span class="p">));</span>
+  <span class="n">connHostIP</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">connHostIP</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
+  <span class="n">servAddr</span><span class="o">-&gt;</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+  <span class="n">servAddr</span><span class="o">-&gt;</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Connect to the server IP:port.</span>
+<span class="cm"> * @param[In]: sockfd - socket fd.</span>
+<span class="cm"> * @param[In]: servAddr - server address structure.</span>
+<span class="cm"> * @return: -1 indicates error.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">connectTcpSocket</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">sockfd</span><span class="p">,</span>
+                            <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="o">*</span> <span class="n">servAddr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">sockfd</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="n">servAddr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">servAddr</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Close a specified socket.</span>
+<span class="cm"> * @param[In]: sockfd - socket fd.</span>
+<span class="cm"> * @return: -1 indicates error.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">closeTcpSocket</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">sockfd</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">close</span><span class="p">(</span><span class="o">*</span><span class="n">sockfd</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Tries to read bytes from a specified socket. As the commands</span>
+<span class="cm"> *         from upper layers are not large, we use a fixed buffer with</span>
+<span class="cm"> *         reasonable size to hold the commands.</span>
+<span class="cm"> * @param[In]: sockfd - socket fd.</span>
+<span class="cm"> * @param[Out]: buf - a pointer to the buffer to be filled with.</span>
+<span class="cm"> * @param[In]: bytes - No. of bytes to be read.</span>
+<span class="cm"> * @param[In]: disconnetCb - a callback for socket disconnection.</span>
+<span class="cm"> * @param[In]: rawRecvdCb - a callback for received raw data.</span>
+<span class="cm"> * @return: 0 indicates success. &lt; 0 values indicate error code.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">getSocketData</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">sockfd</span><span class="p">,</span>
+                         <span class="kt">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span>
+                         <span class="kt">size_t</span> <span class="n">bytes</span><span class="p">,</span>
+                         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">disconnetCb</span><span class="p">)(</span><span class="kt">void</span><span class="p">),</span>
+                         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rawRecvdCb</span><span class="p">)(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">recvBytes</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">buf</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">BUFFER_ERROR</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">exit</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">bytes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">INVALID_RD_BYTES</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">exit</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">ret</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="o">*</span><span class="n">sockfd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">bytes</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="n">SOCKET_ERROR</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">goto</span> <span class="n">exit</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">disconnetCb</span><span class="p">)</span> <span class="n">disconnetCb</span><span class="p">();</span>
+    <span class="k">goto</span> <span class="n">exit</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rawRecvdCb</span><span class="p">)</span> <span class="n">rawRecvdCb</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="nl">exit</span><span class="p">:</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: Tries to send bytes to a specified socket. As long as the</span>
+<span class="cm"> *         data to be sent is less than PIPE_BUF (normally 65KBytes),</span>
+<span class="cm"> *         we should be fine using this method.</span>
+<span class="cm"> * @param[In]: sockfd - socket fd.</span>
+<span class="cm"> * @param[In]: buf - the buf whose data to be sent.</span>
+<span class="cm"> * @param[In]: bufLen - the size of data to be sent.</span>
+<span class="cm"> * @param[In]: writeSocketErrCb - a callback for the socket error</span>
+<span class="cm"> *                                when writing. Pass the buffer as param.</span>
+<span class="cm"> * @param[In]: partialWriteCb - a callback for partial bytes written</span>
+<span class="cm"> *                              error. Pass the buffer and actual written</span>
+<span class="cm"> *                              bytes as params.</span>
+<span class="cm"> * @param[In]: writeSocketSucCb - a callback for successful writing to a</span>
+<span class="cm"> *                                socket. Pass the buffer as param.</span>
+<span class="cm"> * @return: 0 indicates success. &#39;&lt; 0&#39; values indicate error code.</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">putSocketData</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">sockfd</span><span class="p">,</span>
+                         <span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">,</span>
+                         <span class="kt">size_t</span> <span class="n">bufLen</span><span class="p">,</span>
+                         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">writeSocketErrCb</span><span class="p">)(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">),</span>
+                         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">partialWriteCb</span><span class="p">)(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">,</span>
+                                                <span class="kt">size_t</span> <span class="n">actualBytes</span><span class="p">),</span>
+                         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">writeSocketSucCb</span><span class="p">)(</span><span class="kt">char</span> <span class="o">**</span> <span class="n">buf</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">rc</span><span class="p">,</span> <span class="n">ret</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">buf</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">BUFFER_ERROR</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">exit</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">bufLen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">INVALID_SD_BYTES</span><span class="p">;</span>
+    <span class="k">goto</span> <span class="n">exit</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">rc</span> <span class="o">=</span> <span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="n">sockfd</span><span class="p">,</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="n">bufLen</span><span class="p">))</span> <span class="o">!=</span> <span class="n">SOCKET_ERROR</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">&lt;</span> <span class="n">bufLen</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">INVALID_SD_BYTES</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">partialWriteCb</span><span class="p">)</span> <span class="n">partialWriteCb</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="n">rc</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">SOCKET_SUCCESS</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">writeSocketSucCb</span><span class="p">)</span> <span class="n">writeSocketSucCb</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">SOCKET_ERROR</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">writeSocketErrCb</span><span class="p">)</span> <span class="n">writeSocketErrCb</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="nl">exit</span><span class="p">:</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">delayMs</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">delayMs</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">struct</span> <span class="n">timespec</span> <span class="n">delayTime</span><span class="p">;</span>
+
+  <span class="n">delayTime</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="n">delayMs</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+  <span class="n">delayTime</span><span class="p">.</span><span class="n">tv_nsec</span> <span class="o">=</span> <span class="p">(</span><span class="n">delayMs</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000000</span><span class="p">;</span>
+  <span class="n">nanosleep</span><span class="p">(</span><span class="o">&amp;</span><span class="n">delayTime</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">delayS</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">delayS</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">sleep</span><span class="p">(</span><span class="n">delayS</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">printConnStatus</span><span class="p">(</span><span class="n">SocketStatus</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="kt">bool</span> <span class="n">inProgPtrd</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+  <span class="k">switch</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">CON_IN_PROG</span><span class="p">:</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">inProgPtrd</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">DEBUG_PRT</span><span class="p">(</span><span class="s">&quot;TCP client is connecting to %s:%s</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+                  <span class="n">connHostIP</span><span class="p">,</span> <span class="n">connPort</span><span class="p">);</span>
+        <span class="n">inProgPtrd</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">CONNECTED</span><span class="p">:</span>
+      <span class="n">DEBUG_PRT</span><span class="p">(</span><span class="s">&quot;TCP client is connected to %s:%s</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+                <span class="n">connHostIP</span><span class="p">,</span> <span class="n">connPort</span><span class="p">);</span>
+      <span class="n">inProgPtrd</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">DISCONNECTED</span><span class="p">:</span>
+      <span class="n">DEBUG_PRT</span><span class="p">(</span><span class="s">&quot;TCP client is disconnected from %s:%s</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+                <span class="n">connHostIP</span><span class="p">,</span> <span class="n">connPort</span><span class="p">);</span>
+      <span class="n">inProgPtrd</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Initialize functions */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">initSignalHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">signal</span><span class="p">(</span><span class="n">SIGPIPE</span><span class="p">,</span> <span class="n">brokenPipeEventHandler</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">initEventControl</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#ifndef INT_TEST</span>
+  <span class="n">emberEventControlSetActive</span><span class="p">(</span>
+    <span class="n">emberAfPluginTransportSocketLongLinkEventControl</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">initBuffer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">memset</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">recvBuf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">recvBuf</span><span class="p">));</span>
+  <span class="n">sendBuf</span> <span class="o">=</span> <span class="n">emberAfPluginLinkedListInit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">initTcpSocket</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">newTcpSocket</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">)</span>   <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">validateServerAddr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">servAddr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">setNonBlocking</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">)</span>  <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">initThreads</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">pthread_mutexattr_t</span> <span class="n">attr</span><span class="p">;</span>
+
+  <span class="n">assert</span><span class="p">(</span><span class="n">pthread_mutexattr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">attr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">attr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">pthread_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">,</span>  <span class="o">&amp;</span><span class="n">attr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">connectionThreadId</span><span class="p">,</span>
+                        <span class="nb">NULL</span><span class="p">,</span>
+                        <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">connectionThread</span><span class="p">,</span>
+                        <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">writeSocketThreadId</span><span class="p">,</span>
+                        <span class="nb">NULL</span><span class="p">,</span>
+                        <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">writeSocketThread</span><span class="p">,</span>
+                        <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">recvSocketThreadId</span><span class="p">,</span>
+                        <span class="nb">NULL</span><span class="p">,</span>
+                        <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">recvSocketThread</span><span class="p">,</span>
+                        <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Methods called by threads. */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">connectionThread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">uint8_t</span> <span class="n">eiconnCnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(;;)</span>
+  <span class="p">{</span>
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">!=</span> <span class="n">CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">rc</span> <span class="o">=</span> <span class="n">connectTcpSocket</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">,</span>
+                                 <span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">servAddr</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">CONNECTED</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">errno</span> <span class="o">==</span> <span class="n">EINPROGRESS</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">CON_IN_PROG</span><span class="p">;</span>
+          <span class="n">eiconnCnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">printConnStatus</span><span class="p">(</span><span class="n">CON_IN_PROG</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">errno</span> <span class="o">==</span> <span class="n">EISCONN</span> <span class="o">&amp;&amp;</span>
+                   <span class="n">eiconnCnt</span> <span class="o">&lt;</span> <span class="n">EISCONN_STANDBY_MAX</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// This gives EISCONN_STANDBY_MAX * CONNECTION_THREAD_DELAY_S</span>
+          <span class="c1">// seconds before the client tries to reconnect.</span>
+          <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">CONNECTED</span><span class="p">;</span>
+          <span class="n">eiconnCnt</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">DISCONNECTED</span><span class="p">;</span>
+          <span class="n">closeTcpSocket</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">);</span>
+          <span class="n">initTcpSocket</span><span class="p">();</span>
+          <span class="n">eiconnCnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+    <span class="n">delayS</span><span class="p">(</span><span class="n">CONNECTION_THREAD_DELAY_S</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">writeSocketThread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#ifdef INT_TEST</span>
+  <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">**</span><span class="n">payload</span><span class="p">;</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">bufHd</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(;;)</span>
+  <span class="p">{</span>
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+
+    <span class="n">buf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="s">&quot;Transport-socket - test data!&quot;</span><span class="p">));</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&quot;Transport-socket - test data!&quot;</span><span class="p">);</span>
+    <span class="n">emberAfPluginTransportSocketPublish</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">==</span> <span class="n">CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="n">bufHd</span> <span class="o">=</span> <span class="n">emberAfPluginLinkedListNextElement</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span>
+                                                 <span class="nb">NULL</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">bufHd</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+      <span class="n">payload</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">bufHd</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">;</span>
+
+      <span class="n">rc</span> <span class="o">=</span> <span class="n">putSocketData</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">,</span>
+                         <span class="n">payload</span><span class="p">,</span>
+                         <span class="n">strlen</span><span class="p">(</span><span class="o">*</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="n">writeSocketErrEventHandler</span><span class="p">,</span>
+                         <span class="n">partialWriteEventHandler</span><span class="p">,</span>
+                         <span class="n">writeSocketSucEventHandler</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="n">SOCKET_ERROR</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">DISCONNECTED</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+    <span class="n">delayS</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="cp">#else</span>
+  <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">**</span><span class="n">payload</span><span class="p">;</span>
+  <span class="n">EmberAfPluginLinkedListElement</span> <span class="o">*</span><span class="n">bufHd</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(;;)</span>
+  <span class="p">{</span>
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">==</span> <span class="n">CONNECTED</span> <span class="o">&amp;&amp;</span>
+        <span class="n">sendBuf</span> <span class="o">&amp;&amp;</span>
+        <span class="n">sendBuf</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="n">bufHd</span> <span class="o">=</span> <span class="n">emberAfPluginLinkedListNextElement</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span>
+                                                 <span class="nb">NULL</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">bufHd</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+      <span class="n">payload</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">bufHd</span><span class="o">-&gt;</span><span class="n">content</span><span class="p">;</span>
+      <span class="n">rc</span> <span class="o">=</span> <span class="n">putSocketData</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">,</span>
+                         <span class="n">payload</span><span class="p">,</span>
+                         <span class="n">strlen</span><span class="p">(</span><span class="o">*</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                         <span class="n">writeSocketErrEventHandler</span><span class="p">,</span>
+                         <span class="n">partialWriteEventHandler</span><span class="p">,</span>
+                         <span class="n">writeSocketSucEventHandler</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="n">SOCKET_ERROR</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">DISCONNECTED</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+    <span class="n">delayMs</span><span class="p">(</span><span class="n">WRITE_SOCK_THREAD_DELAY_MS</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="cp">#endif  </span><span class="c1">// INT_TEST</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">recvSocketThread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(;;)</span>
+  <span class="p">{</span>
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">==</span> <span class="n">CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">rc</span> <span class="o">=</span> <span class="n">getSocketData</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">,</span>
+                         <span class="n">recvBuf</span><span class="p">,</span>
+                         <span class="n">RECV_BUF_MAX</span><span class="p">,</span>
+                         <span class="n">disconnectionEventHandler</span><span class="p">,</span>
+                         <span class="n">socketRawDataRecvdEventHandler</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="n">SOCKET_LOST_CONN</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">DISCONNECTED</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+    <span class="n">delayMs</span><span class="p">(</span><span class="n">RECV_SOCK_THREAD_DELAY_MS</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/**********************************************************************</span>
+<span class="cm"> * Ember Application Framework - Event handlers and callbacks.        *</span>
+<span class="cm"> **********************************************************************/</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: This callback should be called when main init is executing.</span>
+<span class="cm"> */</span>
+<span class="n">TEST_ARRT</span> <span class="kt">void</span> <span class="nf">emberAfPluginTransportSocketInitCallback</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">initBuffer</span><span class="p">();</span>
+  <span class="n">initSignalHandler</span><span class="p">();</span>
+  <span class="n">initTcpSocket</span><span class="p">();</span>
+	<span class="n">initThreads</span><span class="p">();</span>
+  <span class="n">initEventControl</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: The event control will be specified by the properties file, and</span>
+<span class="cm"> *         generated by the app-builder.</span>
+<span class="cm"> */</span>
+
+<span class="n">TEST_ARRT</span> <span class="kt">void</span> <span class="nf">emberAfPluginTransportSocketLongLinkEventHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">data</span><span class="p">;</span>
+  <span class="n">EmberAfPluginTransportSocketState</span> <span class="n">curStatus</span><span class="p">;</span>
+  <span class="k">static</span> <span class="n">EmberAfPluginTransportSocketState</span> <span class="n">lastStatus</span> <span class="o">=</span>
+              <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_STATE_DISCONNECTED</span><span class="p">;</span>
+
+<span class="cp">#ifndef INT_TEST</span>
+  <span class="n">emberEventControlSetInactive</span><span class="p">(</span>
+    <span class="n">emberAfPluginTransportSocketLongLinkEventControl</span><span class="p">);</span>
+<span class="cp">#endif</span>
+  <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">==</span> <span class="n">CONNECTED</span> <span class="o">&amp;&amp;</span>
+      <span class="n">recv</span><span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MSG_PEEK</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">=</span> <span class="n">DISCONNECTED</span><span class="p">;</span>
+    <span class="n">closeTcpSocket</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">tcpSocketFd</span><span class="p">);</span>
+    <span class="n">initTcpSocket</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span> <span class="o">==</span> <span class="n">CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">curStatus</span> <span class="o">=</span> <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_STATE_CONNECTED</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">curStatus</span> <span class="o">=</span> <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_STATE_DISCONNECTED</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">curStatus</span> <span class="o">!=</span> <span class="n">lastStatus</span><span class="p">)</span> <span class="p">{</span>
+<span class="cp">#ifndef INT_TEST</span>
+    <span class="n">emberAfPluginTransportSocketStateChangedCallback</span><span class="p">(</span><span class="n">curStatus</span><span class="p">);</span>
+<span class="cp">#endif</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">curStatus</span> <span class="o">==</span> <span class="n">EMBER_AF_PLUGIN_TRANSPORT_SOCKET_STATE_CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printConnStatus</span><span class="p">(</span><span class="n">CONNECTED</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">printConnStatus</span><span class="p">(</span><span class="n">DISCONNECTED</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">lastStatus</span> <span class="o">=</span> <span class="n">curStatus</span><span class="p">;</span>
+
+<span class="cp">#ifndef INT_TEST</span>
+  <span class="n">emberEventControlSetDelayMS</span><span class="p">(</span>
+    <span class="n">emberAfPluginTransportSocketLongLinkEventControl</span><span class="p">,</span>
+    <span class="n">sockInfo</span><span class="p">.</span><span class="n">longLinkItvl</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief: This method is meant to be called by gatway-relay-socket.</span>
+<span class="cm"> * @param[In]: payload - The payload to be inserted to the send-buffer.</span>
+<span class="cm"> *                       It should be stored in a malloc&#39;d memory. The</span>
+<span class="cm"> *                       garbage collection is handled at this layer.</span>
+<span class="cm"> */</span>
+<span class="n">TEST_ARRT</span> <span class="kt">bool</span> <span class="nf">emberAfPluginTransportSocketPublish</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">payload</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">SocketStatus</span> <span class="n">status</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">payload</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+  <span class="cp">#ifndef INT_TEST</span>
+  <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+  <span class="cp">#endif</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="n">sockInfo</span><span class="p">.</span><span class="n">sockStatus</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">CONNECTED</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+    <span class="n">emberAfPluginLinkedListPushBack</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">payload</span><span class="p">);</span>
+    <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sendBuf</span> <span class="o">&amp;&amp;</span> <span class="n">sendBuf</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="n">MSG_CNT_DISCONN_MAX</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+      <span class="n">emberAfPluginLinkedListPopFront</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">);</span>
+      <span class="n">emberAfPluginLinkedListPushBack</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">payload</span><span class="p">);</span>
+      <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">sendBuf</span> <span class="o">&amp;&amp;</span> <span class="n">sendBuf</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">MSG_CNT_DISCONN_MAX</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+      <span class="n">emberAfPluginLinkedListPushBack</span><span class="p">(</span><span class="n">sendBuf</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">payload</span><span class="p">);</span>
+      <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sendBufMutex</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="cp">#ifndef INT_TEST</span>
+      <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+      <span class="cp">#endif</span>
+      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="cp">#ifndef INT_TEST</span>
+  <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sockInfoMutex</span><span class="p">);</span>
+  <span class="cp">#endif</span>
+
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="embed-adt.html" class="btn btn-neutral float-right" title="Embedded Abstract Data Type (ADT)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cmocka.html" class="btn btn-neutral float-left" title="A crash-course of using Cmocka" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

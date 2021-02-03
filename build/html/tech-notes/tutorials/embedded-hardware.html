@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Embedded Hardware Tutorials &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Embedded Software Tutorials" href="embedded-tutorial.html" />
+    <link rel="prev" title="Tutorials" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../books/index.html">Book Notes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Tutorial Notes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Embedded Hardware Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uart-communication">UART communication</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="embedded-tutorial.html">Embedded Software Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Embedded Hardware Tutorials</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tech-notes/tutorials/embedded-hardware.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="embedded-hardware-tutorials">
+<h1>Embedded Hardware Tutorials<a class="headerlink" href="#embedded-hardware-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="uart-communication">
+<h2>UART communication<a class="headerlink" href="#uart-communication" title="Permalink to this headline">¶</a></h2>
+<p>As its name tells, UART is an asynchronous serial communication between devices. A typical wiring connection is as follows:</p>
+  <img src="https://cn.bing.com/th?id=OIP.LAOk3F5k2VOtBlej8nQ3IgHaDo&pid=Api&rs=1" width="250" style="border-style: none"><p>When using UART is selected for the communication between a fast device and a slow device, some sort of flow control is required to ensure no data lost. Take a RPi and an 8-bit MCU as an example. If the PRi wants to send a large stream of data to the MCU, the MCU might be in the danger of buffer exhaustion due to limited buffer space. With flow control, such a situation could be avoided as the MCU could inform the RPi to halt transmission until it handles the data in the buffer.</p>
+<div class="section" id="uart-flow-control">
+<h3>UART flow control<a class="headerlink" href="#uart-flow-control" title="Permalink to this headline">¶</a></h3>
+<p>There are basically three ways to take advantage of the flow control:</p>
+<div class="section" id="hardware-flow-control">
+<h4>Hardware flow control<a class="headerlink" href="#hardware-flow-control" title="Permalink to this headline">¶</a></h4>
+<p><img alt="Hardware flow control" src="https://gitee.com/tz_se/blog_pics/raw/master/Hardware%20flow%20control.png" /></p>
+<p>CTS indicates <code class="docutils literal notranslate"><span class="pre">clear</span> <span class="pre">to</span> <span class="pre">send</span></code>, and RTS indicates <code class="docutils literal notranslate"><span class="pre">request</span> <span class="pre">to</span> <span class="pre">send</span></code>. As shown in the above figure, each device could trigger a halting/resuming of data transmission. If Device A wants to receive data, it will assert RTS (i.e., request Device B to send me data). If the receiving buffer is <strong>almost</strong> full, it should deassert RTS. The reason for setting an <strong>almost</strong> full signal is due to the fact there might be data on the line just after the RTS deassertion.</p>
+<p>There might be some additional pins namely DTR (data terminal ready) and DSR (data set ready). These flow-control pins are no longer in use nowadays. The <a class="reference external" href="https://stackoverflow.com/questions/957337/what-is-the-difference-between-dtr-dsr-and-rts-cts-flow-control">history</a> is duplicated as below:</p>
+<blockquote>
+<div><blockquote>
+<div>The difference between them is that they use different pins. Seriously, that’s it. The reason they both exist is that RTS/CTS wasn’t supposed to ever be a flow control mechanism, originally; it was for half-duplex modems to coordinate who was sending and who was receiving. RTS and CTS got misused for flow control so often that it became standard.</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="legacy-hardware-flow-control-master-slave">
+<h4>Legacy hardware flow control (master/slave)<a class="headerlink" href="#legacy-hardware-flow-control-master-slave" title="Permalink to this headline">¶</a></h4>
+<p><img alt="Legacy hardware flow control" src="https://gitee.com/tz_se/blog_pics/raw/master/Legacy%20hardware%20flow%20control.png" /></p>
+<p>The legacy hardware flow control is usually implemented for a master (or DTE: data terminal equipment) and slave (or DCE: data communication equipment) situation, and in other words, it is a uni-directional communication. When DTE wants to send data, it asserts RTS and waits for CTS being asserted by DCE.</p>
+</div>
+<div class="section" id="software-flow-control-xon-xoff">
+<h4>Software flow control (XON/XOFF)<a class="headerlink" href="#software-flow-control-xon-xoff" title="Permalink to this headline">¶</a></h4>
+<p>There is no need for extra wiring of software flow control. The flow control is decided by two specific ASCII characters i.e., XON - 0x11 and XOFF - 0x13. If the transmitter reads a XOFF from the receiver, the transmission should halt, and it could resume after reading a XON.</p>
+<ul class="simple">
+<li>References:
+<a class="reference external" href="https://learn.sparkfun.com/tutorials/serial-communication/all">https://learn.sparkfun.com/tutorials/serial-communication/all</a>
+<a class="reference external" href="https://www.silabs.com/documents/public/application-notes/an0059.0-uart-flow-control.pdf">https://www.silabs.com/documents/public/application-notes/an0059.0-uart-flow-control.pdf</a></li>
+<li>Hardware flow control from a PC:</li>
+</ul>
+<p>Using a UART-to-TTL converter, the PC could talk to a MCU using UART protocol. Popular converters like <a class="reference external" href="https://www.silabs.com/documents/public/data-sheets/CP2102-9.pdf">CP2102</a> could also provide flow controls. However, it might be hard for users to initiate flow controls as CP2102 by default. In other words, the PC needs to send specific commands to the converter so as to enable flow controls inside (check this <a class="reference external" href="https://www.silabs.com/community/interface/forum.topic.html/cp2102_rts_cts_quest-PhJX">link</a>). Unfortunately, most of the PC software does not support sending such commands. Hence, to test flow control, it’d be better to use two MCUs.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="embedded-tutorial.html" class="btn btn-neutral float-right" title="Embedded Software Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

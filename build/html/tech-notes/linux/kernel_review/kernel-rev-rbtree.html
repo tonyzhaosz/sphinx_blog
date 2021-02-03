@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Red-black tree (aka., rbTree) &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="The famous “typeof” and “container_of”" href="kernel-rev-typeof.html" />
+    <link rel="prev" title="Hash table" href="kernel-rev-hashtable.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Linux Notes</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Kernel Knowledge Base</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-hashtable.html">Hash table</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Red-black tree (aka., rbTree)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-typeof.html">The famous “typeof” and “container_of”</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/linux-cmds.html">Misc Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="../index.html">Linux Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Kernel Knowledge Base</a> &raquo;</li>
+        
+      <li>Red-black tree (aka., rbTree)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/tech-notes/linux/kernel_review/kernel-rev-rbtree.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="red-black-tree-aka-rbtree">
+<h1>Red-black tree (aka., rbTree)<a class="headerlink" href="#red-black-tree-aka-rbtree" title="Permalink to this headline">¶</a></h1>
+<p>The rbTree is a kind of self-balancing binary search tree with the following restrictions (quoted from Linux kernel lib/rbtree.c):</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * red-black trees properties:  http://en.wikipedia.org/wiki/Rbtree</span>
+<span class="cm"> *</span>
+<span class="cm"> *  1) A node is either red or black</span>
+<span class="cm"> *  2) The root is black</span>
+<span class="cm"> *  3) All leaves (NULL) are black</span>
+<span class="cm"> *  4) Both children of every red node are black</span>
+<span class="cm"> *  5) Every simple path from root to leaves contains the same number</span>
+<span class="cm"> *     of black nodes.</span>
+<span class="cm"> *</span>
+<span class="cm"> *  4 and 5 give the O(log n) guarantee, since 4 implies you cannot have two</span>
+<span class="cm"> *  consecutive red nodes in a path and every red node is therefore followed by</span>
+<span class="cm"> *  a black. So if B is the number of black nodes on every simple path (as per</span>
+<span class="cm"> *  5), then the longest possible path due to 4 is 2B.</span>
+<span class="cm"> *</span>
+<span class="cm"> *  We shall indicate color with case, where black nodes are uppercase and red</span>
+<span class="cm"> *  nodes will be lowercase. Unknown color nodes shall be drawn as red within</span>
+<span class="cm"> *  parentheses and have some accompanying text comment.</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+<p>It is a binary search tree (BST for short), and hence it allows efficient in-order-traversal and standard BST insertion. For example, the result of inserting node (int No.10) to a tree with only a root node (int No.8) is a tree with root node (int No.8) and its right child node (int No.10).</p>
+<div class="section" id="why-using-rbtree-over-bst">
+<h2>Why using rbTree over BST?<a class="headerlink" href="#why-using-rbtree-over-bst" title="Permalink to this headline">¶</a></h2>
+<p>The following example shows the difference of two trees (red nodes in rbTree are encapsulated with <em>[]</em>). BST on the left shows the height of 4, while rbTree on the right shows the height of 3.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>            BST                     rbTree
+             1                        3
+            / \                      / \
+       (null)  2                    2   4
+                \                  /
+                 3               [1]
+                  \
+                   4
+</pre></div>
+</div>
+<p>It’s easy to derive tree operations (e.g., search, max, min, insert, delete, etc) for BST take O(n) time where n is the height of the BST, and for rbTree take O(logn) time where n is the number of nodes. From the example we could see that the big-O time for BST is O(4) while for rbTree is O(2). This proves that since rbTree has a bounded O(logN) complexity, it is better than BST which has a worst-case O(N) complexity.</p>
+</div>
+<div class="section" id="where-has-rbtree-been-used-in-the-linux-kernel">
+<h2>Where has rbTree been used in the Linux kernel?<a class="headerlink" href="#where-has-rbtree-been-used-in-the-linux-kernel" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div>There are a number of red-black trees in use in the kernel. The deadline and CFQ I/O schedulers employ rbtrees to track requests; the packet CD/DVD driver does the same. The high-resolution timer code uses an rbtree to organize outstanding timer requests. The ext3 filesystem tracks directory entries in a red-black tree. Virtual memory areas (VMAs) are tracked with red-black trees, as are epoll file descriptors, cryptographic keys, and network packets in the “hierarchical token bucket” scheduler.</div></blockquote>
+</div></blockquote>
+<p>Another usage is the task scheduler of Linux kernel. Here’s an interesting read: https://developer.ibm.com/tutorials/l-completely-fair-scheduler/.</p>
+</div>
+<div class="section" id="a-practical-example-of-tree-insertion">
+<h2>A practical example of tree insertion.<a class="headerlink" href="#a-practical-example-of-tree-insertion" title="Permalink to this headline">¶</a></h2>
+<p>The insertion algorithm to be used in rbTree balancing is explained in https://www.geeksforgeeks.org/red-black-tree-set-2-insert/. Hereby, the explanation will not be reproduced, but a visual example of rbTree insertion is given below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>/*
+ * Insert 2, 6 and 13 into the following rbTree ([] indicates red nodes).
+ * Leaf nodes are omitted.
+ */
+              7
+            /   \
+           3    [18]
+                /  \
+              10    22
+             /  \     \
+          [8]  [11]   [26]
+
+// Step1: insert 2. This is fairly simple.
+              7
+            /   \
+           3    [18]
+          /      /  \
+        [2]    10    22
+              /  \     \
+           [8]  [11]   [26]
+// Step2: insert 6. This is fairly simple.
+              7
+            /   \
+           3    [18]
+         /  \    /  \
+       [2]  [6] 10    22
+               /  \     \
+             [8] [11]  [26]
+// Step3: standard BST insert 13.
+               7
+             /   \
+            3    [18]
+          /  \    /  \
+        [2]  [6] 10    22
+                /  \     \
+              [8] [11]  [26]
+                     \
+                     [13]
+// Step4: The parent of 13 is NOT BLACK and the uncle of 13 is RED.
+//        Need to follow case 3a. The result is as below:
+                7
+              /   \
+             3    [18]
+           /  \    /  \
+        [2]  [6] [10]  22
+                 /  \    \
+                8   11   [26]
+                      \
+                     [13]
+// Step5: Now the new node becomes 10 which previous being a grandparent.
+//        Need to follow case 3 right left situation. After right rotation,
+//        the result is as below:
+                7
+              /   \
+             3    [10]
+           /  \    /  \
+         [2]  [6] 8   [18]
+                      /  \
+                     11   22  
+                       \    \
+                      [13]  [26]
+// Step6: New the new node (i.e., 10) enters case 3 right right situation.
+//        After left rotation and color swapping, the result is as below:
+               10
+              /   \
+            [7]    [18]
+           /  \    /   \
+          3    8  11    22
+        /  \        \     \
+      [2]  [6]      [13]   [26]
+</pre></div>
+</div>
+<p>The deletion algorithm described in https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/ is not as straightforward as the insertion algorithm. The descriptions from http://gauss.ececs.uc.edu/RedBlack/redblack.html could provide some help.</p>
+</div>
+<div class="section" id="an-example-of-using-rbtree-lib-in-the-kernel">
+<h2>An example of using rbTree lib in the kernel.<a class="headerlink" href="#an-example-of-using-rbtree-lib-in-the-kernel" title="Permalink to this headline">¶</a></h2>
+<p>An example of using kernel implementation of rbTree could refer to lib/rbtree_test.c, and an online material http://www.infradead.org/~mchehab/kernel_docs/unsorted/rbtree.html. A remarkable thing about the implementation is the code maintains flexibility to users. Users could define own data structures which includes the <em>rb_node</em> structure, and use <em>container_of()</em> or <em>rb_entry()</em> (a wrapper of container_of) to access user defined data. For example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">mytype</span> <span class="p">{</span>
+      <span class="k">struct</span> <span class="n">rb_node</span> <span class="n">node</span><span class="p">;</span>
+      <span class="kt">char</span> <span class="o">*</span><span class="n">keystring</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>When searching a value in a rbTree, a search function should be defined. <em>rb_test.c</em> does not implement a search method. Here’s an example from the online material. The method <em>container_of</em> is used for accessing user defined <em>key</em>, which to be based on to traverse nodes like a binary tree does.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="nf">my_search</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">)</span>
+<span class="p">{</span>
+      <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">rb_node</span><span class="p">;</span>
+
+      <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">struct</span> <span class="n">mytype</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="n">container_of</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">mytype</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+              <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
+
+              <span class="n">result</span> <span class="o">=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">data</span><span class="o">-&gt;</span><span class="n">keystring</span><span class="p">);</span>
+
+              <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+                      <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+              <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+                      <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+              <span class="k">else</span>
+                      <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Inserting a node requires a user defined inserting method. The kernel implementation provides node linking (rb_link_node(). see the code below) and tree re-balancing (rb_insert_color()).</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">rb_link_node</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">parent</span><span class="p">,</span>
+				<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">**</span><span class="n">rb_link</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">node</span><span class="o">-&gt;</span><span class="n">__rb_parent_color</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="n">parent</span><span class="p">;</span>
+	<span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+	<span class="o">*</span><span class="n">rb_link</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The method rb_link_node() store a copy of the parent ptr with the format of <em>unsigned long</em>. When reading rb_insert_color(), we could see at the beginning a method, namely <em>rb_red_parent()</em> is called. As the new node is initially colored in red (not necessarily store the value in RAM), and hence the function’s name could be interpreted like getting the parent from the new red node. The kernel implementation also provides removing and replacing functions. One could basically search for the node and call rb_erase() or rb_replace_node() to achieve removing and replacing respectively. Examples of erasing and replacing are omitted. Hereby, we take a closer look at the insertion and deletion. The insertion code is duplicated below for reading convenience:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="n">__always_inline</span> <span class="kt">void</span>
+<span class="nf">__rb_insert</span><span class="p">(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">node</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_root</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span>
+	    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">augment_rotate</span><span class="p">)(</span><span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">old</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">new</span><span class="p">))</span>
+<span class="p">{</span>
+	<span class="k">struct</span> <span class="n">rb_node</span> <span class="o">*</span><span class="n">parent</span> <span class="o">=</span> <span class="n">rb_red_parent</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="o">*</span><span class="n">gparent</span><span class="p">,</span> <span class="o">*</span><span class="n">tmp</span><span class="p">;</span>
+
+	<span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+		<span class="cm">/*</span>
+<span class="cm">		 * Loop invariant: node is red</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * If there is a black parent, we are done.</span>
+<span class="cm">		 * Otherwise, take some corrective action as we don&#39;t</span>
+<span class="cm">		 * want a red root or two consecutive red nodes.</span>
+<span class="cm">		 */</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">parent</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rb_is_black</span><span class="p">(</span><span class="n">parent</span><span class="p">))</span>
+			<span class="k">break</span><span class="p">;</span>
+
+		<span class="n">gparent</span> <span class="o">=</span> <span class="n">rb_red_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">);</span>
+
+		<span class="n">tmp</span> <span class="o">=</span> <span class="n">gparent</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>	<span class="cm">/* parent == gparent-&gt;rb_left */</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&amp;&amp;</span> <span class="n">rb_is_red</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span> <span class="p">{</span>
+				<span class="cm">/*</span>
+<span class="cm">				 * Case 1 - color flips</span>
+<span class="cm">				 *</span>
+<span class="cm">				 *       G            g</span>
+<span class="cm">				 *      / \          / \</span>
+<span class="cm">				 *     p   u  --&gt;   P   U</span>
+<span class="cm">				 *    /            /</span>
+<span class="cm">				 *   n            n</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * However, since g&#39;s parent might be red, and</span>
+<span class="cm">				 * 4) does not allow this, we need to recurse</span>
+<span class="cm">				 * at g.</span>
+<span class="cm">				 */</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">gparent</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">gparent</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+				<span class="n">node</span> <span class="o">=</span> <span class="n">gparent</span><span class="p">;</span>
+				<span class="n">parent</span> <span class="o">=</span> <span class="n">rb_parent</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">RB_RED</span><span class="p">);</span>
+				<span class="k">continue</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="n">tmp</span> <span class="o">=</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
+				<span class="cm">/*</span>
+<span class="cm">				 * Case 2 - left rotate at parent</span>
+<span class="cm">				 *</span>
+<span class="cm">				 *      G             G</span>
+<span class="cm">				 *     / \           / \</span>
+<span class="cm">				 *    p   U  --&gt;    n   U</span>
+<span class="cm">				 *     \           /</span>
+<span class="cm">				 *      n         p</span>
+<span class="cm">				 *</span>
+<span class="cm">				 * This still leaves us in violation of 4), the</span>
+<span class="cm">				 * continuation into Case 3 will fix that.</span>
+<span class="cm">				 */</span>
+				<span class="n">tmp</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+				<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+				<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">,</span> <span class="n">parent</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+					<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span>
+							    <span class="n">RB_BLACK</span><span class="p">);</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">RB_RED</span><span class="p">);</span>
+				<span class="n">augment_rotate</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+				<span class="n">parent</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+				<span class="n">tmp</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="cm">/*</span>
+<span class="cm">			 * Case 3 - right rotate at gparent</span>
+<span class="cm">			 *</span>
+<span class="cm">			 *        G           P</span>
+<span class="cm">			 *       / \         / \</span>
+<span class="cm">			 *      p   U  --&gt;  n   g</span>
+<span class="cm">			 *     /                 \</span>
+<span class="cm">			 *    n                   U</span>
+<span class="cm">			 */</span>
+			<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">gparent</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span> <span class="cm">/* == parent-&gt;rb_right */</span>
+			<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">,</span> <span class="n">gparent</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">gparent</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+			<span class="n">__rb_rotate_set_parents</span><span class="p">(</span><span class="n">gparent</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">RB_RED</span><span class="p">);</span>
+			<span class="n">augment_rotate</span><span class="p">(</span><span class="n">gparent</span><span class="p">,</span> <span class="n">parent</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="n">tmp</span> <span class="o">=</span> <span class="n">gparent</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&amp;&amp;</span> <span class="n">rb_is_red</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span> <span class="p">{</span>
+				<span class="cm">/* Case 1 - color flips */</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">gparent</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">gparent</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+				<span class="n">node</span> <span class="o">=</span> <span class="n">gparent</span><span class="p">;</span>
+				<span class="n">parent</span> <span class="o">=</span> <span class="n">rb_parent</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">RB_RED</span><span class="p">);</span>
+				<span class="k">continue</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="n">tmp</span> <span class="o">=</span> <span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
+				<span class="cm">/* Case 2 - right rotate at parent */</span>
+				<span class="n">tmp</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">;</span>
+				<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span>
+				<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">,</span> <span class="n">parent</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+					<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span>
+							    <span class="n">RB_BLACK</span><span class="p">);</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">RB_RED</span><span class="p">);</span>
+				<span class="n">augment_rotate</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">node</span><span class="p">);</span>
+				<span class="n">parent</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+				<span class="n">tmp</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="cm">/* Case 3 - left rotate at gparent */</span>
+			<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">gparent</span><span class="o">-&gt;</span><span class="n">rb_right</span><span class="p">,</span> <span class="n">tmp</span><span class="p">);</span> <span class="cm">/* == parent-&gt;rb_left */</span>
+			<span class="n">WRITE_ONCE</span><span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">rb_left</span><span class="p">,</span> <span class="n">gparent</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+				<span class="n">rb_set_parent_color</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">gparent</span><span class="p">,</span> <span class="n">RB_BLACK</span><span class="p">);</span>
+			<span class="n">__rb_rotate_set_parents</span><span class="p">(</span><span class="n">gparent</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">RB_RED</span><span class="p">);</span>
+			<span class="n">augment_rotate</span><span class="p">(</span><span class="n">gparent</span><span class="p">,</span> <span class="n">parent</span><span class="p">);</span>
+			<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here are some notes on the insertion <em>__rb_insert()</em> method. Conditions from line 15 to line 19 determine whether the new node is a root node or its parent is a black node. Since adding a red node under a parent in black will suffice all invariants, the loop should end. Next, as the new node’s parent is a red node, so we need to know the color of grandparent to perform recoloring and rotating. The line “gparent = rb_red_parent(parent)” is destined to find a valid grandparent (i.e., not NULL), as a child node in red of a red parent always has a black grandparent, and this step should never be reached if a red node to be inserted to a black parent. Now we need to know if the parent is a left child a the grandparent by the conditions in line 24 (rb_left) and line 89 (rb_right). Next, there are three sub-cases under the condition of line 24, and they are:</p>
+<ol class="simple">
+<li>The new node’s uncle is red in line 25, since “gparent-&gt;rb_right” is the uncle not the parent.</li>
+<li>The new node’s uncle is black and it is the right child in line 48.</li>
+<li>The new node’s uncle is black and it is the left child.</li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="appendix-algorithm-introduction-to-rbtree">
+<h2>Appendix: algorithm introduction to rbTree<a class="headerlink" href="#appendix-algorithm-introduction-to-rbtree" title="Permalink to this headline">¶</a></h2>
+<p>This section provides supplemental information for rbTree. Most of the materials are based on the slides in  https://www.cs.purdue.edu/homes/ayg/CS251/slides/chap13a.pdf and http://gauss.ececs.uc.edu/RedBlack/redblack.html. The red-black tree could be derived from 2-3-4 tree, in which a node could have 1/2/3 keys and have 2/3/4 children respectively. The following shows an 2-3-4 tree.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>          2-3-4 tree
+
+              n
+            /    \
+          c,i      t 
+        /  |  \    /  \ 
+       a  f,g  l  p,r  x
+</pre></div>
+</div>
+<p>2-3-4 trees have the advantages of a balanced distribution and a bounded search time (<em>O(logN)</em>). However, they have a drawback of different node structures. To leverage the advantage and to achieve same node structures, red-black tree emerges. The interpretation of rbTree in Purdue’s slides is a bit different than what we normally perceive, as the slides use colored edges instead of nodes. We keep the sense of colored node to be aligned with the kernel implementation.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kernel-rev-typeof.html" class="btn btn-neutral float-right" title="The famous “typeof” and “container_of”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kernel-rev-hashtable.html" class="btn btn-neutral float-left" title="Hash table" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Software Security Development Jotting &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="IoT SDK &amp; Data-model Notes" href="../iot-notes.html" />
+    <link rel="prev" title="Security Features in Modern MCU" href="mcu-security.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tech-notes/index.html">Tech Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">IOT-MISC</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Overall IoT Security</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="iot-security.html">Basics and Concepts in Secured Connectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mcu-security.html">Security Features in Modern MCU</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Software Security Development Jotting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#design-architect">Design Architect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software-security-development">Software Security Development</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#owasp-2017-mitigation">OWASP 2017 Mitigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#development-of-secured-embedded-software">Development of secured embedded software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vulnerability-scan">Vulnerability scan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#various-attacks-in-c-c-code">Various attacks in C/C++ code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iot-web-interface">IoT Web Interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iot-notes.html">IoT SDK and Data-model</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Misc Topics of IoT</a> &raquo;</li>
+        
+          <li><a href="index.html">IoT Security</a> &raquo;</li>
+        
+      <li>Software Security Development Jotting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/iot-misc/iot-security/security-dev.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software-security-development-jotting">
+<h1>Software Security Development Jotting<a class="headerlink" href="#software-security-development-jotting" title="Permalink to this headline">¶</a></h1>
+<p>Multiple roles involved in the security development lifecycle (SDL in short). The following content focuses on software designing, development and testing.</p>
+<div class="section" id="design-architect">
+<h2>Design Architect<a class="headerlink" href="#design-architect" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="character-responsibilities">
+<h3>Character responsibilities<a class="headerlink" href="#character-responsibilities" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Identify and document each interfaces of the product, including physical and logical interfaces. This may also be known as <code class="docutils literal notranslate"><span class="pre">Threat</span> <span class="pre">Modeling</span></code>. Regarding security, the following is worth noting:<ol>
+<li>List security implications and trust boundary per interface.</li>
+<li>List possible threats or constrains per interface.</li>
+<li>Identify access control to each interface, like whether it needs authentication.</li>
+</ol>
+</li>
+<li>The concept of defence in depth involves multiple layers of defences. If one layer is compromised, other layers should be able to prevent the system from complete compromise.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="software-security-development">
+<h2>Software Security Development<a class="headerlink" href="#software-security-development" title="Permalink to this headline">¶</a></h2>
+<p>Requirements –&gt; Design –&gt; Development –&gt; Testing –&gt; Deployment –&gt; Maintenance</p>
+<div class="section" id="software-security-requirements">
+<h3>Software security requirements<a class="headerlink" href="#software-security-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Legal security requirements.</li>
+<li>Customer security requirements and technical requirements</li>
+</ul>
+</div>
+<div class="section" id="designing-secure-software">
+<h3>Designing secure software<a class="headerlink" href="#designing-secure-software" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Thread</span> <span class="pre">modeling</span></code> please refers to related topics in <code class="docutils literal notranslate"><span class="pre">iot-security.md</span></code>.</p>
+<p>The following aspects could be considered during threat modeling:
+* Attacker-centric: attacker motives and techniques are well understood.
+* Software-centric: provides a service like stock data.
+* Asset-centric: select if sensitive data are processed.</p>
+<p>Recall concepts in <code class="docutils literal notranslate"><span class="pre">iot-security.md</span></code>. Some application security principles are listed here:
+* Attack surface reduction.
+* Secure defaults. NOT leave insecure settings in place for the components and services of your application, and design your app to use the most secure settings by default.
+* Least privileges.
+* Defence in depth.
+* Compartmentalization (divide into sections or categories). Could design trust boundaries to isolate components from one another.</p>
+</div>
+<div class="section" id="security-development-lifecycle">
+<h3>Security development lifecycle<a class="headerlink" href="#security-development-lifecycle" title="Permalink to this headline">¶</a></h3>
+<p>Tools to be used in SDL (in Microsoft):
+* Threat-modeling tool like MSTT to identify threats early in the Design phase.
+* Fault-injection tool to aid with security testing efforts in the Verification phase.
+* Code analysis like static analysis and binary analysis.</p>
+<p>Code review in terms of security:
+* OWASP code review guide.
+* SE top 100 security rules.
+* Compile-time and run-time fault injection like <code class="docutils literal notranslate"><span class="pre">Fuzz</span> <span class="pre">testing</span></code> uses an automated tool that provides invalid or random input to an application and monitors how the application behaves.</p>
+</div>
+<div class="section" id="security-code-review">
+<h3>Security code review<a class="headerlink" href="#security-code-review" title="Permalink to this headline">¶</a></h3>
+<p>Best practices:
+* Identify the scope of the code review.
+* Break code review into chunks.
+* Review code iteratively.
+* Set time limits.
+* Create coding standards.</p>
+<p>Control flow analysis (what code is executed under what conditions) and data flow analysis (what code handles what data).</p>
+<p>Review for unique issues:
+* Look for custom security code.
+* Look for code that uses cryptography.
+* Review authentication and authorization models.</p>
+<p>Security risk management basics:
+* Vulnerability: Weakness in the application.
+* Exploit: An application or set of commands to take advantage of vulnerability, like hack into an application. A valid phrase is <code class="docutils literal notranslate"><span class="pre">exploit</span> <span class="pre">vulnerabilities</span></code>.
+* Countermeasure: A step taken to <code class="docutils literal notranslate"><span class="pre">address</span></code> or <code class="docutils literal notranslate"><span class="pre">reduce</span></code> the potential for damage caused by a vulnerability in your application code.
+* Risk: The potential for loss or damage to an asset (like a database).</p>
+</div>
+</div>
+<div class="section" id="owasp-2017-mitigation">
+<h2>OWASP 2017 Mitigation<a class="headerlink" href="#owasp-2017-mitigation" title="Permalink to this headline">¶</a></h2>
+<p>OWASP: open web application security project.</p>
+<div class="section" id="mitigating-injection">
+<h3>Mitigating injection<a class="headerlink" href="#mitigating-injection" title="Permalink to this headline">¶</a></h3>
+<p>SQL injection is one of the most common example of injection. For instance, a URL may be used to check SQL database by something like https://example.com/showosders?customer-id=224 <code class="docutils literal notranslate"><span class="pre">or</span> <span class="pre">1</span></code>. The <code class="docutils literal notranslate"><span class="pre">or</span> <span class="pre">1</span></code> is injected to the normal URL, and could bypass custer-id checking.</p>
+</div>
+<div class="section" id="mitigating-broken-authentication">
+<h3>Mitigating broken authentication<a class="headerlink" href="#mitigating-broken-authentication" title="Permalink to this headline">¶</a></h3>
+<p>It talks more on session management and password recovery.</p>
+</div>
+<div class="section" id="mitigating-sensitive-data-exposure">
+<h3>Mitigating sensitive data exposure<a class="headerlink" href="#mitigating-sensitive-data-exposure" title="Permalink to this headline">¶</a></h3>
+<p>The issues in sensitive data exposure involves insecure crypto storage and insufficient transport layer protection.</p>
+<p>Handshake algorithm:
+* Have to determine whether or not you require <code class="docutils literal notranslate"><span class="pre">perfect</span> <span class="pre">forward</span> <span class="pre">secrecy</span></code>.
+* Handshake with perfect forward secrecy: ECDHE.
+* Handshake without perfect forward secrecy: ECDH.
+* Notice performance may vary case-by-case.</p>
+<p>Authentication algorithm:
+* ECDSA and RSA could be selected.
+* The choice is largely dictated by Certificate Authority that issues the cert.
+* ECDSA has better performance, especially combined with ECDHE (Ephemeral).</p>
+<p>Best practices to handle TLC certs:
+* Never use self-signed cert.
+* No MD5 hashing.
+* Use RSA or DSA key &gt; 2048 bits</p>
+</div>
+</div>
+<div class="section" id="development-of-secured-embedded-software">
+<h2>Development of secured embedded software<a class="headerlink" href="#development-of-secured-embedded-software" title="Permalink to this headline">¶</a></h2>
+<p>Some memory issues:
+* Buffer overflow
+* Double free
+* Use after free
+* Invalid memory pointers
+* Out of range access
+* Memory leaks
+* Using uninitialized memory</p>
+</div>
+<div class="section" id="vulnerability-scan">
+<h2>Vulnerability scan<a class="headerlink" href="#vulnerability-scan" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Sometimes scanners even report vulnerabilities where none are present called a false positive.</li>
+<li>When a scanner failed to find an existing vulnerability, it is called a false negative.</li>
+</ul>
+<p>Vulnerability scanning on firmware? Checking what VDOO could do…</p>
+</div>
+<div class="section" id="various-attacks-in-c-c-code">
+<h2>Various attacks in C/C++ code<a class="headerlink" href="#various-attacks-in-c-c-code" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Format string attacks:
+For formatting output, the C standard provides functions that take a variable number of arguments, called variadic functions. These are the <code class="docutils literal notranslate"><span class="pre">printf</span></code>, <code class="docutils literal notranslate"><span class="pre">sprintf</span></code>, and <code class="docutils literal notranslate"><span class="pre">fprintf</span></code> family of functions. They allow you to supply a format string and a variable number of arguments that the function will apply the format string to. This allows you to control how data is written to the output stream by specifying a variety of formatting options. Due to the limitations in the way the variadic functions are implemented, vulnerabilities can occur when the format string is under user control.</p>
+<p>Interestingly, different specifiers (e.g., <code class="docutils literal notranslate"><span class="pre">%x</span></code>, <code class="docutils literal notranslate"><span class="pre">%n</span></code> and <code class="docutils literal notranslate"><span class="pre">%s</span></code>) of sprintf could result in different vulnerabilities.</p>
+</li>
+<li><p class="first">String handling
+The <code class="docutils literal notranslate"><span class="pre">strlcat</span></code>, <code class="docutils literal notranslate"><span class="pre">strlcpy</span></code> functions were written as safer alternatives to <code class="docutils literal notranslate"><span class="pre">strncat</span></code> and <code class="docutils literal notranslate"><span class="pre">strncpy</span></code> and guarantee null termination. Unlike <code class="docutils literal notranslate"><span class="pre">strncpy</span></code>, <code class="docutils literal notranslate"><span class="pre">strncat</span></code> also guarantees the resulting string is null terminated. The only function that does not guarantee this in all cases is <code class="docutils literal notranslate"><span class="pre">strncpy</span></code>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="iot-web-interface">
+<h2>IoT Web Interface<a class="headerlink" href="#iot-web-interface" title="Permalink to this headline">¶</a></h2>
+<p>There may be something technical terms involved: Cross-site scripting (XSS), Cross-site request forgery (CSRF), SQL injection and Command injection. Knowing the basics would be enough.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../iot-notes.html" class="btn btn-neutral float-right" title="IoT SDK &amp; Data-model Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mcu-security.html" class="btn btn-neutral float-left" title="Security Features in Modern MCU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

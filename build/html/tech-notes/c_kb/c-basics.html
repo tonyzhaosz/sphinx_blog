@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C basics dig-in &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Techniques in C and compiler" href="c-com-tech.html" />
+    <link rel="prev" title="C Code Knowledge Base" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">C Code Knowledge Base</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">C basics dig-in</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rethink-sizeof-and-strlen"><strong>Rethink sizeof() and strlen()</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#when-const-meets-volatile"><strong>When const meets volatile</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bit-manipulation"><strong>Bit manipulation</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="c-com-tech.html">Techniques in C and compiler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="practices/index.html">Practices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">C Code Knowledge Base</a> &raquo;</li>
+        
+      <li>C basics dig-in</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tech-notes/c_kb/c-basics.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-basics-dig-in">
+<h1>C basics dig-in<a class="headerlink" href="#c-basics-dig-in" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rethink-sizeof-and-strlen">
+<h2><strong>Rethink sizeof() and strlen()</strong><a class="headerlink" href="#rethink-sizeof-and-strlen" title="Permalink to this headline">¶</a></h2>
+<p>The standard C functions sizeof() and strlen() are most likely one of the first functions ever used when learning C. They have been used at many aspects of validating a string, an instance of a structure. The following content shows what are the results of sizeof() and strlen() in various situations.</p>
+<p>———————— <strong>The usage of <em>sizeof()</em></strong> ————————</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#if defined __LINUX__</span>
+  <span class="cp">#include</span> <span class="cpf">&lt;malloc.h&gt;</span><span class="cp"></span>
+<span class="cp">#endif</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_TestStruct</span> <span class="p">{</span>
+  <span class="kt">int</span>  <span class="n">testInt</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">testStr</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">testStr_1</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="p">}</span> <span class="n">TestStruct</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_TestPadding</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">testChar</span><span class="p">;</span>
+  <span class="kt">int</span>  <span class="o">*</span> <span class="n">testInt</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">TestPadding</span><span class="p">;</span>
+
+<span class="n">TestStruct</span> <span class="n">staticTestStruct_0</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">.</span><span class="n">testInt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">testStr</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">TestStruct</span> <span class="n">staticTestStruct_1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">.</span><span class="n">testInt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="p">.</span><span class="n">testStr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">TestStruct</span> <span class="n">staticTestStruct_2</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">.</span><span class="n">testInt</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">array_0</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">array_2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">20</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+  <span class="c1">// Static array test.</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Static array sizeof: %lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array_0</span><span class="p">));</span>
+  <span class="kt">char</span> <span class="n">array_1</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;H&#39;</span><span class="p">,</span> <span class="sc">&#39;e&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;o&#39;</span><span class="p">};</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Static array element :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array_1</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">array_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+  <span class="c1">// Dynamic array test.</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Dynamic array sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array_2</span><span class="p">));</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">array_2</span><span class="p">);</span>
+  <span class="c1">// Static struct test.</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;TestStruct sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">TestStruct</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;staticTestStruct_0 sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">staticTestStruct_0</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;staticTestStruct_1 sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">staticTestStruct_1</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;staticTestStruct_2 sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">staticTestStruct_2</span><span class="p">));</span>
+  <span class="c1">// Dynamic struct test.</span>
+  <span class="n">TestStruct</span> <span class="o">*</span> <span class="n">dynamTestStruct_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">TestStruct</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">TestStruct</span><span class="p">));</span>
+  <span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testInt</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testStr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">20</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;dynamTestStruct_0 sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dynamTestStruct_0</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;dynamTestStruct_0-&gt;testStr sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+         <span class="k">sizeof</span><span class="p">(</span><span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testStr</span><span class="p">));</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testStr</span><span class="p">);</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">dynamTestStruct_0</span><span class="p">);</span>
+  <span class="c1">// Structure padding test.</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;TestPadding sizeof :%lu</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">TestPadding</span><span class="p">));</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The execution result (on a 64-bit Mac) is as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Static</span> <span class="n">array</span> <span class="k">sizeof</span><span class="o">:</span> <span class="mi">20</span>
+<span class="n">Static</span> <span class="n">array</span> <span class="nl">element</span> <span class="p">:</span><span class="mi">5</span>
+<span class="n">Dynamic</span> <span class="n">array</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">8</span>
+<span class="n">TestStruct</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
+<span class="n">staticTestStruct_0</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
+<span class="n">staticTestStruct_1</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
+<span class="n">staticTestStruct_2</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
+<span class="n">dynamTestStruct_0</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">8</span>
+<span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testStr</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">8</span>
+<span class="n">TestPadding</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">16</span>
+</pre></div>
+</div>
+<blockquote>
+<div>The method sizeof() is a compile time unary operator which can be used to compute the size of its operand, where unary operator indicates an operation with only one operand, i.e., a single input. The size is measured in the number of char-sized storage units required for the type. The result has an unsigned integral type that is usually denoted by <em>size_t</em>. The compiler computes sizeof() with a constant result-values.</div></blockquote>
+<p>There are basically two situations when sizeof() is used. Firstly, to allocate dynamic memory. Examples are shown in the code above. Notice how the malloc works for <em>char</em> and <em>struct</em> types. Secondly, it could be used to calculate the number of elements of the array. See the example of <em>array_1</em>. Some attentions need to be paid when using this method:</p>
+<ul class="simple">
+<li>The method could calculates the right bytes when the operand is an array (e.g., array_0[]), or an structure (e.g., TestStruct) excluding the memory referenced by a pointer.</li>
+<li>When the operand is a pointer, the result will be the size of the pointer itself (e.g., dynamTestStruct_0). Not the whole memory that the pointer points to.</li>
+<li>The aggregate size of a structure can be greater than the sum of the sizes of its individual members (e.g., TestPadding) due to structure padding (the compiler wants to align in word-length).</li>
+</ul>
+<p>———————— <strong>The usage of <em>strlen()</em></strong> ————————</p>
+<p>In order to understand how <em>strlen()</em> works, we duplicate the implementation of this method in Glibc as below. More info could refer to https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=string/strlen.c;hb=HEAD.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#undef strlen</span>
+
+<span class="cp">#ifndef STRLEN</span>
+<span class="cp"># define STRLEN strlen</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/* Return the length of the null-terminated string STR.  Scan for</span>
+<span class="cm">   the null terminator quickly by testing four bytes at a time.  */</span>
+<span class="kt">size_t</span>
+<span class="nf">STRLEN</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">char_ptr</span><span class="p">;</span>
+  <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="n">longword_ptr</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">longword</span><span class="p">,</span> <span class="n">himagic</span><span class="p">,</span> <span class="n">lomagic</span><span class="p">;</span>
+
+  <span class="cm">/* Handle the first few characters by reading one character at a time.</span>
+<span class="cm">     Do this until CHAR_PTR is aligned on a longword boundary.  */</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">char_ptr</span> <span class="o">=</span> <span class="n">str</span><span class="p">;</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)</span> <span class="n">char_ptr</span>
+			<span class="o">&amp;</span> <span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="n">longword</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+       <span class="o">++</span><span class="n">char_ptr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">char_ptr</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">char_ptr</span> <span class="o">-</span> <span class="n">str</span><span class="p">;</span>
+
+  <span class="cm">/* All these elucidatory comments refer to 4-byte longwords,</span>
+<span class="cm">     but the theory applies equally well to 8-byte longwords.  */</span>
+
+  <span class="n">longword_ptr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">char_ptr</span><span class="p">;</span>
+
+  <span class="cm">/* Bits 31, 24, 16, and 8 of this number are zero.  Call these bits</span>
+<span class="cm">     the &quot;holes.&quot;  Note that there is a hole just to the left of</span>
+<span class="cm">     each byte, with an extra at the end:</span>
+
+<span class="cm">     bits:  01111110 11111110 11111110 11111111</span>
+<span class="cm">     bytes: AAAAAAAA BBBBBBBB CCCCCCCC DDDDDDDD</span>
+
+<span class="cm">     The 1-bits make sure that carries propagate to the next 0-bit.</span>
+<span class="cm">     The 0-bits provide holes for carries to fall into.  */</span>
+  <span class="n">himagic</span> <span class="o">=</span> <span class="mh">0x80808080L</span><span class="p">;</span>
+  <span class="n">lomagic</span> <span class="o">=</span> <span class="mh">0x01010101L</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="n">longword</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="cm">/* 64-bit version of the magic.  */</span>
+      <span class="cm">/* Do the shift in two steps to avoid a warning if long has 32 bits.  */</span>
+      <span class="n">himagic</span> <span class="o">=</span> <span class="p">((</span><span class="n">himagic</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="n">himagic</span><span class="p">;</span>
+      <span class="n">lomagic</span> <span class="o">=</span> <span class="p">((</span><span class="n">lomagic</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">|</span> <span class="n">lomagic</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="n">longword</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">abort</span> <span class="p">();</span>
+
+  <span class="cm">/* Instead of the traditional loop which tests each character,</span>
+<span class="cm">     we will test a longword at a time.  The tricky part is testing</span>
+<span class="cm">     if *any of the four* bytes in the longword in question are zero.  */</span>
+  <span class="k">for</span> <span class="p">(;;)</span>
+    <span class="p">{</span>
+      <span class="n">longword</span> <span class="o">=</span> <span class="o">*</span><span class="n">longword_ptr</span><span class="o">++</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(((</span><span class="n">longword</span> <span class="o">-</span> <span class="n">lomagic</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">longword</span> <span class="o">&amp;</span> <span class="n">himagic</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="cm">/* Which of the bytes was the zero?  If none of them were, it was</span>
+<span class="cm">	     a misfire; continue the search.  */</span>
+
+	  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">longword_ptr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+	  <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span><span class="p">;</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="k">sizeof</span> <span class="p">(</span><span class="n">longword</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+	      <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+	      <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">6</span><span class="p">;</span>
+	      <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Some notes when reading this piece of code.</p>
+<ol class="simple">
+<li>The syntax of <em>for</em> loop allows no braces if a single statement is fired within the loop (like the one in line 21).</li>
+<li>The string to be measured is stored in the memory with continuous indexes. That is why line 25 (<em>return char_ptr - str</em>) works.</li>
+<li>The code is optimized with respect to performance. Refer to https://stackoverflow.com/questions/20021066/how-the-glibc-strlen-implementation-works.</li>
+<li>The coder is extremely familiar with memory alignment and computer ISA.</li>
+<li>There are some performance comparisons between different strlen implementation. Check https://news.ycombinator.com/item?id=510326. The book, Hacker’s Delight (http://hackersdelight.org/) mentioned in the link is worth reading.</li>
+</ol>
+<p>There is a simple <em>strlen()</em> implementation from K&amp;R.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">strlen</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">p</span> <span class="o">-</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When using this function, please pay extra care about the string being passed to the method. Make sure the string ends with <em>‘\0’</em>, otherwise it may crash the program or return a nonsense value.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="when-const-meets-volatile">
+<h2><strong>When const meets volatile</strong><a class="headerlink" href="#when-const-meets-volatile" title="Permalink to this headline">¶</a></h2>
+<p>The topic is elaborated using three sections: <em>const</em> usage, <em>volatile</em> usage and the mixture of <em>const</em> and <em>volatile</em> usage.</p>
+<p>When speaking of <em>const</em>, we could spontaneously relate to <em>read-only</em>. And it is true that a variable that is marked by const should not be changed elsewhere other than its definition. An example could be <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span> <span class="pre">*str</span> <span class="pre">=</span> <span class="pre">&quot;Hello</span> <span class="pre">World!&quot;</span></code>. However, there are some human-compilation tests regarding const, in which a few statements with const are to be validated. Considering the following cases:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="c1">// A pointer.</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="c1">// A pointer to a const value.</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="kt">int</span> <span class="k">const</span> <span class="o">*</span><span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="c1">// A const pointer to value.</span>
+<span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">e</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="c1">// A const pointer to a const value.</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">f</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>c, d and f will be illegal if the value of a is to be changed. c and d is legal to change the pointer to another pointer e.g., <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">3;</span> <span class="pre">c</span> <span class="pre">=</span> <span class="pre">&amp;i;</span></code>, and such a change is illegal for f. It is legal for e to change the value of a, e.g., <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">10;</span></code>. But it would be illegal for f to do pointer change like e.g., <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">j</span> <span class="pre">=</span> <span class="pre">9;</span> <span class="pre">f</span> <span class="pre">=</span> <span class="pre">&amp;j;</span></code>. The const qualifier could also be used for non-pointer values. The following lines are perfectly legal, <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">const</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">8;</span> <span class="pre">const</span> <span class="pre">int</span> <span class="pre">*b</span> <span class="pre">=</span> <span class="pre">&amp;a;</span></code>.</p>
+<p>The usage of <em>volatile</em> qualifier is compiler related. Basically, it prevents the compiler from optimizing away the memory read/write operations to the volatile variable. The syntax of using volatile is just like const. Considering the pointer situation, the most common use case is <code class="docutils literal notranslate"><span class="pre">volatile</span> <span class="pre">int</span> <span class="pre">*a</span> <span class="pre">=</span> <span class="pre">&amp;b;</span></code> or <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">volatile</span> <span class="pre">*a</span> <span class="pre">=</span> <span class="pre">&amp;b</span></code>, indicating a pointer to a volatile variable. Volatile pointers to a non-volatile data is rare. There are three cases that will use volatile qualifier (refer to https://barrgroup.com/Embedded-Systems/How-To/C-Volatile-Keyword):</p>
+<ol class="simple">
+<li>Memory-mapped peripheral registers</li>
+<li>Global variables modified by an interrupt service routine</li>
+<li>Global variables accessed by multiple tasks within a multi-threaded application.</li>
+</ol>
+<p>A good example of the first case is as below:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Situation 1: non volatile memory read.
+uint8_t * p_reg = (uint8_t *) 0x1234;
+
+do { // Some code. } while (0 == *p_reg);
+
+// Assembly
+  mov p_reg, #0x1234
+  mov a, @p_reg
+loop:
+  # Some code.
+  bz loop
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>// Situation 2: volatile memory read.
+uint8_t volatile * p_reg = (uint8_t *) 0x1234;
+
+do { // Some code. } while (0 == *p_reg);
+
+// Assembly
+  mov p_reg, #0x1234
+loop:
+  # Some code.
+  mov a, @p_reg
+  bz loop
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">combining</span> <span class="pre">const</span> <span class="pre">and</span> <span class="pre">volatile</span></code>, we might wonder whether the definition of <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">volatile</span> <span class="pre">int</span> <span class="pre">*a</span> <span class="pre">=</span> <span class="pre">&amp;b</span></code> is legal? In terms of a read-only memory-map register, it is perfectly legal, e.g., <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">volatile</span> <span class="pre">uint_8</span> <span class="pre">*a</span> <span class="pre">=</span> <span class="pre">(uint8_t</span> <span class="pre">*)0x8000000A</span></code>. <em>const</em> limits the access to the variable to be read-only. <em>volatile</em> forces the compiler to be aware of this variable that should be read from the memory-mapped register every single time.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="bit-manipulation">
+<h2><strong>Bit manipulation</strong><a class="headerlink" href="#bit-manipulation" title="Permalink to this headline">¶</a></h2>
+<p>Bit manipulations are full of tricks. In some cases, it decrease an algorithm’s complexity from O(logN) down to O(1). A good reference could be the book Hacker’s Delight. Here are some examples from this link: https://www.hackerearth.com/zh/practice/notes/bit-manipulation/.</p>
+<ol class="simple">
+<li>How to check if the given number is power of 2?</li>
+</ol>
+<p>The tricks is this method <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&amp;</span> <span class="pre">(n</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">==</span> <span class="pre">0</span></code>. Basically it flips the bit of the right side of the rightmost 1, e.g., <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">(110)b;</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">(101)b</span></code>, or flips the rightmost 1 if it’s the last bit.</p>
+<ol class="simple">
+<li>Count the number of ones in the binary representation of the given number.</li>
+</ol>
+<p>Based on the first trick, we could know that <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&amp;</span> <span class="pre">(n</span> <span class="pre">-</span> <span class="pre">1)</span></code> could count the number of ones, as each time it mange to detect a one-bit. The following is a sample implementation:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint16_t</span> <span class="nf">one_count</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">uint16_t</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li>Check if the i-th bit is set in the binary form of the given number.</li>
+</ol>
+<p>This one is easy. Use this condition <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">&amp;</span> <span class="pre">(1</span> <span class="pre">&lt;&lt;</span> <span class="pre">i)</span></code>, where N is the given number for the i-th bit.</p>
+<ol class="simple">
+<li>Set the specific bit and read the specific bit of a register.</li>
+</ol>
+<p>Read the specific bit could use the same condition in 3, i.e., <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">&amp;</span> <span class="pre">(1</span> <span class="pre">&lt;&lt;</span> <span class="pre">i)</span></code>. We could set or clear a specific bit using the following conditions respectively: <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">N</span> <span class="pre">|</span> <span class="pre">(1</span> <span class="pre">&lt;&lt;</span> <span class="pre">i)</span></code> and <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">=</span> <span class="pre">N</span> <span class="pre">&amp;</span> <span class="pre">(~(1</span> <span class="pre">&lt;&lt;</span> <span class="pre">i))</span></code>.</p>
+<ol class="simple">
+<li>How to generate all the possible subsets of a set?</li>
+</ol>
+<p>Considering a consecutive memory of a set, like an static array or dynamic array. We could use index to find each set element. We could use bit 1 to represent the presence of an element, and 0 to represent the absence of an element. Like a state machine in truth-table, we traverse through all the possibilities (e.g., a set of 3 elements has 8 possibility (000)b, (001)b etc) and print the element with 1 bit.</p>
+<ol class="simple">
+<li>Detect which bit contains the leftmost one?</li>
+</ol>
+<p>This question may be challenging. My thought is to somehow set all the bit after the leftmost 1 (e.g., (0100)b =&gt; (0111)b), and count the number of ones until it reaches a zero. The final result is then the <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">-</span> <span class="pre">1</span></code>. The difficult part is set all the bit after the leftmost 1. To achieve this, we could use the following lines:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Notice an N is a 16-bit integer.</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="c-com-tech.html" class="btn btn-neutral float-right" title="Techniques in C and compiler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="C Code Knowledge Base" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

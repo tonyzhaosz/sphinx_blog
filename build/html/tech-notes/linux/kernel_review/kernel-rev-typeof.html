@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The famous “typeof” and “container_of” &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Misc Linux usage" href="../misc/linux-cmds.html" />
+    <link rel="prev" title="Red-black tree (aka., rbTree)" href="kernel-rev-rbtree.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Linux Notes</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Kernel Knowledge Base</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-hashtable.html">Hash table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-rbtree.html">Red-black tree (aka., rbTree)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">The famous “typeof” and “container_of”</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../misc/linux-cmds.html">Misc Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="../index.html">Linux Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Kernel Knowledge Base</a> &raquo;</li>
+        
+      <li>The famous “typeof” and “container_of”</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/tech-notes/linux/kernel_review/kernel-rev-typeof.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-famous-typeof-and-container-of">
+<h1>The famous “typeof” and “container_of”<a class="headerlink" href="#the-famous-typeof-and-container-of" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="typeof-in-the-kernel">
+<h2>“typeof” in the kernel<a class="headerlink" href="#typeof-in-the-kernel" title="Permalink to this headline">¶</a></h2>
+<p>Many dynamic programming language like Javascript has dynamic way of determining the data type with syntax similar to <em>typeof</em>. In C code, a compiler extension provides a way to use <em>typeof</em>. It is recommended to compile source code with <em>-std=gnu99</em> (rather <em>-std=c99</em>) for such a feature. In the kernel code, <em>typeof</em> has been widely used. Here is an example:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef _TYPES_H_</span>
+<span class="cp">#define _TYPES_H_</span>
+
+<span class="cp">#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))</span>
+
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span>		<span class="n">u8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">short</span>		<span class="n">u16</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span>		<span class="n">u32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span>	<span class="n">u64</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">signed</span> <span class="kt">char</span>		<span class="n">s8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">short</span>			<span class="n">s16</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">int</span>			<span class="n">s32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span>		<span class="n">s64</span><span class="p">;</span>
+
+<span class="cp">#define min(x,y) ({ \</span>
+<span class="cp">	typeof(x) _x = (x);	\</span>
+<span class="cp">	typeof(y) _y = (y);	\</span>
+<span class="cp">	(void) (&amp;_x == &amp;_y);	\</span>
+<span class="cp">	_x &lt; _y ? _x : _y; })</span>
+
+<span class="cp">#define max(x,y) ({ \</span>
+<span class="cp">	typeof(x) _x = (x);	\</span>
+<span class="cp">	typeof(y) _y = (y);	\</span>
+<span class="cp">	(void) (&amp;_x == &amp;_y);	\</span>
+<span class="cp">	_x &gt; _y ? _x : _y; })</span>
+
+<span class="cp">#endif </span><span class="cm">/* _TYPES_H_ */</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>In the example, the statement <em>typeof(x) _x = (x)</em> could be explained using a specific type say <em>int</em>. That is to say, if x has the <em>int</em> type, then <em>typeof(x) _x = (x)</em> equals to <em>int _x = (x)</em>, which creates a variable and assigned by the value of x. There is one line <em>(void) (&amp;_x == &amp;_y)</em> worth noting. This line basically checks if the type _x and type _y are the same. If not, the compile would throw out a warning “comparison of distinct pointer types.” Alternatively, there is way of doing min and max without using typeof.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define min_t(type, x, y) ({			\</span>
+<span class="cp">	type __min1 = (x);			\</span>
+<span class="cp">	type __min2 = (y);			\</span>
+<span class="cp">	__min1 &lt; __min2 ? __min1: __min2; })</span>
+
+<span class="cp">#define max_t(type, x, y) ({			\</span>
+<span class="cp">	type __max1 = (x);			\</span>
+<span class="cp">	type __max2 = (y);			\</span>
+<span class="cp">	__max1 &gt; __max2 ? __max1: __max2; })</span>
+</pre></div>
+</div>
+<p>Considering the following code for different implementation of <em>min</em>. We could find out why we need temp variables (like <em>_x</em> and <em>_y</em>) to store inputs. A function should not worry about such variables, as the arguments that passed through are already copies of the inputs.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#define min(x ,y) ({      \</span>
+<span class="cp">  (x) &lt; (y) ? (x) : (y); })</span>
+
+<span class="cp">#define min_2(x ,y) ({    \</span>
+<span class="cp">  typeof(x) _x = x;       \</span>
+<span class="cp">  typeof(y) _y = y;       \</span>
+<span class="cp">  (_x) &lt; (_y) ? (_x) : (_y); })</span>
+
+<span class="kt">int</span> <span class="nf">get_min</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="o">?</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;case 1: %d</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;case 2: %d, c: %d, d: %d</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">min</span><span class="p">(</span><span class="n">c</span><span class="o">++</span><span class="p">,</span> <span class="n">d</span><span class="o">++</span><span class="p">),</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;case 3: %d, e: %d, f: %d</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">min_2</span><span class="p">(</span><span class="n">e</span><span class="o">++</span><span class="p">,</span> <span class="n">f</span><span class="o">++</span><span class="p">),</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;case 4: %d, g: %d, h: %d</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">get_min</span><span class="p">(</span><span class="n">g</span><span class="o">++</span><span class="p">,</span> <span class="n">h</span><span class="o">++</span><span class="p">),</span> <span class="n">g</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Execution results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>There are some warnings during compiling:
+test.c:26:51: warning: unsequenced modification and access to <span class="s1">&#39;g&#39;</span> <span class="o">[</span>-Wunsequenced<span class="o">]</span>
+  printf<span class="o">(</span><span class="s2">&quot;case 4: %d, g: %d, h: %d\r\n&quot;</span>, get_min<span class="o">(</span>g++, h++<span class="o">)</span>, g, h<span class="o">)</span><span class="p">;</span>
+                                                  ^         ~
+test.c:26:56: warning: unsequenced modification and access to <span class="s1">&#39;h&#39;</span> <span class="o">[</span>-Wunsequenced<span class="o">]</span>
+  printf<span class="o">(</span><span class="s2">&quot;case 4: %d, g: %d, h: %d\r\n&quot;</span>, get_min<span class="o">(</span>g++, h++<span class="o">)</span>, g, h<span class="o">)</span><span class="p">;</span>
+                                                      ^       ~
+<span class="m">2</span> warnings generated.
+
+<span class="k">case</span> <span class="m">1</span>: <span class="m">2</span>
+<span class="k">case</span> <span class="m">2</span>: <span class="m">5</span>, c: <span class="m">6</span>, d: <span class="m">6</span>  // The ++ results appeared to be wrong. Expect <span class="nv">c</span> <span class="o">==</span> <span class="m">5</span>.
+<span class="k">case</span> <span class="m">3</span>: <span class="m">5</span>, e: <span class="m">6</span>, f: <span class="m">7</span>
+<span class="k">case</span> <span class="m">4</span>: <span class="m">5</span>, g: <span class="m">6</span>, h: <span class="m">7</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="container-of-in-the-kernel">
+<h2>“container_of” in the kernel<a class="headerlink" href="#container-of-in-the-kernel" title="Permalink to this headline">¶</a></h2>
+<p>The definition could be found in include/linux/kernel.h. Briefly speaking, the purpose of container_of is to get the structure pointer by a pointer of the member of that structure.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * container_of - cast a member of a structure out to the containing structure</span>
+<span class="cm"> * @ptr:	the pointer to the member.</span>
+<span class="cm"> * @type:	the type of the container struct this is embedded in.</span>
+<span class="cm"> * @member:	the name of the member within the struct.</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="cp">#define container_of(ptr, type, member) ({			\</span>
+<span class="cp">	const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr);	\</span>
+<span class="cp">	(type *)( (char *)__mptr - offsetof(type,member) );})</span>
+
+<span class="cm">/* The definition of offsetof */</span>
+<span class="cp">#define offsetof(TYPE, MEMBER)	((size_t)&amp;((TYPE *)0)-&gt;MEMBER)  </span>
+</pre></div>
+</div>
+<p>The definition of <em>offsetof</em> gives the address of the <em>MEMBER</em> and force the address to be in <em>size_t</em> formatted. In <em>container_of</em>, the argument <em>member</em> is the name of the member rather a type, and hence we need <em>typeof</em> to determine the type. A compilation error would occur if <em>member</em> is not a valid member of the structure. Some usage samples of <em>offset_of</em> and <em>container_of</em> are presented as below. To prove “&amp;((type *)0)-&gt;member” works as expected, <em>testPtr</em> has been created. Basically, “&amp;((TestStruct *)0)-&gt;member” is equal to “&amp;testPtr-&gt;member”. <strong>Since the start address of the structure is 0, the address of a member naturally becomes the offset.</strong> The offset of <em>member_0</em> is 0x0 as <em>member_0</em> is the initial element, and <em>member_1</em> is 0x8 as “sizeof(member_0)” (i.e., sizeof(unsigned long)) equals to 8. In the end, use “char *” to format the member’s address and getting the initial address by subtract the offset value.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#define offsetof(TYPE, MEMBER)	\</span>
+<span class="cp">  ((size_t)&amp;((TYPE *)0)-&gt;MEMBER)</span>
+
+<span class="cp">#define container_of(ptr, type, member) ({			\</span>
+<span class="cp">	const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr);	\</span>
+<span class="cp">	(type *)( (char *)__mptr - offsetof(type,member) );})</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_TestStruct</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">member_0</span><span class="p">;</span>
+  <span class="kt">char</span>  <span class="n">member_1</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">TestStruct</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">TestStruct</span> <span class="n">test</span><span class="p">;</span>
+  <span class="n">TestStruct</span> <span class="o">*</span><span class="n">testPtr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">test</span><span class="p">.</span><span class="n">member_0</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">test</span><span class="p">.</span><span class="n">member_1</span> <span class="o">=</span> <span class="sc">&#39;c&#39;</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;test addr :%p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">test</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;member_0 addr :%p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">test</span><span class="p">.</span><span class="n">member_0</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;member_1 addr :%p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">test</span><span class="p">.</span><span class="n">member_1</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;&amp;((TestStruct *)0)-&gt;member_0: %p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+          <span class="o">&amp;</span><span class="p">((</span><span class="n">TestStruct</span> <span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">member_0</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;&amp;testPtr-&gt;member_1: %p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+          <span class="o">&amp;</span><span class="n">testPtr</span><span class="o">-&gt;</span><span class="n">member_1</span><span class="p">);</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;offsetof member_0: 0x%zx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+          <span class="n">offsetof</span><span class="p">(</span><span class="n">TestStruct</span><span class="p">,</span>
+                   <span class="n">member_0</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;offsetof member_1: 0x%zx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+          <span class="n">offsetof</span><span class="p">(</span><span class="n">TestStruct</span><span class="p">,</span>
+                   <span class="n">member_1</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;container_of member_0: %p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+          <span class="n">container_of</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test</span><span class="p">.</span><span class="n">member_0</span><span class="p">,</span>
+                       <span class="n">TestStruct</span><span class="p">,</span>
+                       <span class="n">member_0</span><span class="p">));</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;container_of member_1: %p</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+          <span class="n">container_of</span><span class="p">(</span><span class="o">&amp;</span><span class="n">test</span><span class="p">.</span><span class="n">member_1</span><span class="p">,</span>
+                       <span class="n">TestStruct</span><span class="p">,</span>
+                       <span class="n">member_1</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The results are:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="nl">addr</span> <span class="p">:</span><span class="mh">0x7fff5aaa0a80</span>
+<span class="n">member_0</span> <span class="nl">addr</span> <span class="p">:</span><span class="mh">0x7fff5aaa0a80</span>
+<span class="n">member_1</span> <span class="nl">addr</span> <span class="p">:</span><span class="mh">0x7fff5aaa0a88</span>
+<span class="o">&amp;</span><span class="p">((</span><span class="n">TestStruct</span> <span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="nl">member_0</span><span class="p">:</span> <span class="mh">0x0</span>
+<span class="o">&amp;</span><span class="n">testPtr</span><span class="o">-&gt;</span><span class="nl">member_1</span><span class="p">:</span> <span class="mh">0x8</span>
+<span class="n">offsetof</span> <span class="nl">member_0</span><span class="p">:</span> <span class="mh">0x0</span>
+<span class="n">offsetof</span> <span class="nl">member_1</span><span class="p">:</span> <span class="mh">0x8</span>
+<span class="n">container_of</span> <span class="nl">member_0</span><span class="p">:</span> <span class="mh">0x7fff5aaa0a80</span>
+<span class="n">container_of</span> <span class="nl">member_1</span><span class="p">:</span> <span class="mh">0x7fff5aaa0a80</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../misc/linux-cmds.html" class="btn btn-neutral float-right" title="Misc Linux usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kernel-rev-rbtree.html" class="btn btn-neutral float-left" title="Red-black tree (aka., rbTree)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

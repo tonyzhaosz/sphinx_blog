@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basics and Concepts in Secured Connectivity &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Security Features in Modern MCU" href="mcu-security.html" />
+    <link rel="prev" title="IoT Security" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tech-notes/index.html">Tech Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">IOT-MISC</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Overall IoT Security</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Basics and Concepts in Secured Connectivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basics-of-cryptography">Basics of Cryptography</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms-and-key-management">Algorithms and Key Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-risk-analysis-and-remediation">Architecture Risk Analysis and Remediation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#some-best-practices-for-attack-surface-analysis">Some best practices for attack surface analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#owasp-2017-top10-mitigation">OWASP 2017 Top10 mitigation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thread-modelling-basics">Thread modelling basics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fundamentals-of-iot-architecture-and-design">Fundamentals of IoT Architecture and Design</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mcu-security.html">Security Features in Modern MCU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="security-dev.html">Software Security Development Jotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../iot-notes.html">IoT SDK and Data-model</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Misc Topics of IoT</a> &raquo;</li>
+        
+          <li><a href="index.html">IoT Security</a> &raquo;</li>
+        
+      <li>Basics and Concepts in Secured Connectivity</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/iot-misc/iot-security/iot-security.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basics-and-concepts-in-secured-connectivity">
+<h1>Basics and Concepts in Secured Connectivity<a class="headerlink" href="#basics-and-concepts-in-secured-connectivity" title="Permalink to this headline">¶</a></h1>
+<p>Some basics of cryptography will be addressed in the mean time. This is mainly to address secured connectivity to cloud.</p>
+<div class="section" id="basics-of-cryptography">
+<h2>Basics of Cryptography<a class="headerlink" href="#basics-of-cryptography" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">Encoding</span></code> and <code class="docutils literal notranslate"><span class="pre">Decoding</span></code> offer no <strong>confidentiality</strong> to information. And hence no keys involved.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Base64</span></code> is a method to encode. Encode helps to store, transmit or read binary data. If ASCII is used to represent a binary, it is very likely to fail encoding many characters as it ranges from 0x00 ~ 0x7F.</p>
+</div></blockquote>
+</li>
+<li><p class="first">There are two types of <code class="docutils literal notranslate"><span class="pre">Encryption</span></code> and <code class="docutils literal notranslate"><span class="pre">Decryption</span></code>: symmetric and asymmetric, which involves two types of ciphers and keys.</p>
+<ol class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">Cyphers</span></code> are computation methods (like algorithms) that require a <code class="docutils literal notranslate"><span class="pre">key</span></code> to conduct computation.</li>
+<li>Symmetric cyphers require only one key to encrypt and decrypt. And it has the following advantage and disadvantage to asymmetric cyphers.
+<em>Advantage 1</em>: In general, symmetric cyphers are faster than asymmetric cyphers, and usually hardware acceleration supports such cyphers.
+<em>Advantage 2</em>: Symmetric cyphers require shorter key length to achieve a given strength.
+<em>Disadvantage 1</em>: Key distribution. If it’s compromised, any messages will be transparent.</li>
+</ol>
+<blockquote>
+<div><p>HTTPS leverages the TLS, which use both symmetric and asymmetric ciphers. After a encrypted connection is established using asymmetric cipher, the client and server will exchange a symmetric key and establish a new encrypted connection to improve efficiency.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">Hashing</span></code> is a way to ensure <strong>integrity</strong> of a message. A given hash function always produce the <strong>same length hash value</strong>, regardless of the size of the input.</p>
+<blockquote>
+<div><p>A good hash function is able to indicate minor changes of the message. In other words, a minor change of the message would result in significant changes in the hash value. Examples are SHA-1 and SHA-256.</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="algorithms-and-key-management">
+<h2>Algorithms and Key Management<a class="headerlink" href="#algorithms-and-key-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="randomness">
+<h3>Randomness<a class="headerlink" href="#randomness" title="Permalink to this headline">¶</a></h3>
+<p>Randomness is critical to <strong>unpredictable</strong> key generation. Some hardware contributes to randomness by what’s called RNG. Some cases that is not able to leverage hardware resources could use seed sources of high entropy to produce unpredictable <strong>pesudorandom</strong> numbers. A seed is a number or vector (e.g., <code class="docutils literal notranslate"><span class="pre">IV</span></code> initialization vector) used to initialize a PRNG.</p>
+<blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">Entropy</span></code> is a measure of the disorder (randomness) in a system. Hence, we could say that a system has a high entropy source.</div></blockquote>
+</div>
+<div class="section" id="algorithms">
+<h3>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h3>
+<p>There are three major types of algorithms: hash functions, ciphers and encoders. Please notice the difference between <strong>hashing</strong> and <strong>hash functions</strong>.</p>
+<ul class="simple">
+<li>Hash functions takes <em>arbitrarily-sized</em> input ==&gt; a shorter, <em>fixed-length</em> output.</li>
+<li>Cyphers are used to encryption and decryption. Refer to the last section.</li>
+<li>Encoders are not related to security. Refer to Base64 for more information.</li>
+</ul>
+<p>What are algorithms been used:</p>
+<ul class="simple">
+<li>Pseudorandom number generation.</li>
+<li>Key generation and management.</li>
+<li>MAC (<strong>message authentication code</strong>) creation and validation.</li>
+<li>Digital signature creation and validation.</li>
+<li>Digital certification creation and validation.</li>
+</ul>
+</div>
+<div class="section" id="keys">
+<h3>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h3>
+<p>Symmetric keys are used in cyphers and MAC (message authentication code). Asymmetric keys are used in cyphers and digital signatures.</p>
+<ul class="simple">
+<li>Asymmetric keys contains public keys and private keys.<ol>
+<li>Public keys are used to encrypt plaintext and verify digital signatures.</li>
+<li>Private keys are used to decrypt ciphertext and create digital signatures.</li>
+</ol>
+</li>
+</ul>
+<p>A problem comes with public key is that how to ensure the authenticity of the public key’s origin? Digital certificate (cert) verifies such an authenticity, and the cert itself is verified by a trusted 3rd-party (namely, CA). See the following section.</p>
+<ul class="simple">
+<li>Public key distribution could be done in two ways below:<ol>
+<li>Out-of-band distribution of public key fingerprints. A fingerprint is a shorter version of the key’s characters, e.g., a hash of the key and associated identify info. Recall the method I used to send emails at Silabs security cause. We need Slack to verity the fingerprint of the public key.</li>
+<li>Digital certificates. A digital cert is used to prove ownership of a public and private key pair. It usually issued by a trusted 3-party which usually includes:
+2.1 Public key.
+2.2 Key Owner.
+2.3 Key Issuer.
+2.4 Expiration date.
+2.5 A digital signature that validates the integrity of the certificate and the authenticity of the issuer.</li>
+</ol>
+</li>
+<li>Certificate could be signed by a previous certificate in a chain of trust.</li>
+<li>Public key infrastructure, i.e., PKI supports issuance, maintenance and revocation of digital certs. CA (certificate authority) is part of PKI.</li>
+</ul>
+</div>
+<div class="section" id="cryptography-in-applications">
+<h3>Cryptography in Applications<a class="headerlink" href="#cryptography-in-applications" title="Permalink to this headline">¶</a></h3>
+<p>Protected communications could be done on a authentic channel, a confidential channel and a secured channel. Check the following diagram to see certain resistance of each channel:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th></th>
+<th>Disclosure Resistant</th>
+<th>Tamper Resistant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authentic Channel</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Confidential Channel</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Secure Channel</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li>Tampering is defined as an attack against integrity, authenticity, or availability.</li>
+</ul>
+<p>The tutorial video appears to be very <code class="docutils literal notranslate"><span class="pre">confusing</span></code>.</p>
+</div>
+<div class="section" id="message-integrity">
+<h3>Message Integrity<a class="headerlink" href="#message-integrity" title="Permalink to this headline">¶</a></h3>
+<p>Tampering is an attack against <code class="docutils literal notranslate"><span class="pre">integrity</span></code>, <code class="docutils literal notranslate"><span class="pre">authenticity</span></code> and <code class="docutils literal notranslate"><span class="pre">availability</span></code>.</p>
+<ul>
+<li><p class="first">To understand availability, here is something:</p>
+<blockquote>
+<div><p>When a system is regularly non-functioning, information availability is affected and significantly impacts users.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Message integrity indicates that the message is not spoofed (e.g., send email impersonate a contact) or forged (modified info):</p>
+<ol class="simple">
+<li>Replaying message attack.</li>
+<li>Creating a message pretending to be someone you are not.</li>
+</ol>
+</li>
+</ul>
+<p>A diagram shows message integrity functions:</p>
+<blockquote>
+<div>Non-repudiation is the assurance that someone cannot deny something. Typically, non-repudiation refers to the ability to ensure that a party to a contract or a communication cannot deny the authenticity of their signature on a document or the sending of a message that they originated.</div></blockquote>
+<p>Authentication also provides non-repudiation, which means once authenticated, someone cannot deny any actions.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th></th>
+<th>Key</th>
+<th>Authenticity</th>
+<th>Integrity</th>
+<th>Non-repudiation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hash</td>
+<td></td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Message Authentication Code (MAC)</td>
+<td>Symmetric</td>
+<td>Yes</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>Digital Signature</td>
+<td>Asymmetric</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li>Digital signature provides non-repudiation assurance because every party to a communication has a unique key which they sign the message. The following diagrams illustrates a digital signature verification process:</li>
+</ul>
+<p><img alt="Sender of Digital Signature" src="https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Sender.png?raw=true" /></p>
+<p><img alt="Receiver of Digital Signature" src="https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Receiver.png?raw=true" /></p>
+<ul class="simple">
+<li>The above method ensures the integrity of the message, and the message itself could be encrypted.</li>
+</ul>
+</div>
+<div class="section" id="mobile-data-with-crypto">
+<h3>Mobile Data with Crypto<a class="headerlink" href="#mobile-data-with-crypto" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Authenticity verifies the origin of the data, while integrity verifies the message is intact.</p>
+</li>
+<li><p class="first">To safely deliver <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">keys</span></code> to others, we wrap them in x.509 certificates.</p>
+</li>
+<li><p class="first">Root of trust:
+Trust is central to public key cryptography. To trust a cert, you must trust the cert used to sign that cert. To trust that signing certificate, you must trust its signer. The process continues until you reach a final root cert. The root cert is a special self-signed cert where the private key is highly guarded, and the corresponding public key is distributed with operating systems and web browsers.</p>
+</li>
+<li><p class="first">How digital signature works:
+Usually use a hash function to hash the whole file to produce a certain length of the string, and then encrypt the string using a private key to create a digital signature. The receiver of the digital signature first decrypts the digital signature, and get the hash. Then produce a hash based on the received message. Next compare the produced hash with the decrypted hash to check authenticity and integrity.</p>
+</li>
+<li><p class="first">Cryptographically secured hash function in a nutshell:</p>
+<ol class="simple">
+<li>Any input produces a completely unique hash output of a fixed length.</li>
+<li>Event minor differences between two inputs will create substantially different outputs.</li>
+<li>Hash functions are useful for <code class="docutils literal notranslate"><span class="pre">storing</span> <span class="pre">password</span></code>, producing file checksums, and to identify specific files or data.</li>
+</ol>
+<p>A typical use-case of hashing to store a password is:</p>
+<blockquote>
+<div><p>To integrate hashing in the password storage workflow, when the user is created, instead of storing the password in cleartext, we hash the password and store the username and hash pair in the database table. When the user logs in, we hash the password sent and compare it to the hash connected with the provided username. If the hashed password and the stored hash match, we have a valid login. It’s important to note that we never store the cleartext password in the process, we hash it and then forget it.</p>
+</div></blockquote>
+<ol class="simple">
+<li>A salt is random data added to the hashing process to ensure that no two passwords produce the same hash. The salt is saved as a pseudo-secret that the application later uses when comparing passwords.</li>
+</ol>
+</li>
+<li><p class="first">TLS supports various crypto methods by providing a cipher suites (illustrated below).
+<img alt="Cypher suite" src="https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Cypher_suite.png?raw=true" /></p>
+</li>
+<li><p class="first">Best practices to ensure secure data communication:</p>
+<ol class="simple">
+<li>Use TLS on all network comm.</li>
+<li>Use built-in libraries.</li>
+<li>Only use TLS - never SSL.</li>
+<li>Choose strong cypher suites.</li>
+<li>Never use <code class="docutils literal notranslate"><span class="pre">self-signed</span> <span class="pre">certs</span></code>.</li>
+<li>Verify cert chains.</li>
+<li>Alert users of invalid certs.</li>
+<li>Keep sensitive data out of URL.</li>
+</ol>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="architecture-risk-analysis-and-remediation">
+<h2>Architecture Risk Analysis and Remediation<a class="headerlink" href="#architecture-risk-analysis-and-remediation" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Impact vs. probability.</p>
+</li>
+<li><p class="first">Risk management:</p>
+<ol class="simple">
+<li>Reduce risk, e.g., TLS to all comm to stop eavesdropping.</li>
+<li>Avoid risk, e.g., if a new feature is to violate company’s risk tolerance, it may be necessary to exclude the feature.</li>
+<li>Transfer risk, e.g., transfer the risk a third party.</li>
+<li>Accept risk, e.g., low risk probability and high cost for mitigation.</li>
+</ol>
+</li>
+<li><p class="first">Data types:</p>
+<ol>
+<li><p class="first">Data at rest. Best practices include:
+1.1 Choosing appropriate algorithms.
+1.2 Using trusted implementations of such algorithms.
+1.3 Using pseudo-random number generators.
+1.4 Using keys of sufficient length, using strong keys and protecting keys.</p>
+<p>Use AES for encryption. Use CBC (cypher-block chaining) for symmetric algorithms.</p>
+</li>
+<li><p class="first">Data in transit.</p>
+</li>
+<li><p class="first">Data in use.</p>
+<p>Least privilege principle: It states that only the least amount of privileges necessary to complete an action should be granted.
+For example: if you have multiple encrypted storage containers and you need to use some data, you should only decrypt the ones that contain the data you need, rather than decrypting all the containers.</p>
+<p>Anonymization: it means removing all the info from the data set that can be used to uniquely identify individuals describe in the data set.</p>
+<p>Pseudonymization: it is similar with anonymization, except instead of removing personal info, it is replaced with aliases like numbers, strings, or fictional names. When it is applied to a data set, it is still possible to distinguish individuals in the data set, but it should not be possible to link these individuals to their real-world identities.</p>
+<blockquote>
+<div><p>SSID and passphrase might be insensitive if the SSID and passphrase is not linked to any personal data.
+Key used in RAM should be cleared (like encryption and decryption) as soon as related actions have been done.</p>
+</div></blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="some-best-practices-for-attack-surface-analysis">
+<h2>Some best practices for attack surface analysis<a class="headerlink" href="#some-best-practices-for-attack-surface-analysis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Shorten the code. Remove what’s not necessary.</li>
+<li>Reduce the number of entry points available to anonymous or untrusted users.</li>
+<li>Remove any privileges that are not explicitly required by the application.</li>
+</ul>
+</div>
+<div class="section" id="owasp-2017-top10-mitigation">
+<h2>OWASP 2017 Top10 mitigation<a class="headerlink" href="#owasp-2017-top10-mitigation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="thread-modelling-basics">
+<h2>Thread modelling basics<a class="headerlink" href="#thread-modelling-basics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Thread modelling process includes: identify security objectives –&gt; create an application overview –&gt; decompose your application –&gt; identify threats –&gt; identify vulnerabilities –&gt; application overview. It is a iterative process and could be enhanced at run-time.</li>
+</ul>
+<ol>
+<li><p class="first">Security objectives could be categorized using: Confidentiality, Integrity and Availability.</p>
+<blockquote>
+<div><p>Availability: ensures that users are always able to access a system. E.g., server uptime under attack and DoS resistance.</p>
+</div></blockquote>
+<p>Examples of objectives include <code class="docutils literal notranslate"><span class="pre">Prevent</span> <span class="pre">attackers</span> <span class="pre">from</span> <span class="pre">obtaining</span> <span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">Meet</span> <span class="pre">service-level</span> <span class="pre">agreements</span></code> and <code class="docutils literal notranslate"><span class="pre">Protect</span> <span class="pre">the</span> <span class="pre">company's</span> <span class="pre">credibility</span></code>.</p>
+</li>
+<li><p class="first">To create an application overview:
+2.1 Could start with end-to-end deployment diagram. Like network topology and interfaces.
+2.2 Add logical layers. Refine the diagram to include physical server boundaries when known.
+2.3 Role identification in the diagram. Like who is able to access which data.
+2.4 Well scope the project.
+2.5 List the tech and key features of the software and platforms.
+2.6 There are some aspects of security mechanisms to be referred to: Input and Data Validation, Authentication, Authorization, Configuration Management, Session Management, Cryptography, Sensitive Data Handling, Parameter Manipulation, Exception Management and Auditing and Logging.</p>
+</li>
+<li><p class="first">To decompose your application:
+3.1 Identify Trust Boundaries.
+3.2 Identify Data Flows.
+3.3 Identify Entry Points.
+3.4 Identify Exit Points.</p>
+</li>
+<li><p class="first">To identify threats:
+Communicate with different roles in the project like architects, developers and testers. Usually the following aspects will be considered:</p>
+<p>4.1 Common Threats.
+4.2 Threats Along Use Cases.
+4.3 Threats Along Data Flows.</p>
+</li>
+<li><p class="first">To identify vulnerabilities:
+Examining the application layer-by-layer based on the identified threats.</p>
+</li>
+</ol>
+<p>Key contents in a report/documentation could include: security objectives, key scenarios, protected resources, threat list and vulnerability list.</p>
+</div>
+<div class="section" id="fundamentals-of-iot-architecture-and-design">
+<h2>Fundamentals of IoT Architecture and Design<a class="headerlink" href="#fundamentals-of-iot-architecture-and-design" title="Permalink to this headline">¶</a></h2>
+<p>Think of two classes to categorize security requirements:
+* User access.
+1. How can users access IoT system? Via cloud, device or Mobile App.
+2. What is the user’s classification? Resources and services? Changes to info? Features and functions?
+3. What type of security screenings are required? Passwords or pins? Tokens or certs?
+* External device access.
+1. What types of devices can connect to the system? Mobile? Diagnostic tools? IoT devices?
+2. How can devices connect to the IoT system? Wireless?
+3. What is the device’s classification? Query info? Features and functions?
+4. What type of security screenings are required? Tokens or cert? Dongles?</p>
+<p>Characteristics are needed for securing remote access:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* How long should an active session last?
+* When should session configuration occur?
+* How dynamic are sessions between devices?
+* Should there be different standards of secure remote access?
+</pre></div>
+</div>
+<p>Application security (AppSec) implications:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">During</span> <span class="n">the</span> <span class="n">requirements</span> <span class="ow">and</span> <span class="n">design</span> <span class="n">phases</span><span class="p">,</span> <span class="n">determine</span> <span class="n">how</span> <span class="n">IoT</span> <span class="n">system</span> <span class="n">components</span> <span class="n">interact</span> <span class="k">with</span> <span class="n">outside</span> <span class="n">entities</span>
+    <span class="mf">1.</span> <span class="n">Software</span> <span class="n">tampering</span>
+    <span class="mf">2.</span> <span class="n">Configuration</span> <span class="n">management</span>
+    <span class="mf">3.</span> <span class="n">Session</span> <span class="n">management</span>
+    <span class="mf">4.</span> <span class="ne">Exception</span> <span class="n">management</span>
+
+<span class="o">*</span> <span class="n">Design</span> <span class="n">the</span> <span class="n">processes</span> <span class="n">necessary</span> <span class="n">to</span> <span class="n">detect</span> <span class="ow">and</span> <span class="n">handle</span> <span class="n">these</span> <span class="n">categories</span>
+<span class="o">*</span> <span class="n">Factor</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">capability</span> <span class="n">to</span> <span class="n">allow</span> <span class="k">for</span> <span class="n">future</span> <span class="n">updates</span>
+<span class="o">*</span> <span class="n">Review</span> <span class="n">what</span> <span class="n">external</span> <span class="n">support</span> <span class="n">parameters</span> <span class="n">are</span> <span class="n">required</span> <span class="n">to</span> <span class="n">configure</span> <span class="n">these</span> <span class="n">processes</span>
+    <span class="mf">1.</span> <span class="n">Where</span> <span class="n">stored</span>
+    <span class="mf">2.</span> <span class="n">How</span> <span class="n">distributed</span> <span class="ow">and</span> <span class="n">updated</span>
+
+<span class="o">*</span> <span class="n">Determine</span> <span class="n">what</span> <span class="n">levels</span> <span class="n">of</span> <span class="n">performance</span> <span class="n">are</span> <span class="n">expected</span> <span class="n">between</span> <span class="n">the</span> <span class="n">cloud</span> <span class="ow">and</span> <span class="n">IoT</span> <span class="n">devices</span> <span class="ow">and</span> <span class="n">between</span> <span class="n">IoT</span> <span class="n">devices</span> <span class="n">themselves</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">Minimize</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">intervening</span> <span class="n">layers</span> <span class="n">between</span> <span class="n">detection</span> <span class="ow">and</span> <span class="n">handling</span> <span class="k">while</span> <span class="n">processing</span> <span class="n">remote</span> <span class="n">access</span> <span class="n">requests</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>General rules to follow for cryptographic storage include:
+* Only store sensitive data that you need.
+* Use strong approved authenticated encryption that:
+a. Uses approved cryptographic modes.
+b. Uses strong random numbers.
+c. Uses authenticated encryption of data.
+* Store a one-way and salted value of passwords.
+* Ensure that the cryptographic protection remains even if access control fails.
+* Ensure that any secret key is protected from unauthorized access that:
+a. Defines a key lifecycle
+b. Stores unencrypted keys away from the encrypted data
+c. Uses independent keys when multiple keys are required
+d. Protests keys in a key vault
+e. Documents concrete procedures for managing keys through lifecycle
+f. Builds support for changing algorithms and keys when needed
+g. Documents concrete procedures to handle a key compromise
+h. Limits quantity of data encrypted with one key
+* Follow applicable regulations on use of cryptography, such as under PCI DSS requirement 3, you must protect cardholder data.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mcu-security.html" class="btn btn-neutral float-right" title="Security Features in Modern MCU" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="IoT Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
