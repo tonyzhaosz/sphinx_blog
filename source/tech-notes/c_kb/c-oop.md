@@ -65,6 +65,7 @@ The following contents list an example implementation of OOP using C code. This 
     // Method(s) - Overwrite draw().
     void rec_draw(Shape *me) 
     {
+        // Explicit downcasting: ((Rectangle *)me)->height.
         printf("Draw a rectangle. "
             "Pos_x: %d, "
             "Pos_y: %d, "
@@ -73,7 +74,7 @@ The following contents list an example implementation of OOP using C code. This 
             "\r\n",
             me->pos_x,
             me->pos_y,
-            ((Rectangle *)me)->height,
+            ((Rectangle *)me)->height, 
             ((Rectangle *)me)->width);
     }
 
