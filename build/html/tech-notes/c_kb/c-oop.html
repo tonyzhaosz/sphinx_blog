@@ -92,7 +92,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">C Code Knowledge Base</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="c-basics.html">C basics dig-in</a></li>
 <li class="toctree-l3"><a class="reference internal" href="c-com-tech.html">Techniques in C and compiler</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">OOP design based on C code</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">OOP design based on C code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#things-worth-noting">Things worth noting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polymorphism-in-action">Polymorphism in action</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="practices/index.html">Practices</a></li>
 </ul>
 </li>
@@ -171,6 +175,252 @@
             
   <div class="section" id="oop-design-based-on-c-code">
 <h1>OOP design based on C code<a class="headerlink" href="#oop-design-based-on-c-code" title="Permalink to this headline">¶</a></h1>
+<p>The following contents list an example implementation of OOP using C code. This is not the only way to implement OOP in C code, but this could an efficient way of utilizing RAM/ROM space. Three classes are shown below.</p>
+<ul>
+<li><p class="first">Parent class: <code class="docutils literal notranslate"><span class="pre">Shape</span></code></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/***************** Class Shape ***********************</span>
+<span class="cm">    | attributes |</span>
+<span class="cm">    | methods    |</span>
+<span class="cm">*****************************************************/</span>
+<span class="c1">// Attribute(s)</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">Shape_t</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">Vtbl_t</span> <span class="o">*</span><span class="n">VtblPtr</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Shape</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">Vtbl_t</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">draw</span><span class="p">)(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">move_to</span><span class="p">)(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">);</span>
+<span class="p">}</span> <span class="n">Vtbl</span><span class="p">;</span>
+
+<span class="c1">// Method(s) - draw. Abstract method. Shall never be called.</span>
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Method(s) - move_to. Abstract method. Shall never tbe called.</span>
+<span class="kt">void</span> <span class="nf">move_to</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Method(s) - ctor</span>
+<span class="kt">void</span> <span class="nf">ctor</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">Vtbl</span> <span class="n">vTable</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">draw</span> <span class="o">=</span> <span class="n">draw</span><span class="p">,</span> 
+        <span class="p">.</span><span class="n">move_to</span> <span class="o">=</span> <span class="n">move_to</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">VtblPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">vTable</span><span class="p">;</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span> <span class="o">=</span> <span class="n">pos_x</span><span class="p">;</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span> <span class="o">=</span> <span class="n">pos_y</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Calling Shape ctor...</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Child class: <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code>, inherited from <code class="docutils literal notranslate"><span class="pre">Shape</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/**************** Class Rectangle ********************</span>
+<span class="cm">    | attributes |</span>
+<span class="cm">    | methods    |</span>
+<span class="cm">*****************************************************/</span>
+
+<span class="c1">// Attributes(s)</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">Rectangle_t</span> <span class="p">{</span>
+    <span class="n">Shape</span> <span class="n">super</span><span class="p">;</span>  <span class="c1">// Inherited from Shape class.</span>
+    <span class="kt">int32_t</span> <span class="n">height</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">width</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Rectangle</span><span class="p">;</span>
+
+<span class="c1">// Method(s) - Overwrite draw().</span>
+<span class="kt">void</span> <span class="nf">rec_draw</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Draw a rectangle. &quot;</span>
+        <span class="s">&quot;Pos_x: %d, &quot;</span>
+        <span class="s">&quot;Pos_y: %d, &quot;</span>
+        <span class="s">&quot;height: %d, &quot;</span>
+        <span class="s">&quot;width: %d, &quot;</span>
+        <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span><span class="p">,</span>
+        <span class="p">((</span><span class="n">Rectangle</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">,</span>
+        <span class="p">((</span><span class="n">Rectangle</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Method(s) - Overwrite move_to().</span>
+<span class="kt">void</span> <span class="nf">rec_move_to</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Rectangle move from: &quot;</span>
+        <span class="s">&quot;[%d, %d] to [%d, %d]&quot;</span>
+        <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span><span class="p">,</span>
+        <span class="n">pos_x</span><span class="p">,</span>
+        <span class="n">pos_y</span><span class="p">);</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span> <span class="o">=</span> <span class="n">pos_x</span><span class="p">;</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span> <span class="o">=</span> <span class="n">pos_y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Method(s) - rectangle_ctor</span>
+<span class="kt">void</span> <span class="nf">rectangle_ctor</span><span class="p">(</span><span class="n">Rectangle</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> 
+                    <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> 
+                    <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">,</span> 
+                    <span class="kt">int32_t</span> <span class="n">height</span><span class="p">,</span> 
+                    <span class="kt">int32_t</span> <span class="n">width</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">Vtbl</span> <span class="n">recVtable</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">draw</span> <span class="o">=</span> <span class="n">rec_draw</span><span class="p">,</span> 
+        <span class="p">.</span><span class="n">move_to</span> <span class="o">=</span> <span class="n">rec_move_to</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="n">ctor</span><span class="p">((</span><span class="n">Shape</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">,</span> <span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">);</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">super</span><span class="p">.</span><span class="n">VtblPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">recVtable</span><span class="p">;</span> <span class="c1">// Overwrite the virtual table.</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span><span class="p">;</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Calling Rectangle ctor...</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Child class: <code class="docutils literal notranslate"><span class="pre">Circle</span></code>, inherited from <code class="docutils literal notranslate"><span class="pre">Shape</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/****************** Class Circle *********************</span>
+<span class="cm">    | attributes |</span>
+<span class="cm">    | methods    |</span>
+<span class="cm">*****************************************************/</span>
+
+<span class="c1">// Attributes(s)</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">Circle_t</span> <span class="p">{</span>
+    <span class="n">Shape</span> <span class="n">super</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">radius</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Circle</span><span class="p">;</span>
+
+<span class="c1">// Method(s) - Overwrite draw().</span>
+<span class="kt">void</span> <span class="nf">circle_draw</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Draw a circle. &quot;</span>
+        <span class="s">&quot;Pos_x: %d, &quot;</span>
+        <span class="s">&quot;Pos_y: %d, &quot;</span>
+        <span class="s">&quot;radius: %d, &quot;</span>
+        <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span><span class="p">,</span>
+        <span class="p">((</span><span class="n">Circle</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">radius</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Method(s) - Overwrite move_to().</span>
+<span class="kt">void</span> <span class="nf">circle_move_to</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Circle move from: &quot;</span>
+        <span class="s">&quot;[%d, %d] to [%d, %d]&quot;</span>
+        <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span><span class="p">,</span>
+        <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span><span class="p">,</span>
+        <span class="n">pos_x</span><span class="p">,</span>
+        <span class="n">pos_y</span><span class="p">);</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span> <span class="o">=</span> <span class="n">pos_x</span><span class="p">;</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span> <span class="o">=</span> <span class="n">pos_y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Method(s) - circle_ctor</span>
+<span class="kt">void</span> <span class="nf">circle_ctor</span><span class="p">(</span><span class="n">Circle</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> 
+                <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> 
+                <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">,</span> 
+                <span class="kt">int32_t</span> <span class="n">radius</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="n">Vtbl</span> <span class="n">circleVtable</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">draw</span> <span class="o">=</span> <span class="n">circle_draw</span><span class="p">,</span> 
+        <span class="p">.</span><span class="n">move_to</span> <span class="o">=</span> <span class="n">circle_move_to</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="n">ctor</span><span class="p">((</span><span class="n">Shape</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">,</span> <span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">);</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">super</span><span class="p">.</span><span class="n">VtblPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">circleVtable</span><span class="p">;</span> <span class="c1">// Overwrite the virtual table.</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Calling Circle ctor...</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="section" id="things-worth-noting">
+<h2>Things worth noting<a class="headerlink" href="#things-worth-noting" title="Permalink to this headline">¶</a></h2>
+<p><strong>Firstly</strong>, the definition of <code class="docutils literal notranslate"><span class="pre">Shape</span></code> class (shown below) contains a virtual table structure. It is expected to be read-only, and hence the <code class="docutils literal notranslate"><span class="pre">const</span></code> specifier.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Shape_t</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">Vtbl_t</span> <span class="o">*</span><span class="n">VtblPtr</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Shape</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Secondly</strong>, as the virtual table is defined after <code class="docutils literal notranslate"><span class="pre">Shape</span></code> definition, the correct way to encapsulate a virtual table pointer is to leverage <code class="docutils literal notranslate"><span class="pre">struct</span></code> specifier. Notice the compiler would complain about <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">Vtbl</span> <span class="pre">*VtblPtr</span></code> as incomplete type. Similarly, think of <code class="docutils literal notranslate"><span class="pre">Node</span></code> definition used in a linked list.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">Node_t</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="n">Node_t</span> <span class="o">*</span><span class="n">left</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">Node_t</span> <span class="o">*</span><span class="n">right</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Node</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Thirdly</strong>, the encapsulation of a class is more than just a structure. It should also include at least constructor method (i.e., <code class="docutils literal notranslate"><span class="pre">ctor</span></code>). The <code class="docutils literal notranslate"><span class="pre">Shape</span></code> class could serve as a abstract class, where <code class="docutils literal notranslate"><span class="pre">draw()</span></code> and <code class="docutils literal notranslate"><span class="pre">move_to()</span></code> method must be implemented by child classes. In our case, we issue <code class="docutils literal notranslate"><span class="pre">asserts</span></code> as run-time check.</p>
+</div>
+<div class="section" id="polymorphism-in-action">
+<h2>Polymorphism in action<a class="headerlink" href="#polymorphism-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Since we abstract the common methods (i.e., draw() and move_to()) from each child class, we could call such functions in a for loop as below. Notice how each overwritten methods work.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">draw_any_shape</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">VtblPtr</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">(</span><span class="n">me</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">move_to_any_shape</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_x</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="n">pos_y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">me</span><span class="o">-&gt;</span><span class="n">VtblPtr</span><span class="o">-&gt;</span><span class="n">move_to</span><span class="p">(</span><span class="n">me</span><span class="p">,</span> <span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Rectangle</span> <span class="n">rec_0</span><span class="p">;</span>
+    <span class="n">Rectangle</span> <span class="n">rec_1</span><span class="p">;</span>
+    <span class="n">Circle</span> <span class="n">circle_0</span><span class="p">;</span>
+    <span class="n">Circle</span> <span class="n">circle_1</span><span class="p">;</span>
+    <span class="n">Shape</span> <span class="o">*</span><span class="n">shapeLst</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">rec_0</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">rec_1</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">circle_0</span><span class="p">,</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">circle_1</span><span class="p">,</span>
+    <span class="p">};</span> 
+
+    <span class="n">rectangle_ctor</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rec_0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">rectangle_ctor</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rec_1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+    <span class="n">circle_ctor</span><span class="p">(</span><span class="o">&amp;</span><span class="n">circle_0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+    <span class="n">circle_ctor</span><span class="p">(</span><span class="o">&amp;</span><span class="n">circle_1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int8_t</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">draw_any_shape</span><span class="p">(</span><span class="n">shapeLst</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">move_to_any_shape</span><span class="p">(</span><span class="n">shapeLst</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">29</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The related console outputs are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Calling</span> <span class="n">Shape</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Rectangle</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Shape</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Rectangle</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Shape</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Circle</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Shape</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Calling</span> <span class="n">Circle</span> <span class="n">ctor</span><span class="o">...</span>
+<span class="n">Draw</span> <span class="n">a</span> <span class="n">rectangle</span><span class="o">.</span> <span class="n">Pos_x</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="n">Pos_y</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+<span class="n">Rectangle</span> <span class="n">move</span> <span class="n">from</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span> <span class="n">to</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">29</span><span class="p">]</span>
+<span class="n">Draw</span> <span class="n">a</span> <span class="n">rectangle</span><span class="o">.</span> <span class="n">Pos_x</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="n">Pos_y</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+<span class="n">Rectangle</span> <span class="n">move</span> <span class="n">from</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">17</span><span class="p">]</span> <span class="n">to</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">29</span><span class="p">]</span>
+<span class="n">Draw</span> <span class="n">a</span> <span class="n">circle</span><span class="o">.</span> <span class="n">Pos_x</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="n">Pos_y</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+<span class="n">Circle</span> <span class="n">move</span> <span class="n">from</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="n">to</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">29</span><span class="p">]</span>
+<span class="n">Draw</span> <span class="n">a</span> <span class="n">circle</span><span class="o">.</span> <span class="n">Pos_x</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">Pos_y</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+<span class="n">Circle</span> <span class="n">move</span> <span class="n">from</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">]</span> <span class="n">to</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">29</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
