@@ -3,7 +3,7 @@ IoT Security
 Contents in this directory:
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     iot-security.md
     mcu-security.md

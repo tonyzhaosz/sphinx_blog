@@ -91,12 +91,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../linux/index.html">Linux Notes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">C Code Knowledge Base</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">C basics dig-in</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#rethink-sizeof-and-strlen"><strong>Rethink sizeof() and strlen()</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#when-const-meets-volatile"><strong>When const meets volatile</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#bit-manipulation"><strong>Bit manipulation</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rethink-sizeof-and-strlen">Rethink sizeof() and strlen()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#when-const-meets-volatile">When const meets volatile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bit-manipulation">Bit manipulation</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="c-com-tech.html">Techniques in C and compiler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c-oop.html">OOP design based on C code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="practices/index.html">Practices</a></li>
 </ul>
 </li>
@@ -176,9 +177,10 @@
   <div class="section" id="c-basics-dig-in">
 <h1>C basics dig-in<a class="headerlink" href="#c-basics-dig-in" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="rethink-sizeof-and-strlen">
-<h2><strong>Rethink sizeof() and strlen()</strong><a class="headerlink" href="#rethink-sizeof-and-strlen" title="Permalink to this headline">¶</a></h2>
+<h2>Rethink sizeof() and strlen()<a class="headerlink" href="#rethink-sizeof-and-strlen" title="Permalink to this headline">¶</a></h2>
 <p>The standard C functions sizeof() and strlen() are most likely one of the first functions ever used when learning C. They have been used at many aspects of validating a string, an instance of a structure. The following content shows what are the results of sizeof() and strlen() in various situations.</p>
-<p>———————— <strong>The usage of <em>sizeof()</em></strong> ————————</p>
+<div class="section" id="the-usage-of-sizeof">
+<h3>The usage of sizeof()<a class="headerlink" href="#the-usage-of-sizeof" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
@@ -244,16 +246,16 @@
 </pre></div>
 </div>
 <p>The execution result (on a 64-bit Mac) is as follows:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Static</span> <span class="n">array</span> <span class="k">sizeof</span><span class="o">:</span> <span class="mi">20</span>
-<span class="n">Static</span> <span class="n">array</span> <span class="nl">element</span> <span class="p">:</span><span class="mi">5</span>
-<span class="n">Dynamic</span> <span class="n">array</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">8</span>
-<span class="n">TestStruct</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
-<span class="n">staticTestStruct_0</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
-<span class="n">staticTestStruct_1</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
-<span class="n">staticTestStruct_2</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">56</span>
-<span class="n">dynamTestStruct_0</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">8</span>
-<span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testStr</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">8</span>
-<span class="n">TestPadding</span> <span class="k">sizeof</span> <span class="o">:</span><span class="mi">16</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Static</span> <span class="n">array</span> <span class="n">sizeof</span><span class="p">:</span> <span class="mi">20</span>
+<span class="n">Static</span> <span class="n">array</span> <span class="n">element</span> <span class="p">:</span><span class="mi">5</span>
+<span class="n">Dynamic</span> <span class="n">array</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">8</span>
+<span class="n">TestStruct</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">56</span>
+<span class="n">staticTestStruct_0</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">56</span>
+<span class="n">staticTestStruct_1</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">56</span>
+<span class="n">staticTestStruct_2</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">56</span>
+<span class="n">dynamTestStruct_0</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">8</span>
+<span class="n">dynamTestStruct_0</span><span class="o">-&gt;</span><span class="n">testStr</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">8</span>
+<span class="n">TestPadding</span> <span class="n">sizeof</span> <span class="p">:</span><span class="mi">16</span>
 </pre></div>
 </div>
 <blockquote>
@@ -264,7 +266,9 @@
 <li>When the operand is a pointer, the result will be the size of the pointer itself (e.g., dynamTestStruct_0). Not the whole memory that the pointer points to.</li>
 <li>The aggregate size of a structure can be greater than the sum of the sizes of its individual members (e.g., TestPadding) due to structure padding (the compiler wants to align in word-length).</li>
 </ul>
-<p>———————— <strong>The usage of <em>strlen()</em></strong> ————————</p>
+</div>
+<div class="section" id="the-usage-of-strlen">
+<h3>The usage of strlen()<a class="headerlink" href="#the-usage-of-strlen" title="Permalink to this headline">¶</a></h3>
 <p>In order to understand how <em>strlen()</em> works, we duplicate the implementation of this method in Glibc as below. More info could refer to https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=string/strlen.c;hb=HEAD.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
@@ -376,9 +380,10 @@
 </div>
 <p>When using this function, please pay extra care about the string being passed to the method. Make sure the string ends with <em>‘\0’</em>, otherwise it may crash the program or return a nonsense value.</p>
 </div>
+</div>
 <hr class="docutils" />
 <div class="section" id="when-const-meets-volatile">
-<h2><strong>When const meets volatile</strong><a class="headerlink" href="#when-const-meets-volatile" title="Permalink to this headline">¶</a></h2>
+<h2>When const meets volatile<a class="headerlink" href="#when-const-meets-volatile" title="Permalink to this headline">¶</a></h2>
 <p>The topic is elaborated using three sections: <em>const</em> usage, <em>volatile</em> usage and the mixture of <em>const</em> and <em>volatile</em> usage.</p>
 <p>When speaking of <em>const</em>, we could spontaneously relate to <em>read-only</em>. And it is true that a variable that is marked by const should not be changed elsewhere other than its definition. An example could be <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char</span> <span class="pre">*str</span> <span class="pre">=</span> <span class="pre">&quot;Hello</span> <span class="pre">World!&quot;</span></code>. However, there are some human-compilation tests regarding const, in which a few statements with const are to be validated. Considering the following cases:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
@@ -431,7 +436,7 @@ loop:
 </div>
 <hr class="docutils" />
 <div class="section" id="bit-manipulation">
-<h2><strong>Bit manipulation</strong><a class="headerlink" href="#bit-manipulation" title="Permalink to this headline">¶</a></h2>
+<h2>Bit manipulation<a class="headerlink" href="#bit-manipulation" title="Permalink to this headline">¶</a></h2>
 <p>Bit manipulations are full of tricks. In some cases, it decrease an algorithm’s complexity from O(logN) down to O(1). A good reference could be the book Hacker’s Delight. Here are some examples from this link: https://www.hackerearth.com/zh/practice/notes/bit-manipulation/.</p>
 <ol class="simple">
 <li>How to check if the given number is power of 2?</li>
@@ -470,7 +475,7 @@ loop:
 <li>Detect which bit contains the leftmost one?</li>
 </ol>
 <p>This question may be challenging. My thought is to somehow set all the bit after the leftmost 1 (e.g., (0100)b =&gt; (0111)b), and count the number of ones until it reaches a zero. The final result is then the <code class="docutils literal notranslate"><span class="pre">count</span> <span class="pre">-</span> <span class="pre">1</span></code>. The difficult part is set all the bit after the leftmost 1. To achieve this, we could use the following lines:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Notice an N is a 16-bit integer.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Notice</span> <span class="n">an</span> <span class="n">N</span> <span class="ow">is</span> <span class="n">a</span> <span class="mi">16</span><span class="o">-</span><span class="n">bit</span> <span class="n">integer</span><span class="o">.</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">2</span><span class="p">);</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">N</span><span class="o">|</span> <span class="p">(</span><span class="n">N</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="p">);</span>

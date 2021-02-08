@@ -92,6 +92,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">C Code Knowledge Base</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../c-basics.html">C basics dig-in</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../c-com-tech.html">Techniques in C and compiler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../c-oop.html">OOP design based on C code</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Practices</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="cli-console.html">CLI Console</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">A crash-course of using Cmocka</a></li>
@@ -179,14 +180,16 @@
             
   <div class="section" id="a-crash-course-of-using-cmocka">
 <h1>A crash-course of using Cmocka<a class="headerlink" href="#a-crash-course-of-using-cmocka" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div>The use of Cmocka is deprecated. A better choice is to use Cmock (http://www.throwtheswitch.org/cmock) and (http://www.throwtheswitch.org/ceedling).</div></blockquote>
 <p>Unit testing is not just value validation using assertions. An important testing technique, namely mock, should be equally addressed. Cmocka provides a test framework of conducting mock features. The following content serves as a summary of two related links (https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#assert-functions and https://lwn.net/Articles/558106/), targeting to clarify the concept of mock and the usage of Cmocka.</p>
 <p>It is assumed that users are able to generate dynamically libraries of Cmocka. The test platform is on a Ubuntu. Unfortunately, LLVM on MacOS does not recognize <em>–wrap</em> option. Following the steps below to complete source code preparation:</p>
 <ol class="simple">
 <li>Download the source from https://cmocka.org/files/1.1/. Decompress the folder.</li>
 <li>Enter the decompressed folder and follow the commands above to build the source code. Line 3 (i.e., cmake ..) might be overlooked from time to time. Usally ‘..’ points to where cmocka is.</li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir build
-$ <span class="nb">cd</span> build
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir build
+$ cd build
 $ cmake ..
 $ make clean
 $ make -j4
@@ -196,9 +199,9 @@ $ make -j4
 <li>To show how the library to be integrated into your project, we use the chef_wrap example that comes with the cmocka package. Copy the chef_wrap folder from Cmocka example into a preferred path.</li>
 <li>Create a folder and name it as <em>lib</em> under chef_wrap folder. And copy the dynamic library (under the path build/src/) into the lib folder. You should be able to see three files (<em>libcmocka.so.0.4.1, libcmocka.s0.0 and libcmocka.so</em>) under the lib folder. Two of the files are symbolic links, and they are related to the <em>so</em> file as below. One could create the symbolic links if not exist.</li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lrwxrwxrwx <span class="m">1</span>    <span class="m">14</span> Sep <span class="m">22</span> <span class="m">22</span>:07 libcmocka.so -&gt; libcmocka.so.0
-lrwxrwxrwx <span class="m">1</span>    <span class="m">18</span> Sep <span class="m">22</span> <span class="m">22</span>:07 libcmocka.so.0 -&gt; libcmocka.so.0.4.1
--rwxr-xr-x <span class="m">1</span> <span class="m">52768</span> Sep <span class="m">22</span> <span class="m">22</span>:07 libcmocka.so.0.4.1
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lrwxrwxrwx</span> <span class="mi">1</span>    <span class="mi">14</span> <span class="n">Sep</span> <span class="mi">22</span> <span class="mi">22</span><span class="p">:</span><span class="mi">07</span> <span class="n">libcmocka</span><span class="o">.</span><span class="n">so</span> <span class="o">-&gt;</span> <span class="n">libcmocka</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">lrwxrwxrwx</span> <span class="mi">1</span>    <span class="mi">18</span> <span class="n">Sep</span> <span class="mi">22</span> <span class="mi">22</span><span class="p">:</span><span class="mi">07</span> <span class="n">libcmocka</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">libcmocka</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">1</span>
+<span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="mi">52768</span> <span class="n">Sep</span> <span class="mi">22</span> <span class="mi">22</span><span class="p">:</span><span class="mi">07</span> <span class="n">libcmocka</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">1</span>
 </pre></div>
 </div>
 <blockquote>
@@ -208,21 +211,21 @@ lrwxrwxrwx <span class="m">1</span>    <span class="m">18</span> Sep <span class
 <li>Copy <em>cmocka.h</em> (under <em>include</em> folder) under the chef_wrap folder.</li>
 <li>Create a shell script to compile and link the source code. An example of such a script could be the following:</li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># System variables.</span>
-<span class="nv">SYSTEM</span><span class="o">=</span><span class="k">$(</span>uname<span class="k">)</span>
-<span class="nv">CC</span><span class="o">=</span>gcc
-<span class="nv">LD</span><span class="o">=</span>gcc
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># System variables.
+SYSTEM=$(uname)
+CC=gcc
+LD=gcc
 
-<span class="nv">SRC_DIR</span><span class="o">=</span>./
-<span class="nv">INC_DIR</span><span class="o">=</span>./
-<span class="nv">LIB_DIR</span><span class="o">=</span>./
+SRC_DIR=./
+INC_DIR=./
+LIB_DIR=./
 
-<span class="c1"># Compile src files.</span>
-<span class="nv">$CC</span> -Wall -c <span class="nv">$SRC_DIR</span>/chef.c -I<span class="nv">$INC_DIR</span> -o <span class="nv">$SRC_DIR</span>/chef.o
-<span class="nv">$CC</span> -Wall -c <span class="nv">$SRC_DIR</span>/waiter_test_wrap.c -I<span class="nv">$INC_DIR</span> -o <span class="nv">$SRC_DIR</span>/waiter_test_wrap.o
+# Compile src files.
+$CC -Wall -c $SRC_DIR/chef.c -I$INC_DIR -o $SRC_DIR/chef.o
+$CC -Wall -c $SRC_DIR/waiter_test_wrap.c -I$INC_DIR -o $SRC_DIR/waiter_test_wrap.o
 
-<span class="c1"># Link objs.</span>
-<span class="nv">$LD</span> <span class="nv">$SRC_DIR</span>/chef.o <span class="nv">$SRC_DIR</span>/waiter_test_wrap.o -o <span class="nv">$SRC_DIR</span>/chef_test -L./<span class="nv">$LIB_DIR</span> -lcmocka -Wl,-rpath<span class="o">=</span>./<span class="nv">$LIB_DIR</span>
+# Link objs.
+$LD $SRC_DIR/chef.o $SRC_DIR/waiter_test_wrap.o -o $SRC_DIR/chef_test -L./$LIB_DIR -lcmocka -Wl,-rpath=./$LIB_DIR
 </pre></div>
 </div>
 <ol class="simple">

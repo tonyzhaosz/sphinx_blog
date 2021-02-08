@@ -1,7 +1,7 @@
 
 # Security Features in Modern MCU
 
-### Readback Protection
+## Readback Protection
 
 Refer to a Whitepaper published by NCC group `Microcontroller Readback Protection Bypasses and Defenses`.
 
@@ -12,7 +12,7 @@ Many different mechanisms are used by microcontroller vendors to provide data re
 * Disabling flash reads within bootloaders.
 * Encrypting the contents of flash.
 
-#### Debug Pins Reconfigured for Alternate Functions
+### Debug Pins Reconfigured for Alternate Functions
 
 The threat here is: attackers are able to read memory via debug interfaces like Jtag if debug pins are not protected/disabled.
 
@@ -21,15 +21,15 @@ The threat here is: attackers are able to read memory via debug interfaces like 
 
 ---
 
-### ESP32
+## ESP32
 
 This section lists ESP32 security-related features and known vulnerabilities.
 
-#### ESP32 eFuse
+### ESP32 eFuse
 
 Refer to https://github.com/espressif/esptool/wiki/espefuse. Basically, eFuse is one-time-programmable, and it is possible to permanently damage or 'brick' the device.
 
-#### CVE items regarding Espressif
+### CVE items regarding Espressif
 
 After searching in NVD database, here is a list of known vulnerabilities: 
 https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=ESP32&search_type=all. Two items are worth noting:
@@ -40,7 +40,7 @@ https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&q
 These issues are related to hardware attacks using fault injection to either bypass secure boot verification or to read encryption and secure boot keys. Espressif has addressed this issue at https://www.espressif.com/en/news/Security_Advisory_Concerning_Fault_Injection_and_eFuse_Protections. The recommended way is to leverage the up-to-date ESP32-D0WD-V3 chip and Secure Boot V2 scheme.
 
 
-#### Chip selection
+### Chip selection
 
 The module ESP32-WROOM-U32 is based on ESP32-D0WDQ6 chip, and should address Secure Boot V1 scheme (no V2 scheme). Modules with S2 (e.g., ESP32-S2-WROOM) support V2 scheme.
 

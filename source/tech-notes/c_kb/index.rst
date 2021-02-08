@@ -7,4 +7,5 @@ Contents in this directory:
 
     c-basics.md
     c-com-tech.md
+    c-oop.md
     Practices <practices/index>

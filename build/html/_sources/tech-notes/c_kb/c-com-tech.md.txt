@@ -1,6 +1,6 @@
 # Techniques in C and compiler
 
-#### **Malloc an array of pointers**
+## Malloc an array of pointers
 
 Consider a situation where an array needs to be created during run-time, and in this array, pointers will be stored. The following code shows a structure definition, whose pointer will be stored in an array.
 
@@ -23,7 +23,7 @@ testStructPtr * array = (testStructPtr *)malloc(ARRAY_SIZE * sizeof(testStructPt
 
 ***
 
-#### **GCC - linker example**
+## GCC - linker example
 
 Link: https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil
 
@@ -35,7 +35,7 @@ $ gcc -Wall test_basics.c -o test -L./ -lcmocka -Wl,-rpath=./
 
 ***
 
-#### **Play with GCC**
+## Play with GCC
 
 Sometimes we found C code reading is not fun at all, especially the code with many strange symbols. Here's an example:
 
@@ -66,7 +66,7 @@ Reference: https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.htm
 
 We could use a GCC linker option named '--wrap=....' to tell the linker which function to be linked. Since you are more likely to call gcc instead of ld in your compilation process, you can tell gcc to pass the --wrap option to ld by passing the --Wl,--wrap=... argument to GCC.
 
-The --wrap=open notation asks GCC to make every call to the open functon to reach the __wrap_open function instead. If for whatever reason you need to use the real open function after this option is passed, then you can call the __real_open function (after declaring its prototype).
+The --wrap=open notation asks GCC to make every call to the open function to reach the __wrap_open function instead. If for whatever reason you need to use the real open function after this option is passed, then you can call the __real_open function (after declaring its prototype).
 
 For example, we want to mock the system call *close* which is called in a function of a C file.
 
@@ -92,7 +92,7 @@ int __wrap_close(int fd)
 
 When we use gcc to compile and link, we need to specify something like the following:
 
-```bash
+```
 gcc src.c test.c -Wl,--wrap=close -o test
 ```
 
@@ -100,7 +100,7 @@ Reference: https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html.
 
 ***
 
-#### **Function pointers**
+## Function pointers
 
 Function pointers have been widely used in C/C++ SDKs. In SDKs, they are usually wrapped into hook functions. Take the famous uC/OS kernel as an example, the following screenshot quoted one of the customer stories [original link](https://www.micrium.com/about/customer-stories/vasamed/).
 > The power-management features of uC/OS can keep a device running for years without a battery change. These features include hook functions for initiating low-power modes, support for a dynamic tick rate, and even tick-less operations.
@@ -251,7 +251,7 @@ int main(int argc, char **argv)
 
 ***
 
-#### **Print pointer values**
+## Print pointer values
 
 This may not be a trick, but something that's worth noting.
 
@@ -289,7 +289,7 @@ Value:  0xffe2ac44
 
 ***
 
-#### **Muli-line function MACRO definition**
+## Muli-line function MACRO definition
 
 Sometimes, one needs to use MACROs to define a function that contains multiple lines and a return value. An example of doing such a definition is given below:
 

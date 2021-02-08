@@ -95,9 +95,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#software-security-development">Software Security Development</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#owasp-2017-mitigation">OWASP 2017 Mitigation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#development-of-secured-embedded-software">Development of secured embedded software</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#vulnerability-scan">Vulnerability scan</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#various-attacks-in-c-c-code">Various attacks in C/C++ code</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#iot-web-interface">IoT Web Interface</a></li>
 </ul>
 </li>
 </ul>
@@ -286,9 +283,8 @@
 * Out of range access
 * Memory leaks
 * Using uninitialized memory</p>
-</div>
 <div class="section" id="vulnerability-scan">
-<h2>Vulnerability scan<a class="headerlink" href="#vulnerability-scan" title="Permalink to this headline">¶</a></h2>
+<h3>Vulnerability scan<a class="headerlink" href="#vulnerability-scan" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Sometimes scanners even report vulnerabilities where none are present called a false positive.</li>
 <li>When a scanner failed to find an existing vulnerability, it is called a false negative.</li>
@@ -296,7 +292,7 @@
 <p>Vulnerability scanning on firmware? Checking what VDOO could do…</p>
 </div>
 <div class="section" id="various-attacks-in-c-c-code">
-<h2>Various attacks in C/C++ code<a class="headerlink" href="#various-attacks-in-c-c-code" title="Permalink to this headline">¶</a></h2>
+<h3>Various attacks in C/C++ code<a class="headerlink" href="#various-attacks-in-c-c-code" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first">Format string attacks:
 For formatting output, the C standard provides functions that take a variable number of arguments, called variadic functions. These are the <code class="docutils literal notranslate"><span class="pre">printf</span></code>, <code class="docutils literal notranslate"><span class="pre">sprintf</span></code>, and <code class="docutils literal notranslate"><span class="pre">fprintf</span></code> family of functions. They allow you to supply a format string and a variable number of arguments that the function will apply the format string to. This allows you to control how data is written to the output stream by specifying a variety of formatting options. Due to the limitations in the way the variadic functions are implemented, vulnerabilities can occur when the format string is under user control.</p>
@@ -308,8 +304,9 @@ The <code class="docutils literal notranslate"><span class="pre">strlcat</span><
 </ul>
 </div>
 <div class="section" id="iot-web-interface">
-<h2>IoT Web Interface<a class="headerlink" href="#iot-web-interface" title="Permalink to this headline">¶</a></h2>
+<h3>IoT Web Interface<a class="headerlink" href="#iot-web-interface" title="Permalink to this headline">¶</a></h3>
 <p>There may be something technical terms involved: Cross-site scripting (XSS), Cross-site request forgery (CSRF), SQL injection and Command injection. Knowing the basics would be enough.</p>
+</div>
 </div>
 </div>
 

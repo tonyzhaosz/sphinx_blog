@@ -2,9 +2,9 @@
 
 Multiple roles involved in the security development lifecycle (SDL in short). The following content focuses on software designing, development and testing.
 
-#### Design Architect
+## Design Architect
 
-##### Character responsibilities
+### Character responsibilities
 
 * Identify and document each interfaces of the product, including physical and logical interfaces. This may also be known as `Threat Modeling`. Regarding security, the following is worth noting: 
     1. List security implications and trust boundary per interface.
@@ -13,16 +13,16 @@ Multiple roles involved in the security development lifecycle (SDL in short). Th
 
 * The concept of defence in depth involves multiple layers of defences. If one layer is compromised, other layers should be able to prevent the system from complete compromise.
 
-#### Software Security Development
+## Software Security Development
 
 Requirements --> Design --> Development --> Testing --> Deployment --> Maintenance
 
-##### Software security requirements
+### Software security requirements
 
 * Legal security requirements.
 * Customer security requirements and technical requirements
 
-##### Designing secure software
+### Designing secure software
 
 `Thread modeling` please refers to related topics in `iot-security.md`.
 
@@ -38,7 +38,7 @@ Recall concepts in `iot-security.md`. Some application security principles are l
     * Defence in depth.
     * Compartmentalization (divide into sections or categories). Could design trust boundaries to isolate components from one another.
 
-##### Security development lifecycle
+### Security development lifecycle
 
 Tools to be used in SDL (in Microsoft):
     * Threat-modeling tool like MSTT to identify threats early in the Design phase.
@@ -51,7 +51,7 @@ Code review in terms of security:
     * Compile-time and run-time fault injection like `Fuzz testing` uses an automated tool that provides invalid or random input to an application and monitors how the application behaves.
 
 
-##### Security code review
+### Security code review
 
 Best practices:
     * Identify the scope of the code review.
@@ -73,19 +73,19 @@ Security risk management basics:
     * Countermeasure: A step taken to `address` or `reduce` the potential for damage caused by a vulnerability in your application code.
     * Risk: The potential for loss or damage to an asset (like a database).
 
-#### OWASP 2017 Mitigation
+## OWASP 2017 Mitigation
 
 OWASP: open web application security project.
 
-##### Mitigating injection
+### Mitigating injection
 
 SQL injection is one of the most common example of injection. For instance, a URL may be used to check SQL database by something like https://example.com/showosders?customer-id=224 `or 1`. The `or 1` is injected to the normal URL, and could bypass custer-id checking.
 
-##### Mitigating broken authentication
+### Mitigating broken authentication
 
 It talks more on session management and password recovery.
 
-##### Mitigating sensitive data exposure
+### Mitigating sensitive data exposure
 
 The issues in sensitive data exposure involves insecure crypto storage and insufficient transport layer protection.
 
@@ -107,7 +107,7 @@ Best practices to handle TLC certs:
     * Use RSA or DSA key > 2048 bits
 
 
-#### Development of secured embedded software
+## Development of secured embedded software
 
 Some memory issues:
     * Buffer overflow
@@ -118,14 +118,14 @@ Some memory issues:
     * Memory leaks
     * Using uninitialized memory
 
-#### Vulnerability scan
+### Vulnerability scan
 
 * Sometimes scanners even report vulnerabilities where none are present called a false positive.
 * When a scanner failed to find an existing vulnerability, it is called a false negative.
 
 Vulnerability scanning on firmware? Checking what VDOO could do...
 
-#### Various attacks in C/C++ code
+### Various attacks in C/C++ code
 
 * Format string attacks: 
     For formatting output, the C standard provides functions that take a variable number of arguments, called variadic functions. These are the `printf`, `sprintf`, and `fprintf` family of functions. They allow you to supply a format string and a variable number of arguments that the function will apply the format string to. This allows you to control how data is written to the output stream by specifying a variety of formatting options. Due to the limitations in the way the variadic functions are implemented, vulnerabilities can occur when the format string is under user control.
@@ -135,7 +135,7 @@ Vulnerability scanning on firmware? Checking what VDOO could do...
 * String handling
     The `strlcat`, `strlcpy` functions were written as safer alternatives to `strncat` and `strncpy` and guarantee null termination. Unlike `strncpy`, `strncat` also guarantees the resulting string is null terminated. The only function that does not guarantee this in all cases is `strncpy`.
 
-#### IoT Web Interface
+### IoT Web Interface
 
 There may be something technical terms involved: Cross-site scripting (XSS), Cross-site request forgery (CSRF), SQL injection and Command injection. Knowing the basics would be enough.
 

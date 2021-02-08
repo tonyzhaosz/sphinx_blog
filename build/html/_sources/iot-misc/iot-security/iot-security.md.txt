@@ -2,7 +2,7 @@
 
 Some basics of cryptography will be addressed in the mean time. This is mainly to address secured connectivity to cloud.
 
-#### Basics of Cryptography
+## Basics of Cryptography
 
 * `Encoding` and `Decoding` offer no **confidentiality** to information. And hence no keys involved.
 
@@ -22,15 +22,15 @@ Some basics of cryptography will be addressed in the mean time. This is mainly t
 
     > A good hash function is able to indicate minor changes of the message. In other words, a minor change of the message would result in significant changes in the hash value. Examples are SHA-1 and SHA-256.
 
-#### Algorithms and Key Management
+## Algorithms and Key Management
 
-##### Randomness
+### Randomness
 
 Randomness is critical to **unpredictable** key generation. Some hardware contributes to randomness by what's called RNG. Some cases that is not able to leverage hardware resources could use seed sources of high entropy to produce unpredictable **pesudorandom** numbers. A seed is a number or vector (e.g., `IV` initialization vector) used to initialize a PRNG.
 
 > `Entropy` is a measure of the disorder (randomness) in a system. Hence, we could say that a system has a high entropy source.
 
-##### Algorithms
+### Algorithms
 
 There are three major types of algorithms: hash functions, ciphers and encoders. Please notice the difference between **hashing** and **hash functions**.
 
@@ -46,7 +46,7 @@ What are algorithms been used:
 * Digital signature creation and validation.
 * Digital certification creation and validation.
 
-##### Keys
+### Keys
 
 Symmetric keys are used in cyphers and MAC (message authentication code). Asymmetric keys are used in cyphers and digital signatures.
 
@@ -69,7 +69,7 @@ A problem comes with public key is that how to ensure the authenticity of the pu
 
 * Public key infrastructure, i.e., PKI supports issuance, maintenance and revocation of digital certs. CA (certificate authority) is part of PKI.
 
-##### Cryptography in Applications
+### Cryptography in Applications
 
 Protected communications could be done on a authentic channel, a confidential channel and a secured channel. Check the following diagram to see certain resistance of each channel:
 
@@ -83,7 +83,7 @@ Protected communications could be done on a authentic channel, a confidential ch
 
 The tutorial video appears to be very `confusing`.
 
-##### Message Integrity
+### Message Integrity
 
 Tampering is an attack against `integrity`, `authenticity` and `availability`. 
 
@@ -108,13 +108,13 @@ Authentication also provides non-repudiation, which means once authenticated, so
 
 * Digital signature provides non-repudiation assurance because every party to a communication has a unique key which they sign the message. The following diagrams illustrates a digital signature verification process:
 
-![Sender of Digital Signature](https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Sender.png?raw=true)
+![Sender of Digital Signature](https://gitee.com/tz_se/blog_pics/raw/master/digital_signature/Sender.png)
 
-![Receiver of Digital Signature](https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Receiver.png?raw=true)
+![Receiver of Digital Signature](https://gitee.com/tz_se/blog_pics/raw/master/digital_signature/Receiver.png)
 
 * The above method ensures the integrity of the message, and the message itself could be encrypted.
 
-##### Mobile Data with Crypto
+### Mobile Data with Crypto
 
 * Authenticity verifies the origin of the data, while integrity verifies the message is intact.
 
@@ -137,7 +137,7 @@ Usually use a hash function to hash the whole file to produce a certain length o
     4. A salt is random data added to the hashing process to ensure that no two passwords produce the same hash. The salt is saved as a pseudo-secret that the application later uses when comparing passwords.
 
 * TLS supports various crypto methods by providing a cipher suites (illustrated below).
-    ![Cypher suite](https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Cypher_suite.png?raw=true)
+    ![Cypher suite](https://gitee.com/tz_se/blog_pics/raw/master/digital_signature/Cypher_suite.png)
 
 * Best practices to ensure secure data communication:
 
@@ -150,7 +150,7 @@ Usually use a hash function to hash the whole file to produce a certain length o
     7. Alert users of invalid certs.
     8. Keep sensitive data out of URL.
 
-#### Architecture Risk Analysis and Remediation
+## Architecture Risk Analysis and Remediation
 
 * Impact vs. probability.
 
@@ -185,16 +185,16 @@ Usually use a hash function to hash the whole file to produce a certain length o
         > Key used in RAM should be cleared (like encryption and decryption) as soon as related actions have been done.
 
 
-#### Some best practices for attack surface analysis
+### Some best practices for attack surface analysis
 
 * Shorten the code. Remove what's not necessary.
 * Reduce the number of entry points available to anonymous or untrusted users.
 * Remove any privileges that are not explicitly required by the application.
 
-#### OWASP 2017 Top10 mitigation
+## OWASP 2017 Top10 mitigation
 
 
-#### Thread modelling basics
+### Thread modelling basics
 
 * Thread modelling process includes: identify security objectives --> create an application overview --> decompose your application --> identify threats --> identify vulnerabilities --> application overview. It is a iterative process and could be enhanced at run-time.
 
@@ -230,7 +230,7 @@ Usually use a hash function to hash the whole file to produce a certain length o
 Key contents in a report/documentation could include: security objectives, key scenarios, protected resources, threat list and vulnerability list.
 
 
-#### Fundamentals of IoT Architecture and Design
+### Fundamentals of IoT Architecture and Design
 
 Think of two classes to categorize security requirements:
     * User access.

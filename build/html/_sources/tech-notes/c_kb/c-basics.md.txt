@@ -1,10 +1,10 @@
 # C basics dig-in
 
-#### **Rethink sizeof() and strlen()**
+## Rethink sizeof() and strlen()
 
 The standard C functions sizeof() and strlen() are most likely one of the first functions ever used when learning C. They have been used at many aspects of validating a string, an instance of a structure. The following content shows what are the results of sizeof() and strlen() in various situations.
 
------------------------- **The usage of *sizeof()*** ------------------------
+### The usage of sizeof()
 
 ```c
 #include <stdio.h>
@@ -73,7 +73,7 @@ int main(int argc, char const *argv[])
 
 The execution result (on a 64-bit Mac) is as follows:
 
-```c
+```
 Static array sizeof: 20
 Static array element :5
 Dynamic array sizeof :8
@@ -96,7 +96,7 @@ There are basically two situations when sizeof() is used. Firstly, to allocate d
 
 * The aggregate size of a structure can be greater than the sum of the sizes of its individual members (e.g., TestPadding) due to structure padding (the compiler wants to align in word-length).
 
------------------------- **The usage of *strlen()*** ------------------------
+### The usage of strlen()
 
 In order to understand how *strlen()* works, we duplicate the implementation of this method in Glibc as below. More info could refer to https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=string/strlen.c;hb=HEAD.
 
@@ -215,7 +215,7 @@ When using this function, please pay extra care about the string being passed to
 
 ***
 
-#### **When const meets volatile**
+## When const meets volatile
 
 The topic is elaborated using three sections: *const* usage, *volatile* usage and the mixture of *const* and *volatile* usage.
 
@@ -278,7 +278,7 @@ When `combining const and volatile`, we might wonder whether the definition of `
 
 ***
 
-#### **Bit manipulation**
+## Bit manipulation
 
 Bit manipulations are full of tricks. In some cases, it decrease an algorithm's complexity from O(logN) down to O(1). A good reference could be the book Hacker's Delight. Here are some examples from this link: https://www.hackerearth.com/zh/practice/notes/bit-manipulation/.
 
@@ -320,7 +320,7 @@ Considering a consecutive memory of a set, like an static array or dynamic array
 
 This question may be challenging. My thought is to somehow set all the bit after the leftmost 1 (e.g., (0100)b => (0111)b), and count the number of ones until it reaches a zero. The final result is then the `count - 1`. The difficult part is set all the bit after the leftmost 1. To achieve this, we could use the following lines:
 
-```c
+```
 // Notice an N is a 16-bit integer.
 N = N| (N>>1);
 N = N| (N>>2);

@@ -36,7 +36,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Code Practices" href="practices/index.html" />
+    <link rel="next" title="OOP design based on C code" href="c-oop.html" />
     <link rel="prev" title="C basics dig-in" href="c-basics.html" /> 
 </head>
 
@@ -92,14 +92,15 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">C Code Knowledge Base</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="c-basics.html">C basics dig-in</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Techniques in C and compiler</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#malloc-an-array-of-pointers"><strong>Malloc an array of pointers</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gcc-linker-example"><strong>GCC - linker example</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#play-with-gcc"><strong>Play with GCC</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#function-pointers"><strong>Function pointers</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#print-pointer-values"><strong>Print pointer values</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#muli-line-function-macro-definition"><strong>Muli-line function MACRO definition</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#malloc-an-array-of-pointers">Malloc an array of pointers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gcc-linker-example">GCC - linker example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#play-with-gcc">Play with GCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-pointers">Function pointers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#print-pointer-values">Print pointer values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#muli-line-function-macro-definition">Muli-line function MACRO definition</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="c-oop.html">OOP design based on C code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="practices/index.html">Practices</a></li>
 </ul>
 </li>
@@ -179,7 +180,7 @@
   <div class="section" id="techniques-in-c-and-compiler">
 <h1>Techniques in C and compiler<a class="headerlink" href="#techniques-in-c-and-compiler" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="malloc-an-array-of-pointers">
-<h2><strong>Malloc an array of pointers</strong><a class="headerlink" href="#malloc-an-array-of-pointers" title="Permalink to this headline">¶</a></h2>
+<h2>Malloc an array of pointers<a class="headerlink" href="#malloc-an-array-of-pointers" title="Permalink to this headline">¶</a></h2>
 <p>Consider a situation where an array needs to be created during run-time, and in this array, pointers will be stored. The following code shows a structure definition, whose pointer will be stored in an array.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_testStruct</span> <span class="p">{</span>
   <span class="kt">uint8_t</span>  <span class="n">bla</span><span class="p">;</span>
@@ -198,7 +199,7 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="gcc-linker-example">
-<h2><strong>GCC - linker example</strong><a class="headerlink" href="#gcc-linker-example" title="Permalink to this headline">¶</a></h2>
+<h2>GCC - linker example<a class="headerlink" href="#gcc-linker-example" title="Permalink to this headline">¶</a></h2>
 <p>Link: https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil</p>
 <p>For example, all the shared library and the test file are in the same folder.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Wall test_basics.c -o <span class="nb">test</span> -L./ -lcmocka -Wl,-rpath<span class="o">=</span>./
@@ -207,7 +208,7 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="play-with-gcc">
-<h2><strong>Play with GCC</strong><a class="headerlink" href="#play-with-gcc" title="Permalink to this headline">¶</a></h2>
+<h2>Play with GCC<a class="headerlink" href="#play-with-gcc" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes we found C code reading is not fun at all, especially the code with many strange symbols. Here’s an example:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">__attribute__</span><span class="p">((</span><span class="n">weak</span><span class="p">))</span> <span class="kt">int</span> <span class="n">foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">bar</span><span class="p">)</span>
 <span class="p">{</span>
@@ -232,7 +233,7 @@ tests_do_something.c.o:tests_do_something.c:12: first defined here
 <li>Wrap functions.</li>
 </ul>
 <p>We could use a GCC linker option named ‘–wrap=….’ to tell the linker which function to be linked. Since you are more likely to call gcc instead of ld in your compilation process, you can tell gcc to pass the –wrap option to ld by passing the –Wl,–wrap=… argument to GCC.</p>
-<p>The –wrap=open notation asks GCC to make every call to the open functon to reach the __wrap_open function instead. If for whatever reason you need to use the real open function after this option is passed, then you can call the __real_open function (after declaring its prototype).</p>
+<p>The –wrap=open notation asks GCC to make every call to the open function to reach the __wrap_open function instead. If for whatever reason you need to use the real open function after this option is passed, then you can call the __real_open function (after declaring its prototype).</p>
 <p>For example, we want to mock the system call <em>close</em> which is called in a function of a C file.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* src.c */</span>
 <span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
@@ -252,14 +253,14 @@ tests_do_something.c.o:tests_do_something.c:12: first defined here
 </pre></div>
 </div>
 <p>When we use gcc to compile and link, we need to specify something like the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc src.c test.c -Wl,--wrap<span class="o">=</span>close -o <span class="nb">test</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="n">src</span><span class="o">.</span><span class="n">c</span> <span class="n">test</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">Wl</span><span class="p">,</span><span class="o">--</span><span class="n">wrap</span><span class="o">=</span><span class="n">close</span> <span class="o">-</span><span class="n">o</span> <span class="n">test</span>
 </pre></div>
 </div>
 <p>Reference: https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="function-pointers">
-<h2><strong>Function pointers</strong><a class="headerlink" href="#function-pointers" title="Permalink to this headline">¶</a></h2>
+<h2>Function pointers<a class="headerlink" href="#function-pointers" title="Permalink to this headline">¶</a></h2>
 <p>Function pointers have been widely used in C/C++ SDKs. In SDKs, they are usually wrapped into hook functions. Take the famous uC/OS kernel as an example, the following screenshot quoted one of the customer stories <a class="reference external" href="https://www.micrium.com/about/customer-stories/vasamed/">original link</a>.</p>
 <blockquote>
 <div>The power-management features of uC/OS can keep a device running for years without a battery change. These features include hook functions for initiating low-power modes, support for a dynamic tick rate, and even tick-less operations.</div></blockquote>
@@ -395,7 +396,7 @@ An example of client initialisation and MQTTClient_setCallbacks instantiation is
 </div>
 <hr class="docutils" />
 <div class="section" id="print-pointer-values">
-<h2><strong>Print pointer values</strong><a class="headerlink" href="#print-pointer-values" title="Permalink to this headline">¶</a></h2>
+<h2>Print pointer values<a class="headerlink" href="#print-pointer-values" title="Permalink to this headline">¶</a></h2>
 <p>This may not be a trick, but something that’s worth noting.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
@@ -429,7 +430,7 @@ An example of client initialisation and MQTTClient_setCallbacks instantiation is
 </div>
 <hr class="docutils" />
 <div class="section" id="muli-line-function-macro-definition">
-<h2><strong>Muli-line function MACRO definition</strong><a class="headerlink" href="#muli-line-function-macro-definition" title="Permalink to this headline">¶</a></h2>
+<h2>Muli-line function MACRO definition<a class="headerlink" href="#muli-line-function-macro-definition" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, one needs to use MACROs to define a function that contains multiple lines and a return value. An example of doing such a definition is given below:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
@@ -472,7 +473,7 @@ An example of client initialisation and MQTTClient_setCallbacks instantiation is
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="practices/index.html" class="btn btn-neutral float-right" title="Code Practices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="c-oop.html" class="btn btn-neutral float-right" title="OOP design based on C code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="c-basics.html" class="btn btn-neutral float-left" title="C basics dig-in" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

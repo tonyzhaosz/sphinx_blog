@@ -92,10 +92,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#basics-of-cryptography">Basics of Cryptography</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#algorithms-and-key-management">Algorithms and Key Management</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#architecture-risk-analysis-and-remediation">Architecture Risk Analysis and Remediation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#some-best-practices-for-attack-surface-analysis">Some best practices for attack surface analysis</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#owasp-2017-top10-mitigation">OWASP 2017 Top10 mitigation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#thread-modelling-basics">Thread modelling basics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fundamentals-of-iot-architecture-and-design">Fundamentals of IoT Architecture and Design</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="mcu-security.html">Security Features in Modern MCU</a></li>
@@ -344,8 +341,8 @@
 </table><ul class="simple">
 <li>Digital signature provides non-repudiation assurance because every party to a communication has a unique key which they sign the message. The following diagrams illustrates a digital signature verification process:</li>
 </ul>
-<p><img alt="Sender of Digital Signature" src="https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Sender.png?raw=true" /></p>
-<p><img alt="Receiver of Digital Signature" src="https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Receiver.png?raw=true" /></p>
+<p><img alt="Sender of Digital Signature" src="https://gitee.com/tz_se/blog_pics/raw/master/digital_signature/Sender.png" /></p>
+<p><img alt="Receiver of Digital Signature" src="https://gitee.com/tz_se/blog_pics/raw/master/digital_signature/Receiver.png" /></p>
 <ul class="simple">
 <li>The above method ensures the integrity of the message, and the message itself could be encrypted.</li>
 </ul>
@@ -378,7 +375,7 @@ Usually use a hash function to hash the whole file to produce a certain length o
 </ol>
 </li>
 <li><p class="first">TLS supports various crypto methods by providing a cipher suites (illustrated below).
-<img alt="Cypher suite" src="https://github.com/TonyZhaoyu/blog_source/blob/master/pics/digital_signature/Cypher_suite.png?raw=true" /></p>
+<img alt="Cypher suite" src="https://gitee.com/tz_se/blog_pics/raw/master/digital_signature/Cypher_suite.png" /></p>
 </li>
 <li><p class="first">Best practices to ensure secure data communication:</p>
 <ol class="simple">
@@ -432,20 +429,19 @@ Key used in RAM should be cleared (like encryption and decryption) as soon as re
 </ol>
 </li>
 </ul>
-</div>
 <div class="section" id="some-best-practices-for-attack-surface-analysis">
-<h2>Some best practices for attack surface analysis<a class="headerlink" href="#some-best-practices-for-attack-surface-analysis" title="Permalink to this headline">¶</a></h2>
+<h3>Some best practices for attack surface analysis<a class="headerlink" href="#some-best-practices-for-attack-surface-analysis" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Shorten the code. Remove what’s not necessary.</li>
 <li>Reduce the number of entry points available to anonymous or untrusted users.</li>
 <li>Remove any privileges that are not explicitly required by the application.</li>
 </ul>
 </div>
+</div>
 <div class="section" id="owasp-2017-top10-mitigation">
 <h2>OWASP 2017 Top10 mitigation<a class="headerlink" href="#owasp-2017-top10-mitigation" title="Permalink to this headline">¶</a></h2>
-</div>
 <div class="section" id="thread-modelling-basics">
-<h2>Thread modelling basics<a class="headerlink" href="#thread-modelling-basics" title="Permalink to this headline">¶</a></h2>
+<h3>Thread modelling basics<a class="headerlink" href="#thread-modelling-basics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Thread modelling process includes: identify security objectives –&gt; create an application overview –&gt; decompose your application –&gt; identify threats –&gt; identify vulnerabilities –&gt; application overview. It is a iterative process and could be enhanced at run-time.</li>
 </ul>
@@ -483,7 +479,7 @@ Examining the application layer-by-layer based on the identified threats.</p>
 <p>Key contents in a report/documentation could include: security objectives, key scenarios, protected resources, threat list and vulnerability list.</p>
 </div>
 <div class="section" id="fundamentals-of-iot-architecture-and-design">
-<h2>Fundamentals of IoT Architecture and Design<a class="headerlink" href="#fundamentals-of-iot-architecture-and-design" title="Permalink to this headline">¶</a></h2>
+<h3>Fundamentals of IoT Architecture and Design<a class="headerlink" href="#fundamentals-of-iot-architecture-and-design" title="Permalink to this headline">¶</a></h3>
 <p>Think of two classes to categorize security requirements:
 * User access.
 1. How can users access IoT system? Via cloud, device or Mobile App.
@@ -536,6 +532,7 @@ f. Builds support for changing algorithms and keys when needed
 g. Documents concrete procedures to handle a key compromise
 h. Limits quantity of data encrypted with one key
 * Follow applicable regulations on use of cryptography, such as under PCI DSS requirement 3, you must protect cardholder data.</p>
+</div>
 </div>
 </div>
 

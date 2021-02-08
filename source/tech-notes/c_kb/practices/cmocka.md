@@ -1,5 +1,7 @@
 # A crash-course of using Cmocka
 
+> The use of Cmocka is deprecated. A better choice is to use Cmock (http://www.throwtheswitch.org/cmock) and (http://www.throwtheswitch.org/ceedling). 
+
 Unit testing is not just value validation using assertions. An important testing technique, namely mock, should be equally addressed. Cmocka provides a test framework of conducting mock features. The following content serves as a summary of two related links (https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#assert-functions and https://lwn.net/Articles/558106/), targeting to clarify the concept of mock and the usage of Cmocka.
 
 It is assumed that users are able to generate dynamically libraries of Cmocka. The test platform is on a Ubuntu. Unfortunately, LLVM on MacOS does not recognize *--wrap* option. Following the steps below to complete source code preparation:
@@ -7,7 +9,7 @@ It is assumed that users are able to generate dynamically libraries of Cmocka. T
 1. Download the source from https://cmocka.org/files/1.1/. Decompress the folder.
 2. Enter the decompressed folder and follow the commands above to build the source code. Line 3 (i.e., cmake ..) might be overlooked from time to time. Usally '..' points to where cmocka is.
 
-```bash
+```
 $ mkdir build
 $ cd build
 $ cmake ..
@@ -18,7 +20,7 @@ $ make -j4
 3. To show how the library to be integrated into your project, we use the chef_wrap example that comes with the cmocka package. Copy the chef_wrap folder from Cmocka example into a preferred path.
 4. Create a folder and name it as *lib* under chef_wrap folder. And copy the dynamic library (under the path build/src/) into the lib folder. You should be able to see three files (*libcmocka.so.0.4.1, libcmocka.s0.0 and libcmocka.so*) under the lib folder. Two of the files are symbolic links, and they are related to the *so* file as below. One could create the symbolic links if not exist.
 
-```bash
+```
 lrwxrwxrwx 1    14 Sep 22 22:07 libcmocka.so -> libcmocka.so.0
 lrwxrwxrwx 1    18 Sep 22 22:07 libcmocka.so.0 -> libcmocka.so.0.4.1
 -rwxr-xr-x 1 52768 Sep 22 22:07 libcmocka.so.0.4.1
@@ -30,7 +32,7 @@ lrwxrwxrwx 1    18 Sep 22 22:07 libcmocka.so.0 -> libcmocka.so.0.4.1
 6. Copy *cmocka.h* (under *include* folder) under the chef_wrap folder.
 7. Create a shell script to compile and link the source code. An example of such a script could be the following:
 
-```bash
+```
 # System variables.
 SYSTEM=$(uname)
 CC=gcc
