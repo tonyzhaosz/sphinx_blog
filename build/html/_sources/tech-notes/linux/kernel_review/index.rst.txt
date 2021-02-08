@@ -8,3 +8,4 @@ Contents in this directory:
     kernel-rev-hashtable.md
     kernel-rev-rbtree.md
     kernel-rev-typeof.md
+    kernel-dev-drv-basics.md
