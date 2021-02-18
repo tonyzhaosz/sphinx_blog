@@ -93,7 +93,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">C Code Knowledge Base</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="c-basics.html">C basics dig-in</a></li>
 <li class="toctree-l3"><a class="reference internal" href="c-com-tech.html">Techniques in C and compiler</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">OOP design based on C code</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">OOP design based on C code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#things-worth-noting">Things worth noting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#polymorphism-in-action">Polymorphism in action</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="practices/index.html">Practices</a></li>
 </ul>
 </li>
@@ -234,6 +238,7 @@
 <span class="c1">// Method(s) - Overwrite draw().</span>
 <span class="kt">void</span> <span class="nf">rec_draw</span><span class="p">(</span><span class="n">Shape</span> <span class="o">*</span><span class="n">me</span><span class="p">)</span> 
 <span class="p">{</span>
+    <span class="c1">// Explicit downcasting: ((Rectangle *)me)-&gt;height.</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Draw a rectangle. &quot;</span>
         <span class="s">&quot;Pos_x: %d, &quot;</span>
         <span class="s">&quot;Pos_y: %d, &quot;</span>
@@ -242,7 +247,7 @@
         <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span>
         <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_x</span><span class="p">,</span>
         <span class="n">me</span><span class="o">-&gt;</span><span class="n">pos_y</span><span class="p">,</span>
-        <span class="p">((</span><span class="n">Rectangle</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">,</span>
+        <span class="p">((</span><span class="n">Rectangle</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">,</span> 
         <span class="p">((</span><span class="n">Rectangle</span> <span class="o">*</span><span class="p">)</span><span class="n">me</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">);</span>
 <span class="p">}</span>
 

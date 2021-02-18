@@ -7,3 +7,4 @@ Contents in this directory:
 
     embedded-hardware.md
     embedded-tutorial.md
+    tinyml.md

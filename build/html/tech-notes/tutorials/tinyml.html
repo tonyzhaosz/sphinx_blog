@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basics of Machine Learning on Embedded Systems &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Specification of HA Protocols" href="../ha_spec/index.html" />
+    <link rel="prev" title="Embedded Software Tutorials" href="embedded-tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tech Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../books/index.html">Book Notes</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Tutorial Notes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="embedded-hardware.html">Embedded Hardware Tutorials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embedded-tutorial.html">Embedded Software Tutorials</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Basics of Machine Learning on Embedded Systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fundamentals-about-machine-learning">Fundamentals about machine learning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arm-core-support-for-ml">ARM core support for ML</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ml-software-framework-based-on-arm-core">ML software framework based on ARM core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ha_spec/index.html">HA Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux/index.html">Linux Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c_kb/index.html">C Code Knowledge Base</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iot-misc/index.html">IOT-MISC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tony's Doc System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Tech Notes</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorials</a> &raquo;</li>
+        
+      <li>Basics of Machine Learning on Embedded Systems</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tech-notes/tutorials/tinyml.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basics-of-machine-learning-on-embedded-systems">
+<h1>Basics of Machine Learning on Embedded Systems<a class="headerlink" href="#basics-of-machine-learning-on-embedded-systems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fundamentals-about-machine-learning">
+<h2>Fundamentals about machine learning<a class="headerlink" href="#fundamentals-about-machine-learning" title="Permalink to this headline">¶</a></h2>
+<p>Traditional algorithm works in a way that given raw data and rules, an algorithm is to produce <code class="docutils literal notranslate"><span class="pre">deterministic</span></code> output(s). AI/ML is a <code class="docutils literal notranslate"><span class="pre">probabilistic</span></code> way of presenting inference. A typical process for AI/ML is as follows:</p>
+<ul class="simple">
+<li>Users provide raw data and expected results and leverage AI/ML algorithms to produce certain <code class="docutils literal notranslate"><span class="pre">rules</span></code> or <code class="docutils literal notranslate"><span class="pre">models</span></code>. This is known as training phase.</li>
+<li>Then, the rules/models would be used to produce <code class="docutils literal notranslate"><span class="pre">probabilistic</span></code> predictions given raw data. This is known as inference phase.</li>
+</ul>
+<p>The following figure illustrates the phases:
+<img alt="Two phases in ML" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ML_basics_0.PNG" /></p>
+<p>For instance, during the training phase, ML is trained to detect cat from photos based on a huge database. Then, during inference phase, the model is able detect a cat from a non-precedented photo with 90% accuracy.</p>
+</div>
+<div class="section" id="arm-core-support-for-ml">
+<h2>ARM core support for ML<a class="headerlink" href="#arm-core-support-for-ml" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">ARM presents where tinyML could be used for:</p>
+<p><img alt="Where tinyML could be used" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/tinyML_applications.PNG" /></p>
+</li>
+<li><p class="first">The ARM core portfolio for ML support:</p>
+<p><img alt="ARM core portfolio for ML" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/arm_core_ml_0.PNG" /></p>
+<p><img alt="Suggested application vs ARM core" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/arm_core_ml_4.PNG" /></p>
+<p><img alt="More info on Cortex-M55" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/arm_core_ml_1.PNG" /></p>
+<p><img alt="More info on NPU core" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/arm_core_ml_2.PNG" /></p>
+</li>
+<li><p class="first">TensorFlow Lite deployment on ARM Core</p>
+<p><img alt="ARM core portfolio for ML" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/arm_core_ml_3.PNG" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="ml-software-framework-based-on-arm-core">
+<h2>ML software framework based on ARM core<a class="headerlink" href="#ml-software-framework-based-on-arm-core" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The usage of CMSIS-NN lib for optimization:</p>
+<p><img alt="CMSIS-NN for software framework" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ml_sw_arm_0.PNG" /></p>
+</li>
+<li><p class="first">Optimization based on SIMD instructions:</p>
+<p><img alt="SIMD optimization" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ml_sw_arm_1.PNG" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>In this article, Signal processing is key to embedded machine learning (https://www.edgeimpulse.com/blog/dsp-key-embedded-ml), there is a paragraph describing the difference between traditional DSP and ML (duplicated below).</p>
+<blockquote>
+<div>The result of the signal processing is then interpreted through simple rule-based systems. E.g. a message is sent when the total energy in a signal crosses a threshold. While these systems work it’s hard to detect complex events, as you’d need to program out every potential state.</div></blockquote>
+<blockquote>
+<div>You can train a machine learning model (not even necessarily a neural network) that looks at all the data in your dataset, cluster these based on the output of a signal processing pipeline (using K-means clustering), and then compare new data to the clusters. The model learns all the potential variations in your data and creates thresholds that are much more precise and fine-grained as you could build by hand.</div></blockquote>
+<p>Notice the word <code class="docutils literal notranslate"><span class="pre">precise</span></code> and <code class="docutils literal notranslate"><span class="pre">fine-grained</span></code> in ML.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ha_spec/index.html" class="btn btn-neutral float-right" title="Specification of HA Protocols" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="embedded-tutorial.html" class="btn btn-neutral float-left" title="Embedded Software Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Tony ZHAO
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
