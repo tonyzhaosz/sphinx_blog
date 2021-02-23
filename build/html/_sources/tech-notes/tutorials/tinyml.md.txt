@@ -66,6 +66,12 @@ Very helpful introduction of NN could be found in this link https://victorzhou.c
 
 ![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_7.PNG)
 
+Two major problem could happen during ML, and they are underfitting (e.g., rough threshold) and overfitting (pay too much on nuances). The following pics present such two problems.
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/overfitting_underfitting_1.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/overfitting_underfitting_2.PNG)
+
 
 ## References
 
