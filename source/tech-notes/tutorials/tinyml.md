@@ -42,6 +42,31 @@ For instance, during the training phase, ML is trained to detect cat from photos
 
     ![SIMD optimization](https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ml_sw_arm_1.PNG)
 
+
+## Datasets and feature extraction
+
+Collecting datasets serves as the elementary step in ML. The dataset should be collect in an imbalanced fashion to prevent naive classifiers (i.e., always predicts the same class regardless of the input). An example of 'bad' datasets is: 99% of field photos and 1% of dog photos would only result in field prediction.
+
+
+## Neural networks
+
+Very helpful introduction of NN could be found in this link https://victorzhou.com/blog/intro-to-neural-networks/. Also append some pics to improve understanding:
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_1.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_2.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_3.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_4.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_5.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_6.PNG)
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_7.PNG)
+
+
 ## References
 
 In this article, Signal processing is key to embedded machine learning (https://www.edgeimpulse.com/blog/dsp-key-embedded-ml), there is a paragraph describing the difference between traditional DSP and ML (duplicated below).

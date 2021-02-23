@@ -94,6 +94,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#fundamentals-about-machine-learning">Fundamentals about machine learning</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#arm-core-support-for-ml">ARM core support for ML</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#ml-software-framework-based-on-arm-core">ML software framework based on ARM core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets-and-feature-extraction">Datasets and feature extraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#neural-networks">Neural networks</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
@@ -184,8 +186,8 @@
 <li>Users provide raw data and expected results and leverage AI/ML algorithms to produce certain <code class="docutils literal notranslate"><span class="pre">rules</span></code> or <code class="docutils literal notranslate"><span class="pre">models</span></code>. This is known as training phase.</li>
 <li>Then, the rules/models would be used to produce <code class="docutils literal notranslate"><span class="pre">probabilistic</span></code> predictions given raw data. This is known as inference phase.</li>
 </ul>
-<p>The following figure illustrates the phases:
-<img alt="Two phases in ML" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ML_basics_0.PNG" /></p>
+<p>The following figure illustrates such phases:</p>
+<p><img alt="Two phases in ML" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ML_basics_0.PNG" /></p>
 <p>For instance, during the training phase, ML is trained to detect cat from photos based on a huge database. Then, during inference phase, the model is able detect a cat from a non-precedented photo with 90% accuracy.</p>
 </div>
 <div class="section" id="arm-core-support-for-ml">
@@ -215,6 +217,21 @@
 <p><img alt="SIMD optimization" src="https://gitee.com/tz_se/blog_pics/raw/master/machine_learning/ml_sw_arm_1.PNG" /></p>
 </li>
 </ul>
+</div>
+<div class="section" id="datasets-and-feature-extraction">
+<h2>Datasets and feature extraction<a class="headerlink" href="#datasets-and-feature-extraction" title="Permalink to this headline">¶</a></h2>
+<p>Collecting datasets serves as the elementary step in ML. The dataset should be collect in an imbalanced fashion to prevent naive classifiers (i.e., always predicts the same class regardless of the input). An example of ‘bad’ datasets is: 99% of field photos and 1% of dog photos would only result in field prediction.</p>
+</div>
+<div class="section" id="neural-networks">
+<h2>Neural networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>Very helpful introduction of NN could be found in this link https://victorzhou.com/blog/intro-to-neural-networks/. Also append some pics to improve understanding:</p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_1.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_1.PNG" /></p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_2.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_2.PNG" /></p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_3.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_3.PNG" /></p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_4.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_4.PNG" /></p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_5.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_5.PNG" /></p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_6.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_6.PNG" /></p>
+<p><img alt="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_7.PNG" src="https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/NN_7.PNG" /></p>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
