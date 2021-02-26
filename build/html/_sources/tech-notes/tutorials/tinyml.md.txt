@@ -72,6 +72,10 @@ Two major problem could happen during ML, and they are underfitting (e.g., rough
 
 ![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/overfitting_underfitting_2.PNG)
 
+The model could be tailor-made for embedded MCUs by sacrificing some precision (floating point scaling to integers). The following figure shows the model in real-time operations. 
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/model_in_action.PNG)
+
 
 ## References
 
