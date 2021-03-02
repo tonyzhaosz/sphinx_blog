@@ -72,9 +72,25 @@ Two major problem could happen during ML, and they are underfitting (e.g., rough
 
 ![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/overfitting_underfitting_2.PNG)
 
-The model could be tailor-made for embedded MCUs by sacrificing some precision (floating point scaling to integers). The following figure shows the model in real-time operations. 
+The model could be tailor-made for embedded MCUs by sacrificing some precision (floating point scaling to integers). The following figure shows the model in real-time operations. Notice the model introduced here is categorized as DNN (dense neural network). 
 
 ![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/model_in_action.PNG)
+
+Hyperparameters should be tweaked to models. The following figure lists multiple situations reflecting epoch cycles:
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/hyperparam_epoch.PNG)
+
+The following figure lists multiple situations reflecting learning rate:
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/hyperparam_learning_rate.PNG)
+
+Threshold picking in action:
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/threshold_picking.PNG)
+
+Alternatively, ROC curve could be used to give us more insights on false-positive vs true positive. This could be done by sliding threshold in the histogram. In theory, if there's a perfect threshold (clear splitting of "hello" vs. "not hello"), the ROC curve should display a perfect sharp edge.
+
+![](https://gitee.com/tz_se/blog_pics/raw/master/neural_networks/roc_curve.PNG)
 
 
 ## References
