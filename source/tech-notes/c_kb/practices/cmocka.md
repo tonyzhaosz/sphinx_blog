@@ -52,7 +52,7 @@ $LD $SRC_DIR/chef.o $SRC_DIR/waiter_test_wrap.o -o $SRC_DIR/chef_test -L./$LIB_D
 
 8. The execution result is as follows:
 
-```log
+```
 [==========] Running 2 test(s).
 [ RUN      ] test_order_hotdog
 Chef couldn't cook hotdog: Unknown error!

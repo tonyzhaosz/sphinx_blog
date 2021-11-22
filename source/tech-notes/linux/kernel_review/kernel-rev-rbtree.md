@@ -1,4 +1,4 @@
-# Red-black tree (aka., rbTree)
+# Red-black tree
 
 The rbTree is a kind of self-balancing binary search tree with the following restrictions (quoted from Linux kernel lib/rbtree.c):
 
@@ -30,7 +30,7 @@ It is a binary search tree (BST for short), and hence it allows efficient in-ord
 
 The following example shows the difference of two trees (red nodes in rbTree are encapsulated with *[]*). BST on the left shows the height of 4, while rbTree on the right shows the height of 3.
 
-```c
+```
             BST                     rbTree
              1                        3
             / \                      / \
@@ -48,13 +48,13 @@ It's easy to derive tree operations (e.g., search, max, min, insert, delete, etc
 
 >> There are a number of red-black trees in use in the kernel. The deadline and CFQ I/O schedulers employ rbtrees to track requests; the packet CD/DVD driver does the same. The high-resolution timer code uses an rbtree to organize outstanding timer requests. The ext3 filesystem tracks directory entries in a red-black tree. Virtual memory areas (VMAs) are tracked with red-black trees, as are epoll file descriptors, cryptographic keys, and network packets in the “hierarchical token bucket” scheduler.
 
-Another usage is the task scheduler of Linux kernel. Here's an interesting read: https://developer.ibm.com/tutorials/l-completely-fair-scheduler/.
+Another usage is the task scheduler of Linux kernel. Here's an interesting read: <https://developer.ibm.com/tutorials/l-completely-fair-scheduler/>.
 
 ## A practical example of tree insertion.
 
-The insertion algorithm to be used in rbTree balancing is explained in https://www.geeksforgeeks.org/red-black-tree-set-2-insert/. Hereby, the explanation will not be reproduced, but a visual example of rbTree insertion is given below:
+The insertion algorithm to be used in rbTree balancing is explained in <https://www.geeksforgeeks.org/red-black-tree-set-2-insert/>. Hereby, the explanation will not be reproduced, but a visual example of rbTree insertion is given below:
 
-```c
+```
 /*
  * Insert 2, 6 and 13 into the following rbTree ([] indicates red nodes).
  * Leaf nodes are omitted.
@@ -127,11 +127,11 @@ The insertion algorithm to be used in rbTree balancing is explained in https://w
       [2]  [6]      [13]   [26]
 ```
 
-The deletion algorithm described in https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/ is not as straightforward as the insertion algorithm. The descriptions from http://gauss.ececs.uc.edu/RedBlack/redblack.html could provide some help.
+The deletion algorithm described in <https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/> is not as straightforward as the insertion algorithm. The descriptions from <http://gauss.ececs.uc.edu/RedBlack/redblack.html> could provide some help.
 
 ## An example of using rbTree lib in the kernel.
 
-An example of using kernel implementation of rbTree could refer to lib/rbtree_test.c, and an online material http://www.infradead.org/~mchehab/kernel_docs/unsorted/rbtree.html. A remarkable thing about the implementation is the code maintains flexibility to users. Users could define own data structures which includes the *rb_node* structure, and use *container_of()* or *rb_entry()* (a wrapper of container_of) to access user defined data. For example:
+An example of using kernel implementation of rbTree could refer to lib/rbtree_test.c, and an online material <http://www.infradead.org/~mchehab/kernel_docs/unsorted/rbtree.html>. A remarkable thing about the implementation is the code maintains flexibility to users. Users could define own data structures which includes the *rb_node* structure, and use *container_of()* or *rb_entry()* (a wrapper of container_of) to access user defined data. For example:
 
 ```c
 struct mytype {
@@ -318,9 +318,9 @@ Here are some notes on the insertion *__rb_insert()* method. Conditions from lin
 
 ## Appendix: algorithm introduction to rbTree
 
-This section provides supplemental information for rbTree. Most of the materials are based on the slides in  https://www.cs.purdue.edu/homes/ayg/CS251/slides/chap13a.pdf and http://gauss.ececs.uc.edu/RedBlack/redblack.html. The red-black tree could be derived from 2-3-4 tree, in which a node could have 1/2/3 keys and have 2/3/4 children respectively. The following shows an 2-3-4 tree.
+This section provides supplemental information for rbTree. Most of the materials are based on the slides in <https://www.cs.purdue.edu/homes/ayg/CS251/slides/chap13a.pdf> and <http://gauss.ececs.uc.edu/RedBlack/redblack.html>. The red-black tree could be derived from 2-3-4 tree, in which a node could have 1/2/3 keys and have 2/3/4 children respectively. The following shows an 2-3-4 tree.
 
-```c
+```
           2-3-4 tree
 
               n

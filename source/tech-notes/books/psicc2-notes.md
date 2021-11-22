@@ -2,7 +2,7 @@
 
 <img src="http://www.state-machine.com/qpc/qp_banner.jpg" width="400" style="border-style: none">
 
-*Courtesy of Quantum Leaps:* http://www.state-machine.com/
+*Courtesy of Quantum Leaps:* <http://www.state-machine.com/>
 
 ## Software tracing for event-driven systems
 
@@ -30,7 +30,7 @@ Downcasting may be unsafe if calling methods exclusively to the derived class. N
 
 ### Inline functions in C
 
-This technique is rarely in my project, as function call overhead is not a huge problem. It's worth noting in some embedded systems, performance does matter, and hence here are some discussions based on the article: http://www.drdobbs.com/the-new-c-inline-functions/184401540.
+This technique is rarely in my project, as function call overhead is not a huge problem. It's worth noting in some embedded systems, performance does matter, and hence here are some discussions based on the article: <http://www.drdobbs.com/the-new-c-inline-functions/184401540>.
 
 When dealing with inline functions, a question came to my mind is how inline function saves time compared to normal function calls. In the aforementioned article, there's a nice example:
 

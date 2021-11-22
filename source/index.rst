@@ -11,12 +11,12 @@ This is the entry for Tony's documentation system, on the basis of Sphinx + Mark
 Contents:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    
-   Blogs <blogs/index>
    Tech Notes <tech-notes/index>
-   RISC <risc/risc-notes.md>
+   RISC <risc/index>
    IOT-MISC <iot-misc/index>
+   Archive <archive/index>
 
 
 Indices and tables

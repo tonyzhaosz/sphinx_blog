@@ -112,4 +112,4 @@ flags &= ~O_NONBLOCK;       // Disable O_NONBLOCK bit
 fcntl(fd, F_SETFL, flags);
 ```
 
-A example of a simple client and server program could be viewed in http://www.linuxhowtos.org/C_C++/socket.htm.
+A example of a simple client and server program could be viewed in <http://www.linuxhowtos.org/C_C++/socket.htm>.

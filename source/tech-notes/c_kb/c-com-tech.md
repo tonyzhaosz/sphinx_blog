@@ -25,7 +25,7 @@ testStructPtr * array = (testStructPtr *)malloc(ARRAY_SIZE * sizeof(testStructPt
 
 ## GCC - linker example
 
-Link: https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil
+Link: <https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil>
 
 For example, all the shared library and the test file are in the same folder.
 
@@ -52,7 +52,7 @@ The symbol *__attribute__((weak))* is specifically used by GCC for compilation a
 
 By default, when we declare the implementation of a function in a C file, then the function symbol is defined as a strong symbol. Any attempt to redefine this strong symbol will lead to the well know error you may know: the multiple definitions of error.
 
-```bash
+```
 libhello.a(hello.c.o): In function 'open_i2c':
 lib/hello.c:15: multiple definition of `open_i2c'
 tests_do_something.c.o:tests_do_something.c:12: first defined here
@@ -60,7 +60,7 @@ tests_do_something.c.o:tests_do_something.c:12: first defined here
 
 >**Weak symbols, however, can be redefined.** This is exactly what we need in order to test that our high-level function correctly calls our low-level function, while these to functions being implemented in the same source file.
 
-Reference: https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#declaring-tests.
+Reference: <https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#declaring-tests>.
 
 * Wrap functions.
 
@@ -96,7 +96,7 @@ When we use gcc to compile and link, we need to specify something like the follo
 gcc src.c test.c -Wl,--wrap=close -o test
 ```
 
-Reference: https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html.
+Reference: <https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html>.
 
 ***
 
@@ -190,7 +190,7 @@ Hereby, paho-mqtt-client [Github link](https://github.com/eclipse/paho.mqtt.c) l
 #define DLLExport __attribute__ ((visibility (&default)))
 ```
 
-**__attribute__ ((visibility (“default”)))** could be referred to this link (http://gcc.gnu.org/wiki/Visibility). Herein, I duplicate some of the explanations: “Default visibility is the normal case for ELF. This value is available for the visibility attribute to override other options that may change the assumed visibility of symbols“.  In short, it indicates similar meaning as ‘export’. What are the ways to define a hook function (function pointer)? Firstly, as described in part I, using the keyword ‘typedef ‘ with an explicit ‘* ‘ prefix could serve the case. e.g., typedef void (* dummyMethod) (int argument1); Secondly, just like the way in MQTTClient.h, the explicit ‘*’ prefix no longer exists. e.g., line 334:
+**__attribute__ ((visibility (“default”)))** could be referred to this link (<http://gcc.gnu.org/wiki/Visibility>). Herein, I duplicate some of the explanations: “Default visibility is the normal case for ELF. This value is available for the visibility attribute to override other options that may change the assumed visibility of symbols“.  In short, it indicates similar meaning as ‘export’. What are the ways to define a hook function (function pointer)? Firstly, as described in part I, using the keyword ‘typedef ‘ with an explicit ‘* ‘ prefix could serve the case. e.g., typedef void (* dummyMethod) (int argument1); Secondly, just like the way in MQTTClient.h, the explicit ‘*’ prefix no longer exists. e.g., line 334:
 
 2. What are the ways to define a hook function (function pointer)? Firstly, as described in part I, using the keyword ‘typedef ‘ with an explicit ‘* ‘ prefix could serve the case. e.g., typedef void (* dummyMethod) (int argument1); Secondly, just like the way in MQTTClient.h, the explicit ‘*’ prefix no longer exists. e.g., line 334:
 
@@ -281,7 +281,7 @@ return 0;
 
 Output:
 
-```c
+```
 Value:  1234
 Value:  0xffe2ac6c
 Value:  0xffe2ac44
@@ -320,7 +320,7 @@ int main(int argc, char *argv[])
 
 Output:
 
-```c
+```
 max_t result: c = 6
 max_t result: d = 8
 ```

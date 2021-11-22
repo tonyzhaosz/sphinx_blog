@@ -1,4 +1,4 @@
-Home Blogs
+Archive
 ==========
 Contents in this directory:
 
