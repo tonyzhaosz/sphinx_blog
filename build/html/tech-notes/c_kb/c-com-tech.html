@@ -1,33 +1,69 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Techniques in C and compiler &mdash; Tony&#39;s Doc System 0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Techniques in C and compiler &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script type="text/javascript" src="../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../_static/doctools.js"></script>
         <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script src="../../_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="OOP design based on C code" href="c-oop.html" />
     <link rel="prev" title="C basics dig-in" href="c-basics.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Tony's Doc System
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
           </a>
+
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -35,9 +71,19 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../blogs/index.html">Blogs</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tech Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../books/index.html">Book Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorial Notes</a></li>
@@ -60,36 +106,78 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../risc/index.html">RISC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../iot-misc/index.html">IOT-MISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../archive/index.html">Archive</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Tony's Doc System</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
           <li><a href="../index.html">Tech Notes</a> &raquo;</li>
+        
           <li><a href="index.html">C Code Knowledge Base</a> &raquo;</li>
+        
       <li>Techniques in C and compiler</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+            
             <a href="../../_sources/tech-notes/c_kb/c-com-tech.md.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <div class="section" id="techniques-in-c-and-compiler">
 <h1>Techniques in C and compiler<a class="headerlink" href="#techniques-in-c-and-compiler" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="malloc-an-array-of-pointers">
@@ -113,7 +201,7 @@
 <hr class="docutils" />
 <div class="section" id="gcc-linker-example">
 <h2>GCC - linker example<a class="headerlink" href="#gcc-linker-example" title="Permalink to this headline">¶</a></h2>
-<p>Link: https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil</p>
+<p>Link: <a class="reference external" href="https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil">https://stackoverflow.com/questions/8835108/how-to-specify-non-default-shared-library-path-in-gcc-linux-getting-error-whil</a></p>
 <p>For example, all the shared library and the test file are in the same folder.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Wall test_basics.c -o <span class="nb">test</span> -L./ -lcmocka -Wl,-rpath<span class="o">=</span>./
 </pre></div>
@@ -134,14 +222,14 @@
 <li>Weak attribute symbol.</li>
 </ul>
 <p>By default, when we declare the implementation of a function in a C file, then the function symbol is defined as a strong symbol. Any attempt to redefine this strong symbol will lead to the well know error you may know: the multiple definitions of error.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>libhello.a(hello.c.o): In function &#39;open_i2c&#39;:
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>libhello.a(hello.c.o): In function &#39;open_i2c&#39;:
 lib/hello.c:15: multiple definition of `open_i2c&#39;
 tests_do_something.c.o:tests_do_something.c:12: first defined here
 </pre></div>
 </div>
 <blockquote>
 <div><strong>Weak symbols, however, can be redefined.</strong> This is exactly what we need in order to test that our high-level function correctly calls our low-level function, while these to functions being implemented in the same source file.</div></blockquote>
-<p>Reference: https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#declaring-tests.</p>
+<p>Reference: <a class="reference external" href="https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#declaring-tests">https://blog.microjoe.org/2017/unit-tests-c-cmocka-coverage-cmake.html#declaring-tests</a>.</p>
 <ul class="simple">
 <li>Wrap functions.</li>
 </ul>
@@ -169,7 +257,7 @@ tests_do_something.c.o:tests_do_something.c:12: first defined here
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="n">src</span><span class="o">.</span><span class="n">c</span> <span class="n">test</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">Wl</span><span class="p">,</span><span class="o">--</span><span class="n">wrap</span><span class="o">=</span><span class="n">close</span> <span class="o">-</span><span class="n">o</span> <span class="n">test</span>
 </pre></div>
 </div>
-<p>Reference: https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html.</p>
+<p>Reference: <a class="reference external" href="https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html">https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html</a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="function-pointers">
@@ -252,7 +340,7 @@ tests_do_something.c.o:tests_do_something.c:12: first defined here
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define DLLExport __attribute__ ((visibility (&amp;default)))</span>
 </pre></div>
 </div>
-<p><strong><strong>attribute</strong> ((visibility (“default”)))</strong> could be referred to this link (http://gcc.gnu.org/wiki/Visibility). Herein, I duplicate some of the explanations: “Default visibility is the normal case for ELF. This value is available for the visibility attribute to override other options that may change the assumed visibility of symbols“.  In short, it indicates similar meaning as ‘export’. What are the ways to define a hook function (function pointer)? Firstly, as described in part I, using the keyword ‘typedef ‘ with an explicit ‘* ‘ prefix could serve the case. e.g., typedef void (* dummyMethod) (int argument1); Secondly, just like the way in MQTTClient.h, the explicit ‘*’ prefix no longer exists. e.g., line 334:</p>
+<p><strong><strong>attribute</strong> ((visibility (“default”)))</strong> could be referred to this link (<a class="reference external" href="http://gcc.gnu.org/wiki/Visibility">http://gcc.gnu.org/wiki/Visibility</a>). Herein, I duplicate some of the explanations: “Default visibility is the normal case for ELF. This value is available for the visibility attribute to override other options that may change the assumed visibility of symbols“.  In short, it indicates similar meaning as ‘export’. What are the ways to define a hook function (function pointer)? Firstly, as described in part I, using the keyword ‘typedef ‘ with an explicit ‘* ‘ prefix could serve the case. e.g., typedef void (* dummyMethod) (int argument1); Secondly, just like the way in MQTTClient.h, the explicit ‘*’ prefix no longer exists. e.g., line 334:</p>
 <ol class="simple">
 <li>What are the ways to define a hook function (function pointer)? Firstly, as described in part I, using the keyword ‘typedef ‘ with an explicit ‘* ‘ prefix could serve the case. e.g., typedef void (* dummyMethod) (int argument1); Secondly, just like the way in MQTTClient.h, the explicit ‘*’ prefix no longer exists. e.g., line 334:</li>
 </ol>
@@ -335,9 +423,9 @@ An example of client initialisation and MQTTClient_setCallbacks instantiation is
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">Value</span><span class="p">:</span>  <span class="mi">1234</span>
-<span class="nl">Value</span><span class="p">:</span>  <span class="mh">0xffe2ac6c</span>
-<span class="nl">Value</span><span class="p">:</span>  <span class="mh">0xffe2ac44</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Value</span><span class="p">:</span>  <span class="mi">1234</span>
+<span class="n">Value</span><span class="p">:</span>  <span class="mh">0xffe2ac6c</span>
+<span class="n">Value</span><span class="p">:</span>  <span class="mh">0xffe2ac44</span>
 </pre></div>
 </div>
 </div>
@@ -370,8 +458,8 @@ An example of client initialisation and MQTTClient_setCallbacks instantiation is
 </pre></div>
 </div>
 <p>Output:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">max_t</span> <span class="nl">result</span><span class="p">:</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">max_t</span> <span class="nl">result</span><span class="p">:</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">8</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">max_t</span> <span class="n">result</span><span class="p">:</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">max_t</span> <span class="n">result</span><span class="p">:</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">8</span>
 </pre></div>
 </div>
 <p>This example is inspired by the Linux kernel code, where <em>max_t</em> resides in kernel.h file. Notice the key is the brackets. If they are removed, compilation error would emerge. What also noticeable is the <em>type</em> parameter for run-time type casting.</p>
@@ -380,33 +468,58 @@ An example of client initialisation and MQTTClient_setCallbacks instantiation is
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="c-basics.html" class="btn btn-neutral float-left" title="C basics dig-in" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="c-oop.html" class="btn btn-neutral float-right" title="OOP design based on C code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="c-oop.html" class="btn btn-neutral float-right" title="OOP design based on C code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="c-basics.html" class="btn btn-neutral float-left" title="C basics dig-in" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Tony ZHAO.</p>
-  </div>
+    <p>
+        
+        &copy; Copyright 2021, Tony ZHAO
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

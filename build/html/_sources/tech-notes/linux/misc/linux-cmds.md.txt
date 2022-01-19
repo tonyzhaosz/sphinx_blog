@@ -24,16 +24,18 @@
 
 * Usage:
 
-  ┌── ln(1) link, ln -- make links
-  │   ┌── Create a symbolic link.
-  │   │                         ┌── the optional path to the intended symlink
-  │   │                         │   if omitted, symlink is in . named as destination
-  │   │                         │   can use . or ~ or other relative paths
-  │   │                   ┌─────┴────────┐
-  ln -s /path/to/original /path/to/symlink
-        └───────┬───────┘
-                └── the path to the original file/folder
-                    can use . or ~ or other relative paths
+  ```bash
+  $ ln -s /path/to/original /path/to/symlink
+  ```
+
+  `ln`: ln(1) link, ln -- make links.
+
+  `-s`: Create a symbolic link.
+
+  `/path/to/original`: The path to the original file/folder. Can use . or ~ or other relative paths.
+
+  `/path/to/symlink`: The optional path to the intended symlink. If omitted, symlink is in . named as destination. Can use . or ~ or other relative path.
+
 * Example:
 
   ```bash
@@ -167,7 +169,7 @@ IoT Ecosystems:
   ```
 
 * How to un-track a folder but keep the folder on your disk.
-Link: https://stackoverflow.com/questions/24290358/remove-a-folder-from-git-tracking
+Link: <https://stackoverflow.com/questions/24290358/remove-a-folder-from-git-tracking>
 
 This also works for the situation where an unwanted submodule causing fatal error when 'git add'. The basic idea is to remove the folder from git's cache.
 
@@ -201,8 +203,8 @@ Notice the email account is optional. You could pass key saving path and passphr
 
 Reference:
 
-* https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html
-* https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2
+* <https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html>
+* <https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2>
 
 ***
 

@@ -1,4 +1,4 @@
-# The Element of Computing Systems (aka., Nand2tetris)
+# The Element of Computing Systems (Nand2tetris)
 
 ## Nand2Tetris reference book
 

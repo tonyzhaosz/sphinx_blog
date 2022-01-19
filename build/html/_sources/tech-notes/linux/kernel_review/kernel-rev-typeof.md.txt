@@ -1,4 +1,4 @@
-# The famous "typeof" and "container_of"
+# "TYPEOF" and "CONTAINER_OF"
 
 ## "typeof" in the kernel
 

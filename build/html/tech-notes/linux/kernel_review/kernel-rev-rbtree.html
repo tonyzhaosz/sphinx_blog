@@ -1,33 +1,69 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html4" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Red-black tree (aka., rbTree) &mdash; Tony&#39;s Doc System 0.1 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Red-black tree &mdash; Tony&#39;s Doc System 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
         <script type="text/javascript" src="../../../_static/language_data.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="The famous “typeof” and “container_of”" href="kernel-rev-typeof.html" />
+    <link rel="next" title="“TYPEOF” and “CONTAINER_OF”" href="kernel-rev-typeof.html" />
     <link rel="prev" title="Hash table" href="kernel-rev-hashtable.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Tony's Doc System
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> Tony's Doc System
+          
+
+          
           </a>
+
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -35,9 +71,19 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../blogs/index.html">Blogs</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Tech Notes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../books/index.html">Book Notes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorial Notes</a></li>
@@ -45,8 +91,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Linux Notes</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Kernel Knowledge Base</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="kernel-rev-hashtable.html">Hash table</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Red-black tree (aka., rbTree)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel-rev-typeof.html">The famous “typeof” and “container_of”</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Red-black tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel-rev-typeof.html">“TYPEOF” and “CONTAINER_OF”</a></li>
 <li class="toctree-l4"><a class="reference internal" href="kernel-dev-drv-basics.html">Basics of device driver</a></li>
 </ul>
 </li>
@@ -56,39 +102,82 @@
 <li class="toctree-l2"><a class="reference internal" href="../../c_kb/index.html">C Code Knowledge Base</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../risc/risc-notes.html">RISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../risc/index.html">RISC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../iot-misc/index.html">IOT-MISC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../archive/index.html">Archive</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">Tony's Doc System</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
           <li><a href="../../index.html">Tech Notes</a> &raquo;</li>
+        
           <li><a href="../index.html">Linux Notes</a> &raquo;</li>
+        
           <li><a href="index.html">Kernel Knowledge Base</a> &raquo;</li>
-      <li>Red-black tree (aka., rbTree)</li>
+        
+      <li>Red-black tree</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+            
             <a href="../../../_sources/tech-notes/linux/kernel_review/kernel-rev-rbtree.md.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
-  <div class="section" id="red-black-tree-aka-rbtree">
-<h1>Red-black tree (aka., rbTree)<a class="headerlink" href="#red-black-tree-aka-rbtree" title="Permalink to this headline">¶</a></h1>
+            
+  <div class="section" id="red-black-tree">
+<h1>Red-black tree<a class="headerlink" href="#red-black-tree" title="Permalink to this headline">¶</a></h1>
 <p>The rbTree is a kind of self-balancing binary search tree with the following restrictions (quoted from Linux kernel lib/rbtree.c):</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * red-black trees properties:  http://en.wikipedia.org/wiki/Rbtree</span>
@@ -115,14 +204,14 @@
 <div class="section" id="why-using-rbtree-over-bst">
 <h2>Why using rbTree over BST?<a class="headerlink" href="#why-using-rbtree-over-bst" title="Permalink to this headline">¶</a></h2>
 <p>The following example shows the difference of two trees (red nodes in rbTree are encapsulated with <em>[]</em>). BST on the left shows the height of 4, while rbTree on the right shows the height of 3.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>            BST                     rbTree
-             1                        3
-            / \                      / \
-       (null)  2                    2   4
-                \                  /
-                 3               [1]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>            <span class="n">BST</span>                     <span class="n">rbTree</span>
+             <span class="mi">1</span>                        <span class="mi">3</span>
+            <span class="o">/</span> \                      <span class="o">/</span> \
+       <span class="p">(</span><span class="n">null</span><span class="p">)</span>  <span class="mi">2</span>                    <span class="mi">2</span>   <span class="mi">4</span>
+                \                  <span class="o">/</span>
+                 <span class="mi">3</span>               <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                   \
-                   4
+                   <span class="mi">4</span>
 </pre></div>
 </div>
 <p>It’s easy to derive tree operations (e.g., search, max, min, insert, delete, etc) for BST take O(n) time where n is the height of the BST, and for rbTree take O(logn) time where n is the number of nodes. From the example we could see that the big-O time for BST is O(4) while for rbTree is O(2). This proves that since rbTree has a bounded O(logN) complexity, it is better than BST which has a worst-case O(N) complexity.</p>
@@ -133,88 +222,88 @@
 <div><blockquote>
 <div>There are a number of red-black trees in use in the kernel. The deadline and CFQ I/O schedulers employ rbtrees to track requests; the packet CD/DVD driver does the same. The high-resolution timer code uses an rbtree to organize outstanding timer requests. The ext3 filesystem tracks directory entries in a red-black tree. Virtual memory areas (VMAs) are tracked with red-black trees, as are epoll file descriptors, cryptographic keys, and network packets in the “hierarchical token bucket” scheduler.</div></blockquote>
 </div></blockquote>
-<p>Another usage is the task scheduler of Linux kernel. Here’s an interesting read: https://developer.ibm.com/tutorials/l-completely-fair-scheduler/.</p>
+<p>Another usage is the task scheduler of Linux kernel. Here’s an interesting read: <a class="reference external" href="https://developer.ibm.com/tutorials/l-completely-fair-scheduler/">https://developer.ibm.com/tutorials/l-completely-fair-scheduler/</a>.</p>
 </div>
 <div class="section" id="a-practical-example-of-tree-insertion">
 <h2>A practical example of tree insertion.<a class="headerlink" href="#a-practical-example-of-tree-insertion" title="Permalink to this headline">¶</a></h2>
-<p>The insertion algorithm to be used in rbTree balancing is explained in https://www.geeksforgeeks.org/red-black-tree-set-2-insert/. Hereby, the explanation will not be reproduced, but a visual example of rbTree insertion is given below:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>/*
- * Insert 2, 6 and 13 into the following rbTree ([] indicates red nodes).
- * Leaf nodes are omitted.
- */
-              7
-            /   \
-           3    [18]
-                /  \
-              10    22
-             /  \     \
-          [8]  [11]   [26]
+<p>The insertion algorithm to be used in rbTree balancing is explained in <a class="reference external" href="https://www.geeksforgeeks.org/red-black-tree-set-2-insert/">https://www.geeksforgeeks.org/red-black-tree-set-2-insert/</a>. Hereby, the explanation will not be reproduced, but a visual example of rbTree insertion is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Insert</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span> <span class="ow">and</span> <span class="mi">13</span> <span class="n">into</span> <span class="n">the</span> <span class="n">following</span> <span class="n">rbTree</span> <span class="p">([]</span> <span class="n">indicates</span> <span class="n">red</span> <span class="n">nodes</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">Leaf</span> <span class="n">nodes</span> <span class="n">are</span> <span class="n">omitted</span><span class="o">.</span>
+ <span class="o">*/</span>
+              <span class="mi">7</span>
+            <span class="o">/</span>   \
+           <span class="mi">3</span>    <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+                <span class="o">/</span>  \
+              <span class="mi">10</span>    <span class="mi">22</span>
+             <span class="o">/</span>  \     \
+          <span class="p">[</span><span class="mi">8</span><span class="p">]</span>  <span class="p">[</span><span class="mi">11</span><span class="p">]</span>   <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
 
-// Step1: insert 2. This is fairly simple.
-              7
-            /   \
-           3    [18]
-          /      /  \
-        [2]    10    22
-              /  \     \
-           [8]  [11]   [26]
-// Step2: insert 6. This is fairly simple.
-              7
-            /   \
-           3    [18]
-         /  \    /  \
-       [2]  [6] 10    22
-               /  \     \
-             [8] [11]  [26]
-// Step3: standard BST insert 13.
-               7
-             /   \
-            3    [18]
-          /  \    /  \
-        [2]  [6] 10    22
-                /  \     \
-              [8] [11]  [26]
+<span class="o">//</span> <span class="n">Step1</span><span class="p">:</span> <span class="n">insert</span> <span class="mf">2.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">fairly</span> <span class="n">simple</span><span class="o">.</span>
+              <span class="mi">7</span>
+            <span class="o">/</span>   \
+           <span class="mi">3</span>    <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+          <span class="o">/</span>      <span class="o">/</span>  \
+        <span class="p">[</span><span class="mi">2</span><span class="p">]</span>    <span class="mi">10</span>    <span class="mi">22</span>
+              <span class="o">/</span>  \     \
+           <span class="p">[</span><span class="mi">8</span><span class="p">]</span>  <span class="p">[</span><span class="mi">11</span><span class="p">]</span>   <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">Step2</span><span class="p">:</span> <span class="n">insert</span> <span class="mf">6.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">fairly</span> <span class="n">simple</span><span class="o">.</span>
+              <span class="mi">7</span>
+            <span class="o">/</span>   \
+           <span class="mi">3</span>    <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+         <span class="o">/</span>  \    <span class="o">/</span>  \
+       <span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="mi">10</span>    <span class="mi">22</span>
+               <span class="o">/</span>  \     \
+             <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span>  <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">Step3</span><span class="p">:</span> <span class="n">standard</span> <span class="n">BST</span> <span class="n">insert</span> <span class="mf">13.</span>
+               <span class="mi">7</span>
+             <span class="o">/</span>   \
+            <span class="mi">3</span>    <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+          <span class="o">/</span>  \    <span class="o">/</span>  \
+        <span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="mi">10</span>    <span class="mi">22</span>
+                <span class="o">/</span>  \     \
+              <span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span>  <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
                      \
-                     [13]
-// Step4: The parent of 13 is NOT BLACK and the uncle of 13 is RED.
-//        Need to follow case 3a. The result is as below:
-                7
-              /   \
-             3    [18]
-           /  \    /  \
-        [2]  [6] [10]  22
-                 /  \    \
-                8   11   [26]
+                     <span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">Step4</span><span class="p">:</span> <span class="n">The</span> <span class="n">parent</span> <span class="n">of</span> <span class="mi">13</span> <span class="ow">is</span> <span class="n">NOT</span> <span class="n">BLACK</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">uncle</span> <span class="n">of</span> <span class="mi">13</span> <span class="ow">is</span> <span class="n">RED</span><span class="o">.</span>
+<span class="o">//</span>        <span class="n">Need</span> <span class="n">to</span> <span class="n">follow</span> <span class="n">case</span> <span class="mi">3</span><span class="n">a</span><span class="o">.</span> <span class="n">The</span> <span class="n">result</span> <span class="ow">is</span> <span class="k">as</span> <span class="n">below</span><span class="p">:</span>
+                <span class="mi">7</span>
+              <span class="o">/</span>   \
+             <span class="mi">3</span>    <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+           <span class="o">/</span>  \    <span class="o">/</span>  \
+        <span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span>  <span class="mi">22</span>
+                 <span class="o">/</span>  \    \
+                <span class="mi">8</span>   <span class="mi">11</span>   <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
                       \
-                     [13]
-// Step5: Now the new node becomes 10 which previous being a grandparent.
-//        Need to follow case 3 right left situation. After right rotation,
-//        the result is as below:
-                7
-              /   \
-             3    [10]
-           /  \    /  \
-         [2]  [6] 8   [18]
-                      /  \
-                     11   22  
+                     <span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">Step5</span><span class="p">:</span> <span class="n">Now</span> <span class="n">the</span> <span class="n">new</span> <span class="n">node</span> <span class="n">becomes</span> <span class="mi">10</span> <span class="n">which</span> <span class="n">previous</span> <span class="n">being</span> <span class="n">a</span> <span class="n">grandparent</span><span class="o">.</span>
+<span class="o">//</span>        <span class="n">Need</span> <span class="n">to</span> <span class="n">follow</span> <span class="n">case</span> <span class="mi">3</span> <span class="n">right</span> <span class="n">left</span> <span class="n">situation</span><span class="o">.</span> <span class="n">After</span> <span class="n">right</span> <span class="n">rotation</span><span class="p">,</span>
+<span class="o">//</span>        <span class="n">the</span> <span class="n">result</span> <span class="ow">is</span> <span class="k">as</span> <span class="n">below</span><span class="p">:</span>
+                <span class="mi">7</span>
+              <span class="o">/</span>   \
+             <span class="mi">3</span>    <span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+           <span class="o">/</span>  \    <span class="o">/</span>  \
+         <span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="mi">8</span>   <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+                      <span class="o">/</span>  \
+                     <span class="mi">11</span>   <span class="mi">22</span>  
                        \    \
-                      [13]  [26]
-// Step6: New the new node (i.e., 10) enters case 3 right right situation.
-//        After left rotation and color swapping, the result is as below:
-               10
-              /   \
-            [7]    [18]
-           /  \    /   \
-          3    8  11    22
-        /  \        \     \
-      [2]  [6]      [13]   [26]
+                      <span class="p">[</span><span class="mi">13</span><span class="p">]</span>  <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
+<span class="o">//</span> <span class="n">Step6</span><span class="p">:</span> <span class="n">New</span> <span class="n">the</span> <span class="n">new</span> <span class="n">node</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">enters</span> <span class="n">case</span> <span class="mi">3</span> <span class="n">right</span> <span class="n">right</span> <span class="n">situation</span><span class="o">.</span>
+<span class="o">//</span>        <span class="n">After</span> <span class="n">left</span> <span class="n">rotation</span> <span class="ow">and</span> <span class="n">color</span> <span class="n">swapping</span><span class="p">,</span> <span class="n">the</span> <span class="n">result</span> <span class="ow">is</span> <span class="k">as</span> <span class="n">below</span><span class="p">:</span>
+               <span class="mi">10</span>
+              <span class="o">/</span>   \
+            <span class="p">[</span><span class="mi">7</span><span class="p">]</span>    <span class="p">[</span><span class="mi">18</span><span class="p">]</span>
+           <span class="o">/</span>  \    <span class="o">/</span>   \
+          <span class="mi">3</span>    <span class="mi">8</span>  <span class="mi">11</span>    <span class="mi">22</span>
+        <span class="o">/</span>  \        \     \
+      <span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="p">[</span><span class="mi">6</span><span class="p">]</span>      <span class="p">[</span><span class="mi">13</span><span class="p">]</span>   <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The deletion algorithm described in https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/ is not as straightforward as the insertion algorithm. The descriptions from http://gauss.ececs.uc.edu/RedBlack/redblack.html could provide some help.</p>
+<p>The deletion algorithm described in <a class="reference external" href="https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/">https://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/</a> is not as straightforward as the insertion algorithm. The descriptions from <a class="reference external" href="http://gauss.ececs.uc.edu/RedBlack/redblack.html">http://gauss.ececs.uc.edu/RedBlack/redblack.html</a> could provide some help.</p>
 </div>
 <div class="section" id="an-example-of-using-rbtree-lib-in-the-kernel">
 <h2>An example of using rbTree lib in the kernel.<a class="headerlink" href="#an-example-of-using-rbtree-lib-in-the-kernel" title="Permalink to this headline">¶</a></h2>
-<p>An example of using kernel implementation of rbTree could refer to lib/rbtree_test.c, and an online material http://www.infradead.org/~mchehab/kernel_docs/unsorted/rbtree.html. A remarkable thing about the implementation is the code maintains flexibility to users. Users could define own data structures which includes the <em>rb_node</em> structure, and use <em>container_of()</em> or <em>rb_entry()</em> (a wrapper of container_of) to access user defined data. For example:</p>
+<p>An example of using kernel implementation of rbTree could refer to lib/rbtree_test.c, and an online material <a class="reference external" href="http://www.infradead.org/%7Emchehab/kernel_docs/unsorted/rbtree.html">http://www.infradead.org/~mchehab/kernel_docs/unsorted/rbtree.html</a>. A remarkable thing about the implementation is the code maintains flexibility to users. Users could define own data structures which includes the <em>rb_node</em> structure, and use <em>container_of()</em> or <em>rb_entry()</em> (a wrapper of container_of) to access user defined data. For example:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">mytype</span> <span class="p">{</span>
       <span class="k">struct</span> <span class="n">rb_node</span> <span class="n">node</span><span class="p">;</span>
       <span class="kt">char</span> <span class="o">*</span><span class="n">keystring</span><span class="p">;</span>
@@ -393,14 +482,14 @@
 <hr class="docutils" />
 <div class="section" id="appendix-algorithm-introduction-to-rbtree">
 <h2>Appendix: algorithm introduction to rbTree<a class="headerlink" href="#appendix-algorithm-introduction-to-rbtree" title="Permalink to this headline">¶</a></h2>
-<p>This section provides supplemental information for rbTree. Most of the materials are based on the slides in  https://www.cs.purdue.edu/homes/ayg/CS251/slides/chap13a.pdf and http://gauss.ececs.uc.edu/RedBlack/redblack.html. The red-black tree could be derived from 2-3-4 tree, in which a node could have 1/2/3 keys and have 2/3/4 children respectively. The following shows an 2-3-4 tree.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>          2-3-4 tree
+<p>This section provides supplemental information for rbTree. Most of the materials are based on the slides in <a class="reference external" href="https://www.cs.purdue.edu/homes/ayg/CS251/slides/chap13a.pdf">https://www.cs.purdue.edu/homes/ayg/CS251/slides/chap13a.pdf</a> and <a class="reference external" href="http://gauss.ececs.uc.edu/RedBlack/redblack.html">http://gauss.ececs.uc.edu/RedBlack/redblack.html</a>. The red-black tree could be derived from 2-3-4 tree, in which a node could have 1/2/3 keys and have 2/3/4 children respectively. The following shows an 2-3-4 tree.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">2</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span> <span class="n">tree</span>
 
-              n
-            /    \
-          c,i      t 
-        /  |  \    /  \ 
-       a  f,g  l  p,r  x
+              <span class="n">n</span>
+            <span class="o">/</span>    \
+          <span class="n">c</span><span class="p">,</span><span class="n">i</span>      <span class="n">t</span> 
+        <span class="o">/</span>  <span class="o">|</span>  \    <span class="o">/</span>  \ 
+       <span class="n">a</span>  <span class="n">f</span><span class="p">,</span><span class="n">g</span>  <span class="n">l</span>  <span class="n">p</span><span class="p">,</span><span class="n">r</span>  <span class="n">x</span>
 </pre></div>
 </div>
 <p>2-3-4 trees have the advantages of a balanced distribution and a bounded search time (<em>O(logN)</em>). However, they have a drawback of different node structures. To leverage the advantage and to achieve same node structures, red-black tree emerges. The interpretation of rbTree in Purdue’s slides is a bit different than what we normally perceive, as the slides use colored edges instead of nodes. We keep the sense of colored node to be aligned with the kernel implementation.</p>
@@ -409,33 +498,58 @@
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="kernel-rev-hashtable.html" class="btn btn-neutral float-left" title="Hash table" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="kernel-rev-typeof.html" class="btn btn-neutral float-right" title="The famous “typeof” and “container_of”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kernel-rev-typeof.html" class="btn btn-neutral float-right" title="“TYPEOF” and “CONTAINER_OF”" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kernel-rev-hashtable.html" class="btn btn-neutral float-left" title="Hash table" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Tony ZHAO.</p>
-  </div>
+    <p>
+        
+        &copy; Copyright 2021, Tony ZHAO
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

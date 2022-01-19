@@ -1,6 +1,6 @@
 # Firmware 101
 
-<img src="http://www.element14.com/community/servlet/JiveServlet/showImage/2-84952-167466/bbb-top-white.png" width="600">
+<img src="https://beagleboard.org/static/ti/product_detail_black_lg.jpg" width="500">
 
 *Coutesy of Beaglebone Black* <https://beagleboard.org/black/>
 

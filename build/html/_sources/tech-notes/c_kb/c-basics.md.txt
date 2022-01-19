@@ -98,7 +98,7 @@ There are basically two situations when sizeof() is used. Firstly, to allocate d
 
 ### The usage of strlen()
 
-In order to understand how *strlen()* works, we duplicate the implementation of this method in Glibc as below. More info could refer to https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=string/strlen.c;hb=HEAD.
+In order to understand how *strlen()* works, we duplicate the implementation of this method in Glibc as below. More info could refer to <https://sourceware.org/git/?p=glibc.git;a=blob_plain;f=string/strlen.c;hb=HEAD>.
 
 ```c
 #include <string.h>
@@ -195,9 +195,9 @@ Some notes when reading this piece of code.
 
 1. The syntax of *for* loop allows no braces if a single statement is fired within the loop (like the one in line 21).
 2. The string to be measured is stored in the memory with continuous indexes. That is why line 25 (*return char_ptr - str*) works.
-3. The code is optimized with respect to performance. Refer to https://stackoverflow.com/questions/20021066/how-the-glibc-strlen-implementation-works.
+3. The code is optimized with respect to performance. Refer to <https://stackoverflow.com/questions/20021066/how-the-glibc-strlen-implementation-works>.
 4. The coder is extremely familiar with memory alignment and computer ISA.
-5. There are some performance comparisons between different strlen implementation. Check https://news.ycombinator.com/item?id=510326. The book, Hacker's Delight (http://hackersdelight.org/) mentioned in the link is worth reading.
+5. There are some performance comparisons between different strlen implementation. Check <https://news.ycombinator.com/item?id=510326>. The book, Hacker's Delight (http://hackersdelight.org/) mentioned in the link is worth reading.
 
 There is a simple *strlen()* implementation from K&R.
 
@@ -236,7 +236,7 @@ const int * const f = &a;
 
 c, d and f will be illegal if the value of a is to be changed. c and d is legal to change the pointer to another pointer e.g., `int i = 3; c = &i;`, and such a change is illegal for f. It is legal for e to change the value of a, e.g., `a = 10;`. But it would be illegal for f to do pointer change like e.g., `int j = 9; f = &j;`. The const qualifier could also be used for non-pointer values. The following lines are perfectly legal, `int const a = 8; const int *b = &a;`.
 
-The usage of *volatile* qualifier is compiler related. Basically, it prevents the compiler from optimizing away the memory read/write operations to the volatile variable. The syntax of using volatile is just like const. Considering the pointer situation, the most common use case is `volatile int *a = &b;` or `int volatile *a = &b`, indicating a pointer to a volatile variable. Volatile pointers to a non-volatile data is rare. There are three cases that will use volatile qualifier (refer to https://barrgroup.com/Embedded-Systems/How-To/C-Volatile-Keyword):
+The usage of *volatile* qualifier is compiler related. Basically, it prevents the compiler from optimizing away the memory read/write operations to the volatile variable. The syntax of using volatile is just like const. Considering the pointer situation, the most common use case is `volatile int *a = &b;` or `int volatile *a = &b`, indicating a pointer to a volatile variable. Volatile pointers to a non-volatile data is rare. There are three cases that will use volatile qualifier (refer to <https://barrgroup.com/Embedded-Systems/How-To/C-Volatile-Keyword>):
 
 1. Memory-mapped peripheral registers
 
@@ -246,7 +246,7 @@ The usage of *volatile* qualifier is compiler related. Basically, it prevents th
 
 A good example of the first case is as below:
 
-```c
+```
 // Situation 1: non volatile memory read.
 uint8_t * p_reg = (uint8_t *) 0x1234;
 
@@ -260,7 +260,7 @@ loop:
   bz loop
 ```
 
-```c
+```
 // Situation 2: volatile memory read.
 uint8_t volatile * p_reg = (uint8_t *) 0x1234;
 
@@ -280,7 +280,7 @@ When `combining const and volatile`, we might wonder whether the definition of `
 
 ## Bit manipulation
 
-Bit manipulations are full of tricks. In some cases, it decrease an algorithm's complexity from O(logN) down to O(1). A good reference could be the book Hacker's Delight. Here are some examples from this link: https://www.hackerearth.com/zh/practice/notes/bit-manipulation/.
+Bit manipulations are full of tricks. In some cases, it decrease an algorithm's complexity from O(logN) down to O(1). A good reference could be the book Hacker's Delight. Here are some examples from this link: <https://www.hackerearth.com/zh/practice/notes/bit-manipulation/>.
 
 1. How to check if the given number is power of 2?
 
