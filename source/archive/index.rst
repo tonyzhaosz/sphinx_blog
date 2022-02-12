@@ -8,3 +8,4 @@ Contents in this directory:
     the_fault_in_our_stars.md
     firmware_intro.md
     2019-goals.md
+    2022-goals.md
