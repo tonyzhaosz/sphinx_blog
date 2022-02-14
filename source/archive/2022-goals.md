@@ -15,8 +15,15 @@ There are some strategic changes made in early 2022, where more career oppurtuni
 
 **References**: 
   - `BOOK - CISSP all-in-one exam guide.`
+  - `BOOK - CISSP CBK.`
   - `Udemy - 4 sets of test questions.`
 
 ## Tasks for improving web-app pen-test skills
 
 
+## Improve Kali and web-app pen-test skills
+
+
+## 2021 retroperspective
+
+START/STOP/CONTINUE
